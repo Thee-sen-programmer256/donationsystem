@@ -252,12 +252,13 @@ position: fixed;
 
     <!-- floating button1 -->
     <div class="fixed-action-btn" style="bottom:23%">
-    <a  class="btn-floating btn-large blue" href="#top">
+    <a  class="btn-floating btn-large blue tooltipped" href="#top" data-position="left" data-tooltip="Back to top">
     <i class="large material-icons">arrow_upward</i>
     </a>
 
     </div>
     <!-- end of floating button -->
+
 
 
     <!-- floating button2 -->
@@ -315,6 +316,10 @@ It is a long established fact that a reader will be distracted by the readable c
     $(document).ready(function(){
       $('.modal').modal();
     });
+
+    $(document).ready(function(){
+   $('.tooltipped').tooltip();
+ });
   </script>
     <script src="sliscript.js"></script>
     <script type="text/javascript">
