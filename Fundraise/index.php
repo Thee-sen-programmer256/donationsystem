@@ -62,8 +62,7 @@ position: fixed;
  <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
- <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
- <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
+ <li><a href="../stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
@@ -71,47 +70,60 @@ position: fixed;
 
     <!--the navbar-->
     <!-- add story -->
-    <h3>Add Story</h3>
+    <h3>Fundraise</h3>
+<section>
+  <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
+          <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+              <div class="col s2">
+                <img src="img/2.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+              </div>
+              <div class="col s10">
+                <span class="black-text">
+                  <span class="black-text">
+                    This is a square image. Add the "circle" class to it to make it appear circular.
+                      This is a square image. Add the "circle" class to it to make it appear circular.
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                          This is a square image. Add the "circle" class to it to make it appear circular.
+                            This is a square image. Add the "circle" class to it to make it appear circular.
+                  </span>
+      </div>
+                </span>
 
-<div class="row">
- <form action="/stories" method="post" class="col s12">
- <div class="row">
-       <div class="input-field col s12">
-         <input id="title" type="text" name="title" >
-         <label for="title">Title</label>
-       </div>
- </div>
- <div class="row">
-       <div class="input-field col s12">
-          <select id="status" name="status">
-              <option value="public" selected>public</option>
-              <option value="private">private</option>
-          </select>
-   <label>Status</label>
-       </div>
-</div>
+              </div>
+              <div class="row" style="margin-top:-6%">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="card-action left-align" style="margin-left:75%">
+                      <a href="" class="btn blue">Read More</a>
+                    </div>
+                    </td>
 
- <div class="row">
-       <div class="input-field col s12">
-         <textarea id="body" class="materialize-textarea" name="body"></textarea>
-         <label for="body">Tell us your story</label>
-       </div>
- </div>
+                    <td></td>
+                    <td>
+                      <div class="card-action right-align" style="margin-right:75%;">
+                      <a href="" class="btn green">Fundraise</a>
+                    </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- floating button2 -->
+              <div class="fixed-action-btn" style="bottom:59%">
+              <a  class="btn-floating btn-small blue" href="stories/addstory.php">
+              <i class="large material-icons" style="height:13px">chevron_right</i>
+              </a>
 
- <div class="row">
-       <div class="input-field col s12">
-         <input id="title" type="file" name="storyimage" >
-           <p>Story image</p>
-       </div>
- </div>
+              </div>
+              <!-- end of floating button -->
+            </div>
+            </div>
 
- <div class="row">
-   <input type="submit" value="Save" class="btn">
-   <a href="/dashboard" class="btn orange">Cancel</a>
- </div>
+</section>
 
- </form>
-</div>
+
+
     <!-- end of story -->
 
     <!-- modals -->

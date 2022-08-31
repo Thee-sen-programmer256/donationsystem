@@ -1,5 +1,4 @@
-document.querySelector('.img-btn').addEventListener('click', function()
-	{
-		document.querySelector('.cont').classList.toggle('s-signup')
-	}
-);
+$('.option').click(function(){
+   $('.option').removeClass('active');
+   $(this).addClass('active');
+})

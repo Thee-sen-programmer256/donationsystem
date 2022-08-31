@@ -64,7 +64,7 @@ position: fixed;
  <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
- <li><a href="#!"><i class="material-icons">star_border</i>Stories</a></li>
+ <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
