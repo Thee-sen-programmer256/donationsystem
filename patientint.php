@@ -49,10 +49,11 @@ position: fixed;
        <div class="nav-wrapper container" >
          <p class="brand-logo center" style="color:white">Patient</p>
          <a class="brand-logo right">
-           <div class="chip" >
+           <i class="material-icons" onclick="M.toast({html:'donation notifications here',classes: 'black darken-1 rounded'})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+           <div class="chip" style="vertical-align:middle;">
       <img src="images/cute.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
-      </div></a>
+    </div> &nbsp;  </a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
            <li><a href="" style="text-decoration:none;">Stories</a></li>
@@ -236,7 +237,19 @@ position: fixed;
 
         <!-- <a class="btn orange modal-trigger" href="#terms">Help Info</a> -->
 
-        <div id="terms" class="modal">
+        <div id="terms" class="modal modal-fixed-footer">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+    <!-- <div class="modal-content maroon">
+
+    </div> -->
+    <div class="modal-footer">
+
+      <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Agree</a>
+    </div>
+  </div>
+
+        <!-- <div id="terms" class="modal">
           <div class="modal-content">
             <h4>Welcome patient</h4>
             <p>Here is a few tips to know when using the application</p>
@@ -246,7 +259,7 @@ position: fixed;
           </div>
         </div>
 
-      </div>
+      </div> -->
         <!-- end of modal -->
 
 
@@ -324,6 +337,12 @@ It is a long established fact that a reader will be distracted by the readable c
     <script src="sliscript.js"></script>
     <script type="text/javascript">
     M.Sidenav.init(document.querySelector('.sidenav'));
+    M.toast({html: toastHTML});
+
+    function toast() {
+        document.body.style.color = "black";
+        return false;
+    }
 
 
 

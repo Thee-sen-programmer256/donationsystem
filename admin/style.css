@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root{
-    --main-color:#29ccf5;
+    --main-color:#0071b5;
     --color-dark:#1D2231;
     --text-grey:#8390A2;
 }
@@ -21,7 +21,7 @@
     left: 0;
     top: 0;
     height: 100%;
-    background: var(--main-color) ;
+    background: rgb(0,113,181) ;
     z-index: 100;
     transition: width 300ms;
 }
@@ -338,23 +338,23 @@ tr td:last-child{
     .sidebar{
         width: 70px;
     }
-    
+
     .sidebar .sidebar-brand,
     .sidebar li{
         padding-left: 1rem;
         text-align: center;
     }
-    
+
     .sidebar li a{
         padding-left: 0rem;
     }
-    
-    
+
+
     .sidebar .sidebar-brand h2 span:last-child,
     .sidebar li a span:last-child{
         display: none;
     }
-    
+
     .main-content{
         margin-left: 70px;
     }
@@ -364,7 +364,7 @@ tr td:last-child{
         left: 70px;
     }
 
-   
+
 }
 
 @media only screen and (max-width:960px){
@@ -437,17 +437,17 @@ tr td:last-child{
         z-index: 100;
         width: 345px;
     }
-    
+
     #nav-toggle:checked + .sidebar .sidebar-brand,
     #nav-toggle:checked + .sidebar li{
         padding-left: 2rem;
         text-align: left;
     }
-    
+
     #nav-toggle:checked + .sidebar li a{
         padding-left: 1rem;
     }
-    
+
     #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
     #nav-toggle:checked + .sidebar li a span:last-child{
         display: inline;
@@ -456,7 +456,7 @@ tr td:last-child{
     #nav-toggle:checked ~ .main-content{
         margin-left: 0rem !important;
     }
-    
+
 }
 
 @media only screen and (max-width: 560px){
