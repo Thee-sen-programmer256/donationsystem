@@ -20,8 +20,13 @@ include "config/controller.php";
      </style>
    </head>
 <body>
+    <div >
+        <a href="Home/index.html">
+        <img width="40px;" height="40px;" style="margin-left: -600%;" src="Home/images/back.png" alt="back">
+    </a>
+    </div>
   <div class="container">
-    <div class="title" style="">Donor_Registration</div>
+    <div class="title">Donor_Registration</div>
     <div class="content">
       <form action="" method="post" enctype="multipart/form-data">
         <div class="user-details">
@@ -454,12 +459,12 @@ include "config/controller.php";
             <span class="details">Image</span>
             <input type="file" placeholder="Confirm your password" name="file" required>
           </div>
-          <div class="">
+          <!-- <div class="">
             <div class="form-group d-flex justify-content-center" style="margin-left:400%">
                                   <img src="dist/img/no-image-available.png" alt="" id="cimg" class="img-fluid img-thumbnail">
                               </div>
 
-          </div>
+          </div> -->
 
         </div>
         <div class="gender-details">
