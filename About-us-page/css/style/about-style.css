@@ -22,7 +22,7 @@ html{
   }
   /* Header */
   .header{
-    padding: 1rem 7%;
+    padding: 0.8rem 7%;
     background-color: var(--mainclr);
     display: flex;
     justify-content: space-between;
