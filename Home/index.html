@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
@@ -32,7 +33,19 @@
 
         <div class="icons">
             <div id="menubar" class="fas fa-bars"></div>
-            <a href="#" style="color: rgb(3, 3, 4);">Sign-up</a>
+            <input type="checkbox" id="show">
+            <label for="show" style="color: rgb(3, 3, 4);">Sign-up</label>
+            <div class="container">
+                <label for="show" class="close-btn fas fa-times" title="close"></label>
+                <div class="text">
+                    Sign-up <br><br>
+                   
+                    <a id="signup" href="../patientreg.html">Patient</a> |
+                    <a id="signup" href="../donorreg.html">Donor</a>
+                    
+                </div>
+ 
+            </div>
         </div>
     </header>
 
@@ -40,7 +53,7 @@
         <div class="background-content">
             <h1>You Can... <br> Save a Life!</h1>
             <p>We are an organ donation and Transplantation organization whose goals include <br> saving and improving lives of people in need of organs, giving them <br> a chance to live normal lives.</p>
-            <a href="../About-us-page/about-us.html" id="read-more">Read more</a>
+            <a href="../donorreg.html" id="read-more">Contribute Finacially</a>
         </div>
     </div>
 
