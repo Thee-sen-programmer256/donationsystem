@@ -76,7 +76,7 @@ position: fixed;
           <div class="card-panel grey lighten-5 z-depth-1">
             <div class="row valign-wrapper">
               <div class="col s2">
-                <img src="img/2.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                <img src="../simages/card3.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
               </div>
               <div class="col s10">
                 <span class="black-text">
