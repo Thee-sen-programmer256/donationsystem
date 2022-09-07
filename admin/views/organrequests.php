@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 <!--
      <link href="admin-assets/css/font-face.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -29,7 +29,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center
+          justify-content: left
         }
 
 
@@ -48,25 +48,31 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-users"></span><span>Patients</span></a>
+                    <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="#donor" class="active"><span class="las la-user"></span><span>Donors</span></a>
+                    <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href=""  class="active"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
                     <a href=""><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                </li>
+                <li>
+                    <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
+                </li>
+                <li>
+                    <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
             </ul>
         </div>
@@ -80,7 +86,7 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-                Donors
+              Organ Requests
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -89,7 +95,7 @@
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
-                <img src="images.jpg" width="40px" height="40px" alt="">
+                <img src="../images.jpg" width="40px" height="40px" alt="">
                 <div>
                     <h4>Mark Roi</h4>
                     <small>Super admin</small>
@@ -103,11 +109,11 @@
 
 
 
-    <a href="">
-        <button type="button" style="padding: 13px; color: white;background-color:#29ccf5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-            Add Donor
-        </button>
-    </a>
+      <!-- <a href="partials/addorgans.php">
+          <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
+              Add Event
+          </button>
+      </a> -->
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
@@ -116,29 +122,19 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Blood group</th>
-
-                            <th>Gender</th>
-
-                            <th>image</th>
-
+                            <th>Organ Requested</th>
+                            <th>Patient </th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr>
-                            <td>1</td>
-                             <td>mneefegeggege</td>
-                             <td>g3gweewe</td>
-                             <td>wgwghwehwr</td>
-                             <td>wgwghwehwr</td>
-
-
-                            <td>whhwrhwhjtwjte</td>
-
+                             <td>1</td>
+                             <td>Organ Requested</td>
+                             <td>Patient</td>
+                             <td>2345455</td>
                             <td>
                                 <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;

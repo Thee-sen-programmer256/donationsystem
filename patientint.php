@@ -49,7 +49,7 @@ position: fixed;
        <div class="nav-wrapper container" >
          <p class="brand-logo center" style="color:white">Patient</p>
          <a class="brand-logo right">
-           <i class="material-icons" onclick="M.toast({html:'donation notifications here',classes: 'black darken-1 rounded'})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+           <i class="material-icons" onclick="M.toast({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
            <div class="chip" style="vertical-align:middle;">
       <img src="images/cute.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
@@ -80,6 +80,7 @@ position: fixed;
  <!-- <li><a href="patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li> -->
  <li><a href="stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
   <li><a href="Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
+    <li><a href="schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
