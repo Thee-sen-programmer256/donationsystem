@@ -1,3 +1,11 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $result =" SELECT * FROM events" ;
+    $display=mysqli_query($con, $result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,6 +131,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Event</th>
+                            <th>Description</th>
                             <th>Start Date</th>
                             <th>End date</th>
                             <th>Action</th>
@@ -130,11 +139,18 @@
                     </thead>
                     <tbody>
 
+                <!-- Fetch data from notify table -->
+            
+                <?php
+                while ( $row=mysqli_fetch_assoc($display)) {
+
+                    ?>
                         <tr>
-                            <td>1</td>
-                             <td>mneefegeggege</td>
-                             <td>g3gweewe</td>
-                             <td>wgwghwehwr</td>
+                            <td><?php echo $row['eventId'];  ?></td>
+                            <td><?php echo $row['title'];  ?></td>
+                             <td><?php echo $row['ev-description'];  ?></td>
+                             <td><?php echo $row['start_datetime'];  ?></td>
+                             <td><?php echo $row['end_datetime'];  ?></td>
                             <td>
                                 <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
@@ -150,7 +166,7 @@
                                 <a href="partials/editevent.php"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
-
+                    <?php   }?>
                     </tbody>
                 </table>
             </div>

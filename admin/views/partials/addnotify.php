@@ -1,3 +1,36 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    if(!$con){
+        die("Could not connect: ". mysqli_connect_error());
+    }else{
+       echo "successful connected";
+    }
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    $notifications= $_POST["notifications"];
+
+$sql = "INSERT INTO notify( notifications)VALUE('$notifications')";
+//echo $sql;
+// excecuting the query
+if(mysqli_query($con,$sql)){
+
+    ?>
+    
+    <script type="text/javascript">
+        alert("Notification Successfully Added");
+        window.location= "notifications.php";
+    </script>
+    <?php 
+    }else{
+    echo mysqli_error($con);
+    }
+    
+    }
+    
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,12 +174,12 @@
                                       
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notification" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" required></textarea>
                                           </div>
 
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>

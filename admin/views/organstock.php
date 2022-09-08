@@ -1,3 +1,11 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $result =" SELECT * FROM organ " ;
+    $display=mysqli_query($con, $result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,12 +140,18 @@
                     </thead>
                     <tbody>
 
+                <!-- Fetch data from patient table -->
+            
+                <?php
+                while ( $row=mysqli_fetch_assoc($display)) {
+
+                    ?>
                         <tr>
-                            <td>1</td>
-                             <td>Liver</td>
-                             <td>A</td>
-                             <td>Rhon</td>
-                             <td>232 23</td>
+                            <td><?php echo $row['organId'];  ?></td>
+                             <td><?php echo $row['organ'];  ?></td>
+                             <td><?php echo $row['bloodGroup'];  ?></td>
+                             <td><?php echo $row['donor'];  ?></td>
+                             <td><?php echo $row['date_added'];  ?></td>
                             <td>
                                 <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
@@ -153,7 +167,7 @@
                                 <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
-
+                    <?php    }?>
                     </tbody>
                 </table>
             </div>

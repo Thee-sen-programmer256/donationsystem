@@ -1,3 +1,11 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $result =" SELECT * FROM request" ;
+    $display=mysqli_query($con, $result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,12 +137,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                <!-- Fetch data from notify table -->
+            
+                <?php
+                while ( $row=mysqli_fetch_assoc($display)) {
 
+                    ?>
                         <tr>
-                             <td>1</td>
-                             <td>Organ Requested</td>
-                             <td>Patient</td>
-                             <td>2345455</td>
+                             <td><?php echo $row['organId'];  ?></td>
+                             <td><?php echo $row['organName'];  ?></td>
+                             <td><?php echo $row['patient'];  ?></td>
+                             <td><?php echo $row['date'];  ?></td>
                             <td>
                                 <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
@@ -150,7 +163,7 @@
                                 <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
-
+                    <?php   }?>
                     </tbody>
                 </table>
             </div>
