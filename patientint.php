@@ -38,6 +38,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 position: fixed;
  /* width: 100 */ */
  }
+
+ a.new:hover button{
+   background: #ff7d7d;
+   color: #fff;
+ }
+
  </style>
   </head>
   <body style="background:white">
@@ -91,7 +97,7 @@ position: fixed;
     <!--the navbar-->
     <!-- slider -->
     <!-- slider -->
-<section class="product">
+<section class="product" style="height:350px">
      <h2 class="product-category" style="text-align:center">Check out organs available</h2>
      <button class="pre-btn"><img src="simages/arrow.png" alt=""></button>
      <button class="nxt-btn"><img src="simages/arrow.png" alt=""></button>
@@ -99,132 +105,121 @@ position: fixed;
 
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card1.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info" style="padding-bottom:100%">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
-                 </div>
-             </div>
+                 <span class="discount-tag" style="background-color:green;color:white">Active</span>
 
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card2.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
          </div>
 
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card3.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <span class="discount-tag"  style="background-color:maroon;color:white">Inactive</span>
+
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
-
          </div>
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card4.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <span class="discount-tag">Active</span>
+
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
-
          </div>
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card5.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <span class="discount-tag">Active</span>
+
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
-
          </div>
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card6.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <span class="discount-tag">Active</span>
+
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
-
          </div>
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card7.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <span class="discount-tag">Active</span>
+
+
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
-
          </div>
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card8.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
-                 </div>
-             </div>
+                 <span class="discount-tag">Active</span>
 
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card9.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
-                 </div>
-             </div>
 
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">50% off</span>
-                 <img src="simages/card10.jpg" class="product-thumb" alt="">
-                 <button class="card-btn">add to wishlist</button>
-                 <div class="product-info">
-                     <h2 class="product-brand">brand</h2>
-                     <p class="product-short-description">a short line about the cloth..</p>
-                     <span class="price">$20</span><span class="actual-price">$40</span>
+                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
+                    <div class="">
+                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
+
+                       <p class="product-short-description price">Donor</p>
+                       <span class="price">$20</span><span class="actual-price">$40</span>
+                    </div>
+                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:37px;">add to wishlist</button></a>
                  </div>
              </div>
+         </div>
+
+
+
+
 
          </div>
      </div>
@@ -299,7 +294,11 @@ position: fixed;
 </div>
 <!-- end of floating button -->
 
-<p>Why do we use it?
+<div class="">
+  &nbsp;
+</div>
+
+<div style="margin-left:-6%"><p>Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Why do we use it?
@@ -322,6 +321,7 @@ It is a long established fact that a reader will be distracted by the readable c
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).Why do we use it?
 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
