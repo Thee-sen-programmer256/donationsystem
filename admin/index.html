@@ -1,3 +1,11 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $result =" SELECT * FROM review " ;
+    $display=mysqli_query($con, $result);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,30 +151,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                            <!-- Fetch data from the database -->
+                                            <?php
+                                            while ( $row=mysqli_fetch_assoc($display)) {
+                                                ?>
                                             <tr>
-                                                <td>Okello Brian</td>
-                                                <td>Kidney</td>
+                                                <td><?php echo $row['name'];  ?></td>
+                                                <td><?php echo $row['organ'];  ?></td>
                                                 <td>
                                                     <span class="status purple"></span>
-                                                    review
+                                                    <?php echo $row['status'];  ?>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Senyonjo Rhonie</td>
-                                                <td>Heart</td>
-                                                <td>
-                                                    <span class="status pink"></span>
-                                                    In progress
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Nakasaga Julie</td>
-                                                <td>Bone marrow</td>
-                                                <td>
-                                                    <span class="status orange"></span>
-                                                    Pending
-                                                </td>
-                                            </tr>
+                                            <?php  }?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>

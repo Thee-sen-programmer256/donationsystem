@@ -1,3 +1,9 @@
+<?php
+session_start();
+$con = mysqli_connect("localhost","root","","donation_procurement");
+
+?>
+
 <!DOCTYPE html>
 <!--By okello Brian-->
 <html lang="en">
@@ -13,7 +19,7 @@
     <div class="wrapper">
 <section class="form login">
     <header style="text-align: center;">Login</header>
-    <form action="#">
+    <form action="">
         <!-- <div class="error-txt">This is an error message</div> -->
         <div class="name-details">
            
@@ -31,8 +37,10 @@
                 <input type="submit" value="Login">
         </div>
     </form>
-    <div class="link">Not yet  signed up? <a href="#">Signup now</a></div>
+    <div class="link">Not yet  signed up? <a href="#">Sign-up now</a></div>
 </section>
     </div>
+
+    
 </body>
 </html>
