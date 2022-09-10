@@ -1,11 +1,4 @@
-<?php 
-     $con = mysqli_connect("localhost","root","","donation_procurement");
-
-     $result =" SELECT * FROM shedule " ;
-     $display=mysqli_query($con, $result);
-
-
-?>
+<?php require_once('db-connect.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +22,7 @@
         body {
             height: 100%;
             width: 100%;
-            font-family: Apple Chancery, cursive;
+            font-family: Times New Roman;
         }
 
         .btn-info.text-light:hover,
@@ -134,7 +127,7 @@
     <!-- Event Details Modal -->
 
 <?php
-$schedules = $con->query("SELECT * FROM `schedule`");
+$schedules = $conn->query("SELECT * FROM `schedule_list`");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
@@ -143,7 +136,7 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 }
 ?>
 <?php
-if(isset($con)) $con->close();
+if(isset($conn)) $conn->close();
 ?>
 </body>
 <script>
