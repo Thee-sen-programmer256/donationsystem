@@ -1,10 +1,12 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM organ" ;
+    $result =" SELECT * FROM donation " ;
     $display=mysqli_query($con, $result);
+
     
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +24,10 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    <title>Dashboard</title>
+    
 -->
-    <title>Stock</title>
+    <title>Donations</title>
+
     <style>
         table{
             border-radius: 10px
@@ -37,8 +40,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:  flex-end;
-            align-content: center;
+            justify-content: center
         }
 
 
@@ -60,22 +62,22 @@
                     <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
+                    <a href="patients.php"><span class="las la-users"></span><span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
+                    <a href="donor.php" ><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href="organrequests.php"  ><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
                     <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="organstock.php" class="active"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="#" class="active"><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -95,7 +97,7 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Organ Stock
+                Donations
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -118,58 +120,63 @@
 
 
 
-      <a href="partials/addorgans.php">
-          <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-              Add Organ
-          </button>
-      </a>
+    <a href="">
+        <!-- <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
+            Add Donor
+        </button> -->
+    </a>
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
             <div>
-                <table  style="top:1px solid;width: 100%;border-radius: 10px;right:-100px">
-                    <thead style="padding: 30px;background-color: black;color: white;">
+                <table  style="top:1px solid;width: 90%;border-radius: 10px;right:-100px">
+                    <thead style="padding: 30px;background-color: black;color: white;margin-left:-10%">
                         <tr>
                             <th>ID</th>
-                            <th>Organ </th>
-                            <th>Blood Group </th>
-                            <th>Donor</th>
-                            <th>Date Added</th>
-                            <th>Statuss</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Contact</th>
+                            <th>Amount</th>
+                            <th>Display</th>
+                            <th>Email</th>
+                            <th>Status</th>
                             <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
 
-                <!-- Fetch data from patient table -->
+            <!-- Fetch data from donor table -->
             
-                <?php
+                    <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr style="text-align: center;">
-                            <td><?php echo $row['organId'];  ?></td>
-                             <td><?php echo $row['organname'];  ?></td>
-                             <td><?php echo $row['bloodgroup'];  ?></td>
-                             <td><?php echo $row['donor'];  ?></td>
-                             <td><?php echo $row['date_added'];  ?></td>
-                             <td><?php echo $row['statuss'];  ?></td>
+                        <tr>
+                            <td><?php echo $row['donationId'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
+                             <td><?php echo $row['lname'];  ?></td>
+                             <td><?php echo $row['contact'];  ?></td>
+                             <td><?php echo $row['amount'];  ?></td>
+                            <td><?php echo $row['display'];  ?></td>
+                            <td><?php echo $row['email'];  ?></td>
+                            <td><?php echo $row['statuss'];  ?></td>
+
                             <td>
-                                <a href="partials/delorgans.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <a href="partials/deldonation.php?pd=<?php echo $row['donationId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href="partials/deactivate-organ.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
+                                <a href="partials/editdonation.php?a=<?php echo $row['donationId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white" name="confirm">Confirm</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
 
-
-                                <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
-                    <?php    }?>
+                        <?php  } ?>
+
                     </tbody>
                 </table>
             </div>

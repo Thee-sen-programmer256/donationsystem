@@ -10,12 +10,13 @@
 
     // Assigning input data into a variable then inserting it into the database
 if(isset($_POST["submit"])){
-    $organName= $_POST["organName"];
-    $bloodGroup= $_POST["bloodGroup"];
+    $organname= $_POST["organname"];
+    $bloodgroup= $_POST["bloodgroup"];
     $donor= $_POST["donor"];
     $date_added= $_POST["date_added"];
+    $statuss= $_POST["statuss"];
 
-$sql = "INSERT INTO organ( organName, bloodGroup, donor,date_added)VALUE('$organName', '$bloodGroup', '$donor', '$date_added')";
+$sql = "INSERT INTO organ( organname, bloodgroup, donor,date_added, statuss)VALUE('$organname', '$bloodgroup', '$donor', '$date_added','$statuss')";
 //echo $sql;
 // excecuting the query
 if(mysqli_query($con,$sql)){
@@ -24,7 +25,7 @@ if(mysqli_query($con,$sql)){
     
     <script type="text/javascript">
         alert("Organ Successfully Added");
-        window.location= "organstock.php";
+        window.location= "../organstock.php";
     </script>
     <?php 
     }else{
@@ -173,15 +174,15 @@ if(mysqli_query($con,$sql)){
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
+                                      <form action="" method="post" id="schedule-form">
                                           <input type="hidden" name="id" value="">
                                           <div class="form-group mb-2">
                                               <label for="title" class="control-label">Organ</label>
-                                              <input type="text" class="form-control form-control-sm rounded-0" name="name" id="title" required>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="organname" id="title" required>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Blood group</label>
-                                              <select class="select" name="bloodGroup">
+                                              <select class="select" name="bloodgroup">
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                   <option value="B+">B+</option>
@@ -198,10 +199,11 @@ if(mysqli_query($con,$sql)){
                                           <div class="form-group mb-2">
                                               <label for="end_datetime" class="control-label">Date Added</label>
                                               <input type="datetime-local" class="form-control form-control-sm rounded-0" name="date_added" id="end_datetime" required>
+                                              <input type="hidden" value ="Available" name = "statuss">
                                           </div>
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>

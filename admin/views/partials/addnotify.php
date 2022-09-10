@@ -12,7 +12,7 @@
 if(isset($_POST["submit"])){
     $notifications= $_POST["notifications"];
 
-$sql = "INSERT INTO notify( notifications)VALUE('$notifications')";
+$sql = "INSERT INTO notify(notifications)VALUE('$notifications')";
 //echo $sql;
 // excecuting the query
 if(mysqli_query($con,$sql)){
@@ -21,7 +21,7 @@ if(mysqli_query($con,$sql)){
     
     <script type="text/javascript">
         alert("Notification Successfully Added");
-        window.location= "notifications.php";
+        window.location= "../notifications.php";
     </script>
     <?php 
     }else{
@@ -169,8 +169,8 @@ if(mysqli_query($con,$sql)){
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
-                                          <input type="hidden" name="id" value="">
+                                      <form action="" method="post" id="schedule-form">
+                                          <input type="hidden" name="Id" value="">
                                       
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
@@ -179,6 +179,7 @@ if(mysqli_query($con,$sql)){
 
                                           <div class="card-footer">
                                               <div class="text-center">
+                                    
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>

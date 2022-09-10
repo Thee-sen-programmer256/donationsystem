@@ -21,8 +21,9 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    <title>Dashboard</title>
+    
 -->
+<title>Notifications</title>
 
     <style>
         table{
@@ -55,7 +56,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -67,13 +68,13 @@
                     <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -141,12 +142,12 @@
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr>
+                        <tr style ="text-align:center;">
                             <td><?php echo $row['notifyId'];  ?></td>
                              <td><?php echo $row['notifications'];  ?></td>
 
                             <td>
-                                <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <a href="partials/delnotify.php?pd=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
@@ -157,7 +158,7 @@
 
 
 
-                                <a href="partials/editnotify.php"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
+                                <a href="partials/editnotify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
                     <?php   }?>

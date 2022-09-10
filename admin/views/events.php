@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM events" ;
+    $result =" SELECT * FROM schedule" ;
     $display=mysqli_query($con, $result);
     
 ?>
@@ -24,6 +24,8 @@
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
     <title>Dashboard</title>
 -->
+
+<title>Events</title>
 
     <style>
         table{
@@ -56,7 +58,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -68,13 +70,13 @@
                     <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" class="active"><span class="las la-calendar"></span><span>Events</span></a>
@@ -139,20 +141,21 @@
                     </thead>
                     <tbody>
 
-                <!-- Fetch data from notify table -->
+                <!-- Fetch data from schedule table -->
             
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr>
-                            <td><?php echo $row['eventId'];  ?></td>
+                        <tr style="text-align: center;">
+                            <td><?php echo $row['id'];  ?></td>
                             <td><?php echo $row['title'];  ?></td>
-                             <td><?php echo $row['ev-description'];  ?></td>
+                             <td><?php echo $row['she_description'];  ?></td>
                              <td><?php echo $row['start_datetime'];  ?></td>
                              <td><?php echo $row['end_datetime'];  ?></td>
                             <td>
-                                <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <!--Delete area which links to the delevent.php file -->
+                                <a href="partials/delevents.php?pd=<?php echo $row['id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
@@ -162,8 +165,8 @@
                                   &nbsp; -->
 
 
-
-                                <a href="partials/editevent.php"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
+                                <!--Update area which links to the editevents.php-->
+                                <a href="partials/editevent.php?a=<?php echo $row['id'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
                     <?php   }?>
