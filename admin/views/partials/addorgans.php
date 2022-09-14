@@ -1,3 +1,41 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    if(!$con){
+        die("Could not connect: ". mysqli_connect_error());
+    }else{
+       echo "successful connected";
+    }
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    $organname= $_POST["organname"];
+    $bloodgroup= $_POST["bloodgroup"];
+    $donor= $_POST["donor"];
+    $date_added= $_POST["date_added"];
+    $statuss= $_POST["statuss"];
+
+$sql = "INSERT INTO organ( organname, bloodgroup, donor,date_added, statuss)VALUE('$organname', '$bloodgroup', '$donor', '$date_added','$statuss')";
+//echo $sql;
+// excecuting the query
+if(mysqli_query($con,$sql)){
+
+    ?>
+    
+    <script type="text/javascript">
+        alert("Organ Successfully Added");
+        window.location= "../organstock.php";
+    </script>
+    <?php 
+    }else{
+    echo mysqli_error($con);
+    }
+    
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,15 +174,15 @@
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
+                                      <form action="" method="post" id="schedule-form">
                                           <input type="hidden" name="id" value="">
                                           <div class="form-group mb-2">
                                               <label for="title" class="control-label">Organ</label>
-                                              <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="organname" id="title" required>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Blood group</label>
-                                              <select class="select" name="">
+                                              <select class="select" name="bloodgroup">
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                   <option value="B+">B+</option>
@@ -156,15 +194,16 @@
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="donor" class="control-label">Donor</label>
-                                              <input type="" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="donor" id="start_datetime" required>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="end_datetime" class="control-label">Date Added</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
+                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="date_added" id="end_datetime" required>
+                                              <input type="hidden" value ="Available" name = "statuss">
                                           </div>
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>

@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,7 +145,7 @@
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Description</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required></textarea>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="start_datetime" class="control-label">Start</label>
@@ -156,7 +157,7 @@
                                           </div>
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>

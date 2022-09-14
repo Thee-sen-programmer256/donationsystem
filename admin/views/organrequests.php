@@ -1,3 +1,11 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $result =" SELECT * FROM request where statuss = 'Pending' and statuss = 'Approved'" ;
+    $display=mysqli_query($con, $result);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +24,7 @@
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
     <title>Dashboard</title>
 -->
-
+<title>Organ Requests</title>
     <style>
         table{
             border-radius: 10px
@@ -48,7 +56,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -57,16 +65,16 @@
                     <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href=""  class="active"><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href="#"  class="active"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -122,35 +130,40 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
+                            <th>Patient Name</th>
+                            <th>Age </th>
                             <th>Organ Requested</th>
-                            <th>Patient </th>
-                            <th>Date</th>
+                            <th>Blood Group</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                <!-- Fetch data from notify table -->
+            
+                <?php
+                while ( $row=mysqli_fetch_assoc($display)) {
 
+                    ?>
                         <tr>
-                             <td>1</td>
-                             <td>Organ Requested</td>
-                             <td>Patient</td>
-                             <td>2345455</td>
+                             <td><?php echo $row['requestId'];  ?></td>
+                             <td><?php echo $row['full_name'];  ?></td>
+                             <td><?php echo $row['age'];  ?></td>
+                             <td><?php echo $row['organ'];  ?></td>
+                             <td><?php echo $row['blood_group'];  ?></td>
+                             <td><?php echo $row['date_requested'];  ?></td>
+                             <td><?php echo $row['statuss'];  ?></td>
                             <td>
-                                <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <a href="partials/reject-organ.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Reject</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
-                             &nbsp;
-                                <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
-                                  &nbsp; -->
-
-
-
-                                <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
+                               
+                                <a href="partials/approve-organ.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Approve</button></a>
                             </td>
                         </tr>
-
+                    <?php   }?>
                     </tbody>
                 </table>
             </div>

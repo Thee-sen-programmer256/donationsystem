@@ -1,3 +1,13 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $id= $_GET['a'];
+        $result =" SELECT * FROM schedule where id = $id " ;
+        $display=mysqli_query($con, $result);
+        
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,31 +145,66 @@
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
+                                      <form action="" method="post" id="schedule-form">
+                                          
+                                      <!-- Fetch data from schedule table -->
+                                      <?php
+                                            $row=mysqli_fetch_assoc($display);
+                                      ?>
+
                                           <input type="hidden" name="id" value="">
                                           <div class="form-group mb-2">
                                               <label for="title" class="control-label">Title</label>
-                                              <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" value="<?php echo $row['title'];  ?>" required>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Description</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required><?php echo $row['she_description']; ?></textarea>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="start_datetime" class="control-label">Start</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
+                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" value="<?php echo $row['start_datetime'];  ?>" required>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="end_datetime" class="control-label">End</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
+                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" value="<?php echo $row['end_datetime'];  ?>" required>
                                           </div>
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name = "submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>
                                       </form>
+
+                                      <!-- Update events in database -->
+                                  <?php
+                                        if(isset($_POST['submit'])){ 
+                                            //click on submit button then update data
+                                            //get values
+                                             //change data using events ID
+                                        
+                                             $title=$_POST['title'];
+                                             $she_description=$_POST['she_description'];
+                                             $start_datetime=$_POST['start_datetime'];
+                                             $end_datetime=$_POST['end_datetime'];
+                    
+                    
+                                            $con=mysqli_connect("localhost","root","","donation_procurement");
+                                            $change = "UPDATE `schedule` set `title` = '{$title}', `she_description` = '{$she_description}', `start_datetime` = '{$start_datetime}', `end_datetime` = '{$end_datetime}' where `id` = $id" ;
+                                            $update=mysqli_query($con,$change);
+                    
+                                            if($update == TRUE){
+                                                // header("location:../events.php"); 
+                                                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../events.php">';    
+                                                exit;
+                                            }else {
+                                                echo "Failed";
+                                            }
+                                           
+                                       }
+
+                                ?>
                                   </div>
                               </div>
 

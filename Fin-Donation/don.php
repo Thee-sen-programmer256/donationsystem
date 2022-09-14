@@ -1,3 +1,43 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    if(!$con){
+        die("Could not connect: ". mysqli_connect_error());
+    }else{
+       echo "successful connected";
+    }
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    $fname= $_POST["fname"];
+    $lname= $_POST["lname"];
+    $contact= $_POST["contact"];
+    $amount= $_POST["amount"];
+    $display= $_POST["display"];
+    $email= $_POST["email"];
+    $status=$_POST["statuss"];
+
+$sql = "INSERT INTO donation(fname,lname,contact,amount,display,email,statuss)VALUE('$fname','$lname','$contact','$amount','$display','$email','$status')";
+//echo $sql;
+// excecuting the query
+if(mysqli_query($con,$sql)){
+
+    ?>
+    
+    <script type="text/javascript">
+        alert("Donation Successfully Added");
+        window.location= "don.php";
+    </script>
+    <?php 
+    }else{
+    echo mysqli_error($con);
+    }
+    
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +45,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <title>Document</title>
+    <title>Donate</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -374,82 +414,72 @@
                 </script>
     </div>
 
-    <div class="paypal">
-        <h2 id="main-h2">Or Donate via paypal</h2>
-
-        
-    </div>
-
     <div class="details">
         <h2 id="main-h2">Your details</h2>
-        <form action="">
+        <form action="" method="post">
             <div class="inputBox">
                 <span>First Name</span>
-                <input type="text" placeholder="John">
+                <input type="text" placeholder="John" name="fname">
             </div>
             <div class="inputBox">
                 <span>Last Name</span>
-                <input type="text" placeholder="Doe">
+                <input type="text" placeholder="Doe" name="lname">
             </div>
             <div class="inputBox">
                 <span>Phone Number</span>
-                <input type="tel" placeholder="+256..">
+                <input type="text" placeholder="+256.." name="contact">
+            </div>
+            <div class="inputBox">
+                <span>Confirm Amount</span>
+                <input type="text" name="amount">
             </div>
         
 
             <label for="">Show my name on the supporters tab</label> 
-            <select name="option" id="" style="background: #79c9fb;">
+            <select id="" style="background: #79c9fb;" name="display">
                 <option value="yes">YES</option>
                 <option value="no">NO</option>
             </select>  
             <div class="inputBox">
                 <span>Email*</span>
-                <input type="text" placeholder="johndoe@email.com">
+                <input type="email" placeholder="johndoe@email.com" name="email">
             </div>
+            <input type="hidden" name="statuss" value="Pending">
                 
                     <div class="inputBox">
-                        <input type="submit" value="Send">
+                        <input type="submit" value="submit" name="submit">
                     </div>
         
         </form>
     </div>
+
+    <?php
+        $result =" SELECT fname,lname,amount FROM donation WHERE display = 'yes' and statuss = 'confirmed'";
+        $display=mysqli_query($con, $result);
+    ?>
 
     <div class="supporter">
         <h2 id="main-h2">Supporters' Tab</h2>
         <div class="table">
             <table border="1">
                 <tr class="field">
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Amount</th>
-                </tr>                  
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
+                </tr>   
+
+                 <!-- Fetch data from notify table -->
+            
+                 <?php
+                while ( $row=mysqli_fetch_assoc($display)) {
+
+                    ?>               
+                <tr style="text-align:center;">
+                    <td><?php echo $row['fname'];  ?></td>
+                    <td><?php echo $row['lname'];  ?></td>
+                    <td><?php echo $row['amount'];  ?></td>
                 </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>5000</td>
-                </tr>
+              <?php     }?>
             </table>
         </div>
     </div>

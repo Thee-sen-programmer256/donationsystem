@@ -1,4 +1,11 @@
-<?php require_once('db-connect.php') ?>
+<?php 
+     $con = mysqli_connect("localhost","root","","donation_procurement");
+
+     $result =" SELECT * FROM shedule " ;
+     $display=mysqli_query($con, $result);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +16,6 @@
     <title>Scheduling</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-
-
-
     <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
@@ -25,7 +29,7 @@
         body {
             height: 100%;
             width: 100%;
-            font-family: Times New Roman, cursive;
+            font-family: Apple Chancery, cursive;
         }
 
         .btn-info.text-light:hover,
@@ -41,52 +45,17 @@
 </head>
 
 <body class="bg-light">
-    <div class="navbar-fixed" >
-      <nav class="bondi blue" style="color:#29ccf5">
-       <div class="nav-wrapper container" >
-         <p class="brand-logo center" style="color:white">Patient</p>
-         <a class="brand-logo right">
-            <!-- <i class="material-icons" onclick="M.toast({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i> -->
-           <div class="chip" style="vertical-align:middle;">
-      <img src="../images/cute.jpg" alt="Contact Person">
-      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
-    </div> &nbsp;  </a>
-         <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
-         <!-- <ul class="sidenav" id="mobile-demo">
-           <li><a href="" style="text-decoration:none;">Stories</a></li>
-           <li><a href="" style="text-decoration:none;">Dashboard</a></li>
-           <li><a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')">Open tap target</a></li> -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient" id="topNavBar">
+        <div class="container">
+            <a class="navbar-brand" href="https://sourcecodester.com">
+            Sourcecodester
+            </a>
 
-
-      <!-- Tap Target Structure -->
-
-           <!-- <li><a href="" style="text-decoration:none;">Logout</a></li>
-         </ul> -->
-
-      </nav>
-    </div>
-    <ul id="slide-out" class="sidenav">
- <li><div class="user-view">
- <div class="background">
-  <img src="../simages/card3.jpg">
- </div>
- <a href="#user"><img class="circle" src="../simages/card3.jpg"></a>
- <a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
- <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
- </div></li>
- <!-- <li><a href="patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li> -->
- <li><a href="stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
-  <li><a href="Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-    <li><a href="schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
- <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
- </ul>
-  </div>
-
-
-
-    <!--the navbar-->
-    <!-- slider -->
+            <div>
+                <b class="text-light">Sample Scheduling</b>
+            </div>
+        </div>
+    </nav>
     <div class="container py-5" id="page-container">
         <div class="row">
             <div class="col-md-9">
@@ -130,14 +99,42 @@
             </div>
         </div>
     </div>
-    
-
-
-
-
+    <!-- Event Details Modal -->
+    <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+                <div class="modal-header rounded-0">
+                    <h5 class="modal-title">Schedule Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body rounded-0">
+                    <div class="container-fluid">
+                        <dl>
+                            <dt class="text-muted">Title</dt>
+                            <dd id="title" class="fw-bold fs-4"></dd>
+                            <dt class="text-muted">Description</dt>
+                            <dd id="description" class=""></dd>
+                            <dt class="text-muted">Start</dt>
+                            <dd id="start" class=""></dd>
+                            <dt class="text-muted">End</dt>
+                            <dd id="end" class=""></dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="modal-footer rounded-0">
+                    <div class="text-end">
+                        <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Delete</button>
+                        <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Event Details Modal -->
 
 <?php
-$schedules = $conn->query("SELECT * FROM `schedule_list`");
+$schedules = $con->query("SELECT * FROM `schedule`");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
@@ -146,20 +143,11 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 }
 ?>
 <?php
-if(isset($conn)) $conn->close();
+if(isset($con)) $con->close();
 ?>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
-    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>');
-
-</script>
-<script type="text/javascript">
-    M.Sidenav.init(document.querySelector('.sidenav'));
-
-    $(document).ready(function(){
-      $('.modal').modal();
-    });
+    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
 </script>
 <script src="./js/script.js"></script>
 
