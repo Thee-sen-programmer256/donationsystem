@@ -76,11 +76,11 @@ position: fixed;
           <div class="card-panel grey lighten-5 z-depth-1">
             <div class="row valign-wrapper">
               <div class="col s2">
-                <img src="../simages/card3.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
               </div>
               <div class="col s10">
-                <span class="black-text">
-                  <span class="black-text">
+
+                  <span class="black-text" style="margin-left:-7%">
                     This is a square image. Add the "circle" class to it to make it appear circular.
                       This is a square image. Add the "circle" class to it to make it appear circular.
                         This is a square image. Add the "circle" class to it to make it appear circular.
@@ -88,7 +88,7 @@ position: fixed;
                             This is a square image. Add the "circle" class to it to make it appear circular.
                   </span>
       </div>
-                </span>
+
 
               </div>
               <div class="row" style="margin-top:-6%">

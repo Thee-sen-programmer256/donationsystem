@@ -46,7 +46,7 @@
   content: "";
   height: 3px;
   width: 0;
-  background: #009688;
+
   position: absolute;
   left: 0;
   bottom: -10px;
@@ -84,7 +84,6 @@
   margin: 20px 10px;
   border-radius: 25px;
   font-weight: bold;
-  border: 2px solid #009688;
   background: transparent;
   color: white;
   cursor: pointer;
@@ -99,7 +98,7 @@
   margin: 20px 10px;
   border-radius: 25px;
   font-weight: bold;
-  border: 2px solid #009688;
+  /* border: 2px solid #009688; */
   background: transparent;
   color: white;
   cursor: pointer;
@@ -108,7 +107,7 @@
 }
 
 .cover {
-  background: #009688;
+
   height: 100%;
   width: 0%;
   border-radius: 25px;
@@ -265,9 +264,10 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+    /* background: #009688; */
+  /* background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%); */
   cursor: pointer;
-  z-index: 8;
+  /* z-index: 8; */
 }
 
 .pre-btn {
@@ -286,7 +286,7 @@ button:hover {
 
 .pre-btn:hover img,
 .nxt-btn:hover img {
-  opacity: 1;
+  opacity: 0;
 }
 
 .collection-container {

@@ -3,7 +3,7 @@
 
     $result =" SELECT * FROM organ " ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -141,7 +141,7 @@
                     <tbody>
 
                 <!-- Fetch data from patient table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 

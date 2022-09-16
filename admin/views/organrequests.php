@@ -3,7 +3,7 @@
 
     $result =" SELECT * FROM request" ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +138,7 @@
                     </thead>
                     <tbody>
                 <!-- Fetch data from notify table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 

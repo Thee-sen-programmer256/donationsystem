@@ -3,7 +3,7 @@
 
     $result =" SELECT * FROM events" ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -140,7 +140,7 @@
                     <tbody>
 
                 <!-- Fetch data from notify table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
