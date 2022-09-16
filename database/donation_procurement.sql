@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 08, 2022 at 11:35 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.11
+-- Host: 127.0.0.1:3306
+-- Generation Time: Sep 10, 2022 at 12:25 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,11 +27,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(200) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -40,10 +42,41 @@ CREATE TABLE `admin` (
 -- Table structure for table `bloodgroup`
 --
 
-CREATE TABLE `bloodgroup` (
-  `id` int(11) NOT NULL,
-  `bloodtype` varchar(255) NOT NULL
+DROP TABLE IF EXISTS `bloodgroup`;
+CREATE TABLE IF NOT EXISTS `bloodgroup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bloodtype` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donation`
+--
+
+DROP TABLE IF EXISTS `donation`;
+CREATE TABLE IF NOT EXISTS `donation` (
+  `donationId` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL,
+  `lname` varchar(255) NOT NULL,
+  `contact` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `display` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `statuss` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`donationId`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `donation`
+--
+
+INSERT INTO `donation` (`donationId`, `fname`, `lname`, `contact`, `amount`, `display`, `email`, `statuss`) VALUES
+(1, 'Mark', 'Roi', '0786342567 ', '2000', '', 'wastehub77@gmail.com', 'Pending'),
+(2, 'Oscar', 'Daniels', '0786342567', '3000', '', 'wastehub77@gmail.com', 'confirmed'),
+(3, 'Bosco', 'Muo', '0755060662', '1000', 'no', 'mukasa.fred@gmail.com', 'Pending'),
+(4, 'Micheal', 'Kacheele', '0786342567 ', '400', 'yes', 'agnes.ap@gmail.com', 'confirmed');
 
 -- --------------------------------------------------------
 
@@ -51,28 +84,59 @@ CREATE TABLE `bloodgroup` (
 -- Table structure for table `donor`
 --
 
-CREATE TABLE `donor` (
-  `id` int(11) NOT NULL,
-  `fname` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `donor`;
+CREATE TABLE IF NOT EXISTS `donor` (
+  `donorId` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `dob` date NOT NULL,
   `contact` varchar(200) NOT NULL,
-  `alternative_contact` varchar(200) NOT NULL,
   `bloodgroup` varchar(200) NOT NULL,
   `nationality` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
   `image` longtext NOT NULL,
+  `gender` enum('Male','Female') NOT NULL,
   `password` varchar(255) NOT NULL,
-  `confirm_password` varchar(255) NOT NULL
+  `confirm_password` varchar(255) NOT NULL,
+  PRIMARY KEY (`donorId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `donor`
+-- Table structure for table `events`
 --
 
-INSERT INTO `donor` (`id`, `fname`, `email`, `dob`, `contact`, `alternative_contact`, `bloodgroup`, `nationality`, `gender`, `image`, `password`, `confirm_password`) VALUES
-(1, 'Okello Brian', 'okellobrian64@gmail.com', '2022-06-29', '0781038320', '0781038320', 'AB', 'bahamian', 'on', '_20200622_003355.jpg', 'aaaaa', 'aaaaa'),
-(2, 'Okello Brian', 'okellobrian64@gmail.com', '2022-06-29', '0781038320', '0781038320', 'AB', 'bahamian', 'on', '_20200622_003355.jpg', 'aaaaa', '');
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE IF NOT EXISTS `events` (
+  `eventId` int(255) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `ev_description` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  PRIMARY KEY (`eventId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notify`
+--
+
+DROP TABLE IF EXISTS `notify`;
+CREATE TABLE IF NOT EXISTS `notify` (
+  `notifyId` int(11) NOT NULL AUTO_INCREMENT,
+  `notifications` varchar(255) NOT NULL,
+  PRIMARY KEY (`notifyId`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notify`
+--
+
+INSERT INTO `notify` (`notifyId`, `notifications`) VALUES
+(1, 'Hello, how are you?'),
+(2, 'i dont have anything'),
+(3, 'Haaahahahaha');
 
 -- --------------------------------------------------------
 
@@ -80,12 +144,25 @@ INSERT INTO `donor` (`id`, `fname`, `email`, `dob`, `contact`, `alternative_cont
 -- Table structure for table `organ`
 --
 
-CREATE TABLE `organ` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `organ`;
+CREATE TABLE IF NOT EXISTS `organ` (
+  `organId` int(11) NOT NULL AUTO_INCREMENT,
   `organname` varchar(255) NOT NULL,
-  `donation_type` varchar(255) NOT NULL,
-  `bloodgroup` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `bloodgroup` varchar(255) NOT NULL,
+  `donor` varchar(255) NOT NULL,
+  `date_added` datetime NOT NULL,
+  `statuss` text NOT NULL,
+  PRIMARY KEY (`organId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `organ`
+--
+
+INSERT INTO `organ` (`organId`, `organname`, `bloodgroup`, `donor`, `date_added`, `statuss`) VALUES
+(1, 'Heart', 'A+', 'Okello Brian', '2022-09-09 00:00:00', 'Available'),
+(2, 'Kidney', 'B+', 'Aareba Teddy', '2022-09-09 15:57:00', 'Available'),
+(3, 'Eyes', 'AB', 'Nakasaga Juliet', '2022-09-09 22:26:00', 'Available');
 
 -- --------------------------------------------------------
 
@@ -93,127 +170,67 @@ CREATE TABLE `organ` (
 -- Table structure for table `patient`
 --
 
-CREATE TABLE `patient` (
-  `pid` int(11) NOT NULL,
-  `fname` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `patient`;
+CREATE TABLE IF NOT EXISTS `patient` (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `dob` date NOT NULL,
-  `contact` varchar(255) NOT NULL,
-  `alternative_contact` varchar(255) NOT NULL,
-  `bloodgroup` varchar(255) NOT NULL,
-  `nationality` varchar(255) NOT NULL,
-  `image` text NOT NULL,
-  `gender` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `contact` varchar(200) NOT NULL,
+  `bloodgroup` varchar(200) NOT NULL,
+  `nationality` varchar(200) NOT NULL,
+  `image` longtext NOT NULL,
+  `gender` enum('Male','Female') DEFAULT NULL,
+  `password` varchar(200) NOT NULL,
+  `confirm_password` varchar(200) NOT NULL,
+  PRIMARY KEY (`pid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`pid`, `fname`, `email`, `dob`, `contact`, `alternative_contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`) VALUES
-(16, 'Okello Brian', 'ggggggg@gmail.com', '2022-07-07', '0781038320', '', 'O', 'andorran', 'girl1.jpeg', 'female', '33333'),
-(17, 'Okello Brian', 'okello@gmail.com', '2022-07-02', '0781038320', '0781038320', 'AB', 'barbudans', 'girl1.jpeg', 'male', '1234'),
-(18, 'Okello Brian', 'okellobrian64@gmail.com', '2022-06-29', '0781038320', '0781038320', 'AB', 'bahamian', '_20200622_003355.jpg', 'on', 'aaaaa'),
-(19, 'Login', 'junior@gmail.com', '2022-06-30', '0789654321', '0789654321', 'AB', 'batswana', 'FB_IMG_15942810952075174.jpg', 'male', 'junior'),
-(20, 'Login', 'junior@gmail.com', '2022-06-30', '0789654321', '0789654321', 'AB', 'batswana', 'FB_IMG_15942810952075174.jpg', 'male', 'junior'),
-(21, 'Kantono Vanessa', 'junior@gmail.com', '2022-07-01', '0789654321', '0781038320', 'O', 'armenian', '256750050168.jpg', 'male', 'ddddd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule_list`
+-- Table structure for table `request`
 --
 
-CREATE TABLE `schedule_list` (
-  `list_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  `start_date_time` date NOT NULL,
-  `end_date_time` date NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `request`;
+CREATE TABLE IF NOT EXISTS `request` (
+  `requestId` int(11) NOT NULL AUTO_INCREMENT,
+  `full_name` varchar(60) NOT NULL,
+  `age` int(11) NOT NULL,
+  `organ` text NOT NULL,
+  `blood_group` varchar(25) NOT NULL,
+  `date_request` datetime NOT NULL,
+  `statuss` text NOT NULL,
+  PRIMARY KEY (`requestId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `schedule`
 --
 
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE IF NOT EXISTS `schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `she_description` varchar(255) NOT NULL,
+  `start_datetime` datetime NOT NULL,
+  `end_datetime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Indexes for table `bloodgroup`
---
-ALTER TABLE `bloodgroup`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `donor`
---
-ALTER TABLE `donor`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `organ`
---
-ALTER TABLE `organ`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `patient`
---
-ALTER TABLE `patient`
-  ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `schedule_list`
---
-ALTER TABLE `schedule_list`
-  ADD PRIMARY KEY (`list_id`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Dumping data for table `schedule`
 --
 
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `bloodgroup`
---
-ALTER TABLE `bloodgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `donor`
---
-ALTER TABLE `donor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `organ`
---
-ALTER TABLE `organ`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `patient`
---
-ALTER TABLE `patient`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `schedule_list`
---
-ALTER TABLE `schedule_list`
-  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT;
+INSERT INTO `schedule` (`id`, `title`, `she_description`, `start_datetime`, `end_datetime`) VALUES
+(1, 'Introduction', 'dytfygiuhoij;', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
+(6, 'Party', 'Community', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
+(3, 'Zoom', 'To know what patients want etc.', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
+(4, 'Zoom meeting', 'To know what patients want etc next week', '2022-09-09 16:16:00', '2022-09-09 16:17:00'),
+(5, 'Feast', 'Big meal', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
+(7, 'hcvjbknl', 'vbklj. ', '2022-10-19 22:48:00', '2022-12-01 22:48:00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,10 +1,11 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM notify" ;
+    $result =" SELECT * FROM request where statuss = 'Approved' and statuss ='Rejected'" ;
     $display=mysqli_query($con, $result);
     
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +22,9 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    
+    <title>Dashboard</title>
 -->
-<title>Notifications</title>
+    <title>Request History</title>
 
     <style>
         table{
@@ -37,7 +38,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content: center
+          justify-content: left
         }
 
 
@@ -65,10 +66,10 @@
                     <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href="organrequests.php"  ><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="#" class="active"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
@@ -80,7 +81,7 @@
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
-                    <a href="" class="active"><span class="las la-bell"></span><span>Notifications</span></a>
+                    <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
             </ul>
         </div>
@@ -94,7 +95,7 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Notifications
+              Organ Requests
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -117,11 +118,11 @@
 
 
 
-    <a href="partials/addnotify.php">
-        <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-            Add Notifications
-        </button>
-    </a>
+      <!-- <a href="partials/addorgans.php">
+          <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
+              Add Event
+          </button>
+      </a> -->
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
@@ -130,36 +131,29 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
-                            <th>Notification</th>
-                            <th>Action</th>
+                            <th>Patient Name</th>
+                            <th>Age </th>
+                            <th>Organ Requested</th>
+                            <th>Blood Group</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                     <!-- Fetch data from notify table -->
+                <!-- Fetch data from notify table -->
             
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr style ="text-align:center;">
-                            <td><?php echo $row['notifyId'];  ?></td>
-                             <td><?php echo $row['notifications'];  ?></td>
-
-                            <td>
-                                <a href="partials/delnotify.php?pd=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
-                                &nbsp;
-        <!-- //  checking for status -->
-
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
-                             &nbsp;
-                                <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
-                                  &nbsp; -->
-
-
-
-                                <a href="partials/editnotify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
-                            </td>
+                        <tr>
+                             <td><?php echo $row['requestId'];  ?></td>
+                             <td><?php echo $row['full_name'];  ?></td>
+                             <td><?php echo $row['age'];  ?></td>
+                             <td><?php echo $row['organ'];  ?></td>
+                             <td><?php echo $row['blood_group'];  ?></td>
+                             <td><?php echo $row['date_requested'];  ?></td>
+                             <td><?php echo $row['statuss'];  ?></td>
                         </tr>
                     <?php   }?>
                     </tbody>

@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM organ " ;
+    $result =" SELECT * FROM organ" ;
     $display=mysqli_query($con, $result);
 
 ?>
@@ -24,7 +24,7 @@
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
     <title>Dashboard</title>
 -->
-
+    <title>Stock</title>
     <style>
         table{
             border-radius: 10px
@@ -57,7 +57,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -69,13 +69,13 @@
                     <a href="organrequests.php"  ><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="" class="active"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="organstock.php" class="active"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -135,6 +135,7 @@
                             <th>Blood Group </th>
                             <th>Donor</th>
                             <th>Date Added</th>
+                            <th>Statuss</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -146,18 +147,19 @@
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr>
+                        <tr style="text-align: center;">
                             <td><?php echo $row['organId'];  ?></td>
-                             <td><?php echo $row['organ'];  ?></td>
-                             <td><?php echo $row['bloodGroup'];  ?></td>
+                             <td><?php echo $row['organname'];  ?></td>
+                             <td><?php echo $row['bloodgroup'];  ?></td>
                              <td><?php echo $row['donor'];  ?></td>
                              <td><?php echo $row['date_added'];  ?></td>
+                             <td><?php echo $row['statuss'];  ?></td>
                             <td>
-                                <a href=""><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <a href="partials/delorgans.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
+                                <a href="partials/deactivate-organ.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->

@@ -1,4 +1,11 @@
-<?php require_once('db-connect.php') ?>
+<?php 
+     $con = mysqli_connect("localhost","root","","donation_procurement");
+
+     $result =" SELECT * FROM shedule " ;
+     $display=mysqli_query($con, $result);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -786,7 +793,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         <!-- end of modal -->
 
 <?php
-$schedules = $conn->query("SELECT * FROM `schedule_list`");
+$schedules = $con->query("SELECT * FROM `schedule`");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
@@ -795,7 +802,7 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 }
 ?>
 <?php
-if(isset($conn)) $conn->close();
+if(isset($con)) $con->close();
 ?>
 </body>
 <script type="text/javascript">

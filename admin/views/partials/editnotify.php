@@ -1,3 +1,13 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $notifyId= $_GET['a'];
+        $result =" SELECT * FROM notify where notifyId = $notifyId " ;
+        $display=mysqli_query($con, $result);
+        
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,22 +145,53 @@
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
-                                          <input type="hidden" name="id" value="">
+                                      <form action="" method="post" id="schedule-form">
+                                      <?php
+                                            $row=mysqli_fetch_assoc($display);
+                                        ?>
+
+                                          <input type="hidden" name="id" value="<?php echo $row['notifyId']; ?>">
+
 
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notification" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" ><?php echo $row['notifications']; ?></textarea>
                                           </div>
 
                                           <div class="card-footer">
                                               <div class="text-center">
-                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
+                                                  <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form" name="submit"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>
                                       </form>
                                   </div>
+                                  <!-- Update notification in database -->
+                                  <?php
+                                        if(isset($_POST['submit'])){ 
+                                            //click on submit button then update data
+                                            //get values
+                                             //change data using notification ID
+                                            $notifications=$_POST['notifications'];
+                                            
+                    
+                    
+                                            $con=mysqli_connect("localhost","root","","donation_procurement");
+                                            $change ="UPDATE notify SET notifications='$notifications' WHERE notifyId= $notifyId " ;
+                                            $update=mysqli_query($con,$change);
+                    
+                                            if($update == TRUE){
+                                                // header("location:../notifications.php"); 
+                                                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../notifications.php">';    
+                                                exit;
+                                            }else {
+                                                echo "Failed";
+                                            }
+                                           
+                                       }
+
+                                ?>
+
                               </div>
 
                           </div>

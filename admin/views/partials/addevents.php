@@ -1,39 +1,3 @@
-<?php
-    $con = mysqli_connect("localhost","root","","donation_procurement");
-
-    if(!$con){
-        die("Could not connect: ". mysqli_connect_error());
-    }else{
-       echo "successful connected";
-    }
-
-
-    // Assigning input data into a variable then inserting it into the database
-if(isset($_POST["submit"])){
-    $title= $_POST["title"];
-    $ev_description= $_POST["ev_description"];
-    $start_datetime= $_POST["start_datetime"];
-    $end_datetime= $_POST["end_datetime"];
-
-$sql = "INSERT INTO events( title,ev_description,start_datetime,end_datetime)VALUE('$title','$ev_description','$start_datetime','$end_datetime')";
-//echo $sql;
-// excecuting the query
-if(mysqli_query($con,$sql)){
-
-    ?>
-    
-    <script type="text/javascript">
-        alert("Event Successfully Added");
-        window.location= "events.php";
-    </script>
-    <?php 
-    }else{
-    echo mysqli_error($con);
-    }
-    
-    }
-    
-?>
 
 
 <!DOCTYPE html>
@@ -181,7 +145,7 @@ if(mysqli_query($con,$sql)){
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Description</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="ev-description" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required></textarea>
                                           </div>
                                           <div class="form-group mb-2">
                                               <label for="start_datetime" class="control-label">Start</label>

@@ -1,10 +1,13 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM notify" ;
+    $result =" SELECT * FROM donation " ;
     $display=mysqli_query($con, $result);
+
     
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
     
 -->
-<title>Notifications</title>
+    <title>Donations</title>
 
     <style>
         table{
@@ -59,10 +62,10 @@
                     <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
+                    <a href="patients.php"><span class="las la-users"></span><span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
+                    <a href="donor.php" ><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
                     <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
@@ -74,13 +77,13 @@
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="#" class="active"><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
-                    <a href="" class="active"><span class="las la-bell"></span><span>Notifications</span></a>
+                    <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
             </ul>
         </div>
@@ -94,7 +97,7 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Notifications
+                Donations
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -117,51 +120,63 @@
 
 
 
-    <a href="partials/addnotify.php">
-        <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-            Add Notifications
-        </button>
+    <a href="">
+        <!-- <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
+            Add Donor
+        </button> -->
     </a>
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
             <div>
-                <table  style="top:1px solid;width: 100%;border-radius: 10px;right:-100px">
-                    <thead style="padding: 30px;background-color: black;color: white;">
+                <table  style="top:1px solid;width: 90%;border-radius: 10px;right:-100px">
+                    <thead style="padding: 30px;background-color: black;color: white;margin-left:-10%">
                         <tr>
                             <th>ID</th>
-                            <th>Notification</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Contact</th>
+                            <th>Amount</th>
+                            <th>Display</th>
+                            <th>Email</th>
+                            <th>Status</th>
                             <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
 
-                     <!-- Fetch data from notify table -->
+            <!-- Fetch data from donor table -->
             
-                <?php
+                    <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr style ="text-align:center;">
-                            <td><?php echo $row['notifyId'];  ?></td>
-                             <td><?php echo $row['notifications'];  ?></td>
+                        <tr>
+                            <td><?php echo $row['donationId'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
+                             <td><?php echo $row['lname'];  ?></td>
+                             <td><?php echo $row['contact'];  ?></td>
+                             <td><?php echo $row['amount'];  ?></td>
+                            <td><?php echo $row['display'];  ?></td>
+                            <td><?php echo $row['email'];  ?></td>
+                            <td><?php echo $row['statuss'];  ?></td>
 
                             <td>
-                                <a href="partials/delnotify.php?pd=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
+                                <a href="partials/deldonation.php?pd=<?php echo $row['donationId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
+                                <a href="partials/editdonation.php?a=<?php echo $row['donationId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white" name="confirm">Confirm</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
 
-
-                                <a href="partials/editnotify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
                             </td>
                         </tr>
-                    <?php   }?>
+                        <?php  } ?>
+
                     </tbody>
                 </table>
             </div>
