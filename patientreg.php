@@ -19,14 +19,14 @@ include "config/check-reg.php";
 }
      </style>
    </head>
-<body>
+<body >
 
     <div >
         <a href="Home/index.html">
         <img width="40px;" height="40px;" style="margin-left: -600%;" src="Home/images/back.png" alt="back">
     </a>
     </div>
-    
+
     </div>
     <div class="row">
   <div class="container">
@@ -50,11 +50,11 @@ include "config/check-reg.php";
           <div class="input-box">
             <span class="details">Email</span>
             <?php if (isset($_POST['email'])) { ?>
-            <input type="email" placeholder="Enter your email" 
+            <input type="email" placeholder="Enter your email"
             value="<?php echo $_POST['email']; ?>" name="email" required><br>
           <?php }else{ ?>
-               <input type="text" 
-                      name="email" 
+               <input type="text"
+                      name="email"
                       placeholder="Enter your email"><br>
           <?php }?>
 
