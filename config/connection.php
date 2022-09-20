@@ -5,8 +5,8 @@ $user="root";
 $pass="";
 $dbname="donation_procurement";
 
-$conn=mysqli_connect($server,$user,$pass,$dbname);
-if($conn==TRUE){
+$connection=mysqli_connect($server,$user,$pass,$dbname);
+if($connection==TRUE){
   // echo "success";
 }
 

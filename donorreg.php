@@ -1,8 +1,7 @@
 <?php
-include "config/controller.php";
- ?>
+include "config/check-reg.php";
+?>
 <!DOCTYPE html>
-<!-- Designined by CodingLab - youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -20,15 +19,28 @@ include "config/controller.php";
      </style>
    </head>
 <body>
+
     <div >
         <a href="Home/index.html">
         <img width="40px;" height="40px;" style="margin-left: -600%;" src="Home/images/back.png" alt="back">
     </a>
     </div>
+    
+    </div>
+    <div class="row">
   <div class="container">
     <div class="title">Donor_Registration</div>
     <div class="content">
       <form action="" method="post" enctype="multipart/form-data">
+
+        <?php if (isset($_POST['error'])) { ?>
+     		<p class="error"><?php echo $_POST['error']; ?></p>
+     	<?php } ?>
+
+       <?php if (isset($_POST['success'])) { ?>
+               <p class="success"><?php echo $_POST['success']; ?></p>
+          <?php } ?>
+
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
@@ -36,15 +48,23 @@ include "config/controller.php";
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="email" placeholder="Enter your email" name="email" required>
+            <?php if (isset($_POST['email'])) { ?>
+            <input type="email" placeholder="Enter your email" 
+            value="<?php echo $_POST['email']; ?>" name="email" required><br>
+          <?php }else{ ?>
+               <input type="text" 
+                      name="email" 
+                      placeholder="Enter your email"><br>
+          <?php }?>
+
           </div>
           <div class="input-box">
             <span class="details">Date of Birth</span>
-            <input type="date" placeholder="Enter your email" name="dob" required>
+            <input type="date" name="dob" required>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" name="contact"required>
+            <input type="text" placeholder="Enter your number" name="contact" required>
           </div>
           <div class="input-box">
             <span class="details">Blood group</span>
@@ -452,12 +472,12 @@ include "config/controller.php";
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" name="password" required>
+            <input type="password" name="password" value=""  required>
           </div>
 
           <div class="input-box">
             <span class="details">Image</span>
-            <input type="file" placeholder="Confirm your password" name="file" required>
+            <input type="file" name="image" required>
           </div>
           <!-- <div class="">
             <div class="form-group d-flex justify-content-center" style="margin-left:400%">
@@ -468,9 +488,9 @@ include "config/controller.php";
 
         </div>
         <div class="gender-details">
-          <input type="radio" name="pgender" value="male" id="dot-1">
-          <input type="radio" name="pgender" value="female" id="dot-2">
-          <input type="radio" name="pgender" value="prefer not to say" id="dot-3">
+          <input type="radio" name="gender" value="male" id="dot-1">
+          <input type="radio" name="gender" value="female" id="dot-2">
+          <input type="radio" name="gender" value="prefer not to say" id="dot-3">
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="dot-1">

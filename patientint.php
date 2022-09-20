@@ -34,14 +34,21 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
  </script>
 
  <style type="text/css">
-
  a{
    text-decoration: none;
  }
- body{
+ body,html{
+    height: 1054px;
+  overflow-y: auto;
 
-   /* opacity: 0.3; */
+
+
  }
+ body::-webkit-scrollbar {
+                display: none;
+                height: 100vh;
+                /* max-height: inherit; */
+            }
  nav{
    /* top: 0;
  z-index: 100;
@@ -52,25 +59,57 @@ position: fixed;
    background: #ff7d7d;
    color: #fff;
  }
-
-
  </style>
   </head>
-  <body style="background:white">
+  <body style="background:white;height:1054px">
     <!--the navbar-->
     <!-- the nav bar -->
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
        <div class="nav-wrapper container" >
          <p class="brand-logo center" style="color:white">Patient</p>
-         <a class="brand-logo right">
-      
 
-           <i class="material-icons" onclick="M.toast       ({html:' '    ,classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+         <?php
+         include "config/connection.php";
+         $select="SELECT * FROM notifications WHERE active='1'";
+         $query=mysqli_query($connection,$select);
+         $count=mysqli_num_rows($query);
+
+
+          ?>
+
+         <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+        <li>
+          <a href="#" >
+            <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark><?php echo $count; ?></mark></span>
+          </a>
+        </li>
+      </ul>
+
+      <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+        <?php
+              if ($count > 0) {
+                foreach ($query as $item) {
+              ?>
+        <li><a href="#!"  data-constrainWidth="false"><strong><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+          <!-- <li class="divider" tabindex="-4"></li> -->
+          <!-- <hr class="solid"> -->
+      <?php }
+    } else{?>
+        <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+<?php } ?>
+
+      </ul>
+
+         <a class="brand-logo right">
+           <i class="material-icons" onclick="M.toast       ({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
            <div class="chip" style="vertical-align:middle;">
       <img src="images/cute.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
     </div> &nbsp;  </a>
+
+
+
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
            <li><a href="" style="text-decoration:none;">Stories</a></li>
@@ -84,7 +123,7 @@ position: fixed;
     <ul id="slide-out" class="sidenav">
  <li><div class="user-view">
  <div class="background">
-  <img src="simages/card3.jpg">
+  <img src="Home/images/background1.jpg">
  </div>
  <a href="#user"><img class="circle" src="simages/card3.jpg"></a>
  <a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
@@ -204,16 +243,31 @@ position: fixed;
 
     <!-- end of slider -->
     <!-- modals -->
-    <div class="container">
+    <div class="container" style="height:1000vh;overflow">
         <!-- <h2>Modals</h2> -->
         <!-- <a class="btn orange modal-trigger" href="#terms">Help Info</a> -->
-        <div id="terms" class="modal modal-fixed-footer">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
+        <div id="terms" class="modal modal-fixed-footer"  >
+          <h4>Hey User</h4>
+          <p style="font-style:Times New Roman" style="text-size:5px">Here is a little guide for through the system</p>
+          <p style="text-size:5px">1. On this page (the index page),First is the navbar where you will get to see tripple bars <a class="small btn-floating pulse blue"><i class="material-icons">menu</i></a> and this will help you navigate to and fro pages like the sotories page where
+            you will be able to view all your stories as well as those of other patients,
+            the next on the list is the fundraise page where you will be able to view all the fundraising events and how much has been raised.
+            Next is the notification bell
+          <a class="btn-floating pulse blue"><img src="bell-svgrepo-com.svg" style="height:30px;vertical-align:middle;padding-left:5px"></a>; This is where all the notifications we send to you will appear
+          <p>2. Next,you get to see the organs available including tissues like stem cells. You can request for any that you need by clicking the <em style="color:red">request</em> button
+          where a popup will appear and you will be requested to confirm what you need.</p>
+          <p>3. On the right side, you will a plus button<a class="small btn-floating pulse red"><i class="material-icons">add</i></a>. Click here to be taken to the redirected to the add story page where you will be able to add to be viewed by donors and fellow
+          patients thus increasing a chance of being donated to. The button below that is the chat button<a class="small btn-floating pulse blue"><i class="material-icons">chat</i></a>and here you will be able to seek any consultation from our experts and if
+        necessary be redirected to the professional for furthur consultation using our two channels of whatsapp and telegram , you just have to click them and you will be able to see view the mentioned channels</p>
+        <p>
+          <strong>Note:</strong> Patients will allowed to view thier request history in order to keep track of all the requests made. Organs requests will be approved on the first come first serve as well as top priority patients or otherwise having severe conditions. An email will be sent to
+        all those who request with information on the organ requested whether approved or not. If a patient's request has not been approved, they will be considered first for the next set of organs and communicated to via email respectively.
+      Lastly, you will be abe to view the Frequently asked question on organ donation.
+    Finally, feel free to reach out to all our social  platforms to know more about us or contact: +256-789274772   </p>
     <!-- <div class="modal-content maroon">
     </div> -->
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Agree</a>
+    <div class="modal-footer" style="margin-bottom:-5%">
+      <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Okay</a>
     </div>
   </div>
         <!-- <div id="terms" class="modal">
@@ -236,22 +290,32 @@ position: fixed;
     <!-- end of floating button -->
     <!-- floating button2 -->
     <div class="fixed-action-btn" style="bottom:13%">
-    <a  class="btn-floating btn-large green" href="stories/addstory.php">
+    <a  class="btn-floating btn-large red tooltipped" href="stories/addstory.php" data-position="left" data-tooltip="Add your story">
     <i class="large material-icons">add</i>
     </a>
     </div>
     <!-- end of floating button -->
     <!-- floating button3 -->
-<div class="fixed-action-btn">
-  <a  class="btn-floating btn-large red" >
-    <i class="large material-icons">mode_edit</i>
+    <div class="fixed-action-btn">
+  <a class="btn-floating btn-large black">
+    <i class="large material-icons">chat</i>
   </a>
   <ul>
-    <li><a class="btn-floating green" ><i class="material-icons" >arrow_upward</i></a></li>
+    <li><a href="http://wa.me/+256789274772" target="_blank" class="btn-floating green"><i class="material-icons"><img src="whats.svg" style="color:white"></i></a></li>
+    <li><a href="http://t.me/@New_Rhon" target="_blank" class="btn-floating blue darken-1"><i class="material-icons">telegram</i></a></li>
+
+  </ul>
+</div>
+<!-- <div class="fixed-action-btn">
+  <a   class="btn-floating btn-large black" >
+    <i class="large material-icons">chat</i>
+  </a>
+  <ul>
+    <li><a href="http://wa.me/+256789274772" target="_blank" class="btn-floating green" ><i class="material-icons" ><img src="whats.svg" style="color:white"></i></a></li>
     <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
     <li><a class="btn-floating blue"><i class="material-icons">add</i></a></li>
   </ul>
-</div>
+</div> -->
 <!-- end of floating button -->
 <div class="">
   &nbsp;
@@ -335,6 +399,19 @@ position: fixed;
   <script src="accordition/accd.js">
 
   </script>
+
+<script>
+ $(document).ready(function() {
+   $("#notifications").on("click", function() {
+     $.ajax({
+       url: "readNotify.php",
+       success: function(res) {
+         console.log(res);
+       }
+     });
+   });
+ });
+</script>
   <script>
     $(document).ready(function(){
       $('.modal').modal();
@@ -342,6 +419,17 @@ position: fixed;
     $(document).ready(function(){
    $('.tooltipped').tooltip();
  });
+
+
+  $('.dropdown-trigger').dropdown();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: 'left',
+      hoverEnabled: false
+    });
+  });
   </script>
     <script src="sliscript.js"></script>
     <script type="text/javascript">
@@ -369,6 +457,8 @@ $(document).ready(function(){
   $('.modal').modal();
 });
     </script>
+
+
   </body>
   <!-- Swiper JS -->
   <script src="jsl/swiper-bundle.min.js"></script>
