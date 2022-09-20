@@ -7,30 +7,31 @@
        echo "successful connected";
     }
 
+    $organId= $_GET['pd'];
+        $result =" SELECT * FROM organ where organId = $organId " ;
+        $display=mysqli_query($con, $result);
+        
 
-    // Assigning input data into a variable then inserting it into the database
-if(isset($_POST["submit"])){
-    $notifications= $_POST["notifications"];
-    $statuss= $_POST["statuss"];
+        if(isset($_POST['submit'])){ 
+            //click on submit button then update data
+            //get values
+             //change data using organ ID
+             $organname= $_POST["organname"];
+             $bloodgroup= $_POST["bloodgroup"];
+             $donor= $_POST["donor"];
+             $date_added= $_POST["date_added"];
+            
+            $change ="UPDATE organ SET organname='$organname',bloodgroup='$bloodgroup',donor='$donor',date_added ='$date_added'  WHERE organId= $organId " ;
+            $update=mysqli_query($con,$change);
 
-$sql = "INSERT INTO notify(notifications, statuss)VALUE('$notifications','$statuss')";
-//echo $sql;
-// excecuting the query
-if(mysqli_query($con,$sql)){
-
-    ?>
-    
-    <script type="text/javascript">
-        alert("Notification Successfully Added");
-        window.location= "../notifications.php";
-    </script>
-    <?php 
-    }else{
-    echo mysqli_error($con);
-    }
-    
-    }
-    
+            if($update == TRUE){
+                // header("location:../notifications.php"); 
+                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../organstock.php">';    
+                exit;
+            }else {
+                echo "Failed";
+            }
+        }
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +51,9 @@ if(mysqli_query($con,$sql)){
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    <title>Dashboard</title>
+    
 -->
+<title>Organ Edit</title>
 
     <style>
         table{
@@ -65,7 +67,8 @@ if(mysqli_query($con,$sql)){
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center
+            justify-content:  -content: center;
+            align-content: center;
         }
         a{
           text-decoration: none;
@@ -87,7 +90,7 @@ if(mysqli_query($con,$sql)){
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="../patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -102,16 +105,16 @@ if(mysqli_query($con,$sql)){
                     <a href=""><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="../organstock.php" class="active" ><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="../events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
-                    <a href="../notifications.php" class="active"><span class="las la-bell"></span><span>Notifications</span></a>
+                    <a href="../notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
             </ul>
         </div>
@@ -125,7 +128,7 @@ if(mysqli_query($con,$sql)){
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Add Notifications
+              Edit Organ
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -148,9 +151,9 @@ if(mysqli_query($con,$sql)){
 
 
 
-    <a href="../notifications.php">
+    <a href="../organstock.php">
         <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-           Notifications
+           Organ Stock
         </button>
     </a>
     <div class="row m-t-30">
@@ -166,22 +169,43 @@ if(mysqli_query($con,$sql)){
                       <div class=>
                           <div class="cardt rounded-0 shadow">
                               <div class="card-header bg-gradient  text-light" style="background-color:#0071b5;">
-                                  <h5 class="card-title">Notification Form</h5>
+                                  <h5 class="card-title">Organ Form</h5>
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="" method="post" id="schedule-form">
-                                          <input type="hidden" name="notifyId" value="">
-                                      
-                                          <div class="form-group mb-2">
-                                              <label for="description" class="control-label">Notification</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" required></textarea>
-                                          </div>
-                                          <input type="hidden" name="statuss" value="Active">
 
+                                <?php 
+                                $row=mysqli_fetch_assoc($display); 
+                                ?>
+                                      <form action="" method="post" id="schedule-form">
+                                          <input type="hidden" name="id" value="">
+                                          <div class="form-group mb-2">
+                                              <label for="title" class="control-label">Organ</label>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="organname" id="title" value="<?php echo $row['organname'];  ?>">
+                                          </div>
+                                          <div class="form-group mb-2">
+                                              <label for="description" class="control-label">Blood group</label>
+                                              <select class="select" name="bloodgroup" value ="<?php echo $row['bloodgroup'];  ?>">
+                                                <option value="A+">A+</option>
+                                                <option value="A-">A-</option>
+                                                  <option value="B+">B+</option>
+                                                  <option value="B-">B-</option>
+                                                  <option value="AB">AB</option>
+                                                    <option value="O+">O+</option>
+                                                      <option value="O-">O-</option>
+                                              </select>
+                                          </div>
+                                          <div class="form-group mb-2">
+                                              <label for="donor" class="control-label">Donor</label>
+                                              <input type="text" class="form-control form-control-sm rounded-0" name="donor" id="start_datetime" value="<?php echo $row['donor'];  ?>">
+                                          </div>
+                                          <div class="form-group mb-2">
+                                              <label for="end_datetime" class="control-label">Date Added</label>
+                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="date_added" id="end_datetime" value="<?php echo $row['date_added'];  ?>">
+                                              <input type="hidden" value ="Available" name = "statuss">
+                                          </div>
                                           <div class="card-footer">
                                               <div class="text-center">
-                                    
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>

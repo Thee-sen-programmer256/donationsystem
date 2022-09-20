@@ -1,3 +1,10 @@
+<?php $con = mysqli_connect("localhost","root","","donation_procurement"); 
+
+if(!$con){
+        die("Could not connect: ". mysqli_connect_error());
+}
+  ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -25,7 +32,9 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
  <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
  </script>
+
  <style type="text/css">
+
  a{
    text-decoration: none;
  }
@@ -37,12 +46,14 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
    /* top: 0;
  z-index: 100;
 position: fixed;
- /* width: 100 */ */
+ /* width: 100 */ 
  }
  a.new:hover button{
    background: #ff7d7d;
    color: #fff;
  }
+
+
  </style>
   </head>
   <body style="background:white">
@@ -53,7 +64,9 @@ position: fixed;
        <div class="nav-wrapper container" >
          <p class="brand-logo center" style="color:white">Patient</p>
          <a class="brand-logo right">
-           <i class="material-icons" onclick="M.toast       ({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+      
+
+           <i class="material-icons" onclick="M.toast       ({html:' '    ,classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
            <div class="chip" style="vertical-align:middle;">
       <img src="images/cute.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
