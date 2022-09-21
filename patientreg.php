@@ -1,12 +1,134 @@
 <?php
-include "config/check-reg.php";
+include "config/connection.php";
+
+ //    Patient registration
+
+ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['contact'])) {
+
+
+
+
+    
+  function validate($data){
+     $data = trim($data);
+     $data = stripslashes($data);
+     $data = htmlspecialchars($data);
+     return $data;
+  }
+
+  $email= validate($_POST['email']);
+  $pass = validate($_POST['password']);
+  $contact = validate($_POST['contact']);
+
+  // $re_pass = validate($_POST['re_password']);
+  // $name = validate($_POST['name']);
+
+  $user_data = 'email='. $email. '&password='. $pass. '&contact='. $contact;
+
+
+  if (empty($email)) {
+    header("Location: patientreg.php?error=Email is required&$user_data");
+    exit();
+  }else if(empty($pass)){
+    header("Location: patientreg.php?error=Password is required&$user_data");
+    exit();
+  }else if(empty($contact)){
+    header("Location: patientreg.php?error=Contact is required&$user_data");
+    exit();
+  }
+  // else if(empty($re_pass)){
+  //     header("Location: signup.php?error=Re Password is required&$user_data");
+  //     exit();
+  // }
+
+  // else if(empty($name)){
+  //     header("Location: signup.php?error=Name is required&$user_data");
+  //     exit();
+  // }
+
+  // else if($pass !== $re_pass){
+  //     header("Location: signup.php?error=The confirmation password  does not match&$user_data");
+  //     exit();
+  // }
+
+  else{
+
+    // hashing the password
+    $pass = md5($pass);
+
+    $select = "SELECT * FROM patient WHERE email='$email' ";
+    $res = mysqli_query($connection, $select);
+
+    if (mysqli_num_rows($res) > 0) {
+      header("Location: patientreg.php?error=The email is taken try another&$user_data");
+      exit();
+    }else if (mysqli_num_rows($res) > 0) {
+      header("Location: patientreg.php?error=The contact exists already&$user_data");
+      exit();
+    }else{
+
+      if(isset($_POST['pat'])){
+        $fname=$_POST['fname'];
+        $email=$_POST['email'];
+        $dob=$_POST['dob'];
+        $contact=$_POST['contact'];
+        $bloodgroup=$_POST['bloodgroup'];
+        $nation=$_POST['nationality'];
+        $gender=$_POST['gender'];
+        $pass=$_POST['password'];
+
+        $file_name= $_FILES['image']['name'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+
+
+         //image Upload
+        move_uploaded_file($file_tmp,"images/".$file_name); 
+  
+    
+    
+       $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`)
+       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$file_name','$gender','$pass')";
+       $input = mysqli_query($connection, $pat);
+      }
+       if ($input) {
+
+        $result=mysqli_query($connection,"SELECT * FROM patient WHERE email='".$email."' AND password='".$pass."'");
+   if ($rows=mysqli_num_rows($result) > 0) {
+    // echo "FOUND";
+    session_start();
+    $_SESSION['email']=$email;
+    // $_SESSION['fname']=$count['fname'];
+    
+    header("location:patientint.php");
+      // $_SESSION['donorId']=$rows['donorId'];
+      // header("Location: patientint.php");
+      // 				$_SESSION['email']=$email;
+              
+      //  exit();
+   
+       }else {
+           header("Location: patientreg.php?error=unknown error occurred&$user_data");
+        exit();
+       }
+    }
+  }
+
+}
+
+}
+
+
+// else{
+// 	header("Location: donorreg.php");
+// 	exit();
+// }
 ?>
+<?php session_start();?>
 <!DOCTYPE html>
-<!-- Designined by CodingLab - youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title>Donor reg form </title>
+    <title>Patient reg form </title>
     <link rel="stylesheet" href="reg.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +154,12 @@ include "config/check-reg.php";
   <div class="container">
     <div class="title">Patient_Registration</div>
     <div class="content">
-      <form action="" method="post" enctype="multipart/form-data">
+      <form action="#" method="post" enctype="multipart/form-data">
 
         <?php if (isset($_POST['error'])) { ?>
      		<p class="error"><?php echo $_POST['error']; ?></p>
      	<?php } ?>
 
-       <?php if (isset($_POST['success'])) { ?>
-               <p class="success"><?php echo $_POST['success']; ?></p>
-          <?php } ?>
 
         <div class="user-details">
           <div class="input-box">
@@ -61,7 +180,7 @@ include "config/check-reg.php";
           </div>
           <div class="input-box">
             <span class="details">Date of Birth</span>
-            <input type="date" name="dob" required>
+            <input type="datetime-local" name="dob" required>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
@@ -509,7 +628,7 @@ include "config/check-reg.php";
           </div>
         </div>
         <div class="button">
-          <input type="submit" name="patient" value="Register">
+          <input type="submit" name="pat" value="Register">
         </div>
       </form>
     </div>

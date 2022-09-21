@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+<?php 
+ include "config/connection.php";
+
+ session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
+
+?>
+=======
 <?php $con = mysqli_connect("localhost","root","","donation_procurement");
 
 if(!$con){
@@ -5,6 +16,7 @@ if(!$con){
 }
   ?>
 
+>>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -753,12 +765,21 @@ section{
 
  </style>
   </head>
-  <body style="background:white;height:1054px">
+  <body style="background:white">
+  <?php 
+      $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
     <!--the navbar-->
     <!-- the nav bar -->
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
        <div class="nav-wrapper container" >
+       <p class="brand-logo center" style="color:white">
          <p class="brand-logo center" style="color:white">Patient</p>
 
          <?php
@@ -794,20 +815,12 @@ section{
        </ul>
 
          <a class="brand-logo right">
-           <!--for the notification-->
-
-            <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
-            <!-- Dropdown Structure -->
-
-
-
-           <div class="chip right"  style="margin-top:13%;vertical-align:middle">
-      <img src="simages/card3.jpg" alt="Contact Person">
-      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
-      </div></a>
-
-
-
+           <i class="material-icons" onclick="M.toast       ({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+           <div class="chip" style="vertical-align:middle;">
+      <img src="images/<?php echo $rows['image']; ?>" alt="Contact Person">
+      
+      <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
+    </div> &nbsp;  </a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
            <li><a href="" style="text-decoration:none;">Stories</a></li>
@@ -823,15 +836,16 @@ section{
  <div class="background">
   <img src="Home/images/background1.jpg">
  </div>
- <a href="#user"><img class="circle" src="simages/card3.jpg"></a>
- <a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
- <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
+ <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
+ <a href="#user"><img class="circle" src="images/<?php echo $rows['image']; ?>"></a>
+ <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
+ <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
  </div></li>
  <!-- <li><a href="patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li> -->
  <li><a href="stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
   <li><a href="Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
     <li><a href="schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
- <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
+ <li><a href="./Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
   </div>
@@ -839,6 +853,22 @@ section{
     <!-- slider -->
     <!-- slider -->
 <section class="product" style="height:350px">
+<?php 
+    
+    
+    if(isset($_SESSION['pid']))
+    {
+        ?> <div>
+            <div style="width:300px; margin-left:5%; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Your Welcome !</strong><?php echo $rows['fname']; ?><?= $_SESSION['pid']; ?>
+                <a href="patientint.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+            </div>
+    </div>
+        <?php 
+        unset($_SESSION['pid']);
+    }
+
+?>
      <h2 class="product-category" style="text-align:center">Check out organs available</h2>
      <button class="pre-btn"><img src="simages/arrow.png" alt=""></button>
      <button class="nxt-btn"><img src="simages/arrow.png" alt=""></button>

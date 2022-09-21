@@ -1,6 +1,11 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
+    session_start();
+    if(!isset($_SESSION['email'])){
+       header("Location: Home/login.php");
+    }
+
     if(!$con){
         die("Could not connect: ". mysqli_connect_error());
     }else{

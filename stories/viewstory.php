@@ -1,3 +1,13 @@
+<?php 
+
+ include "../config/connection.php";
+ session_start();
+ if(!isset($_SESSION['email'])){
+    header("Location: Home/login.php");
+ }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -727,6 +737,14 @@ section{
 
     <!--the navbar-->
     <!-- the nav bar -->
+    <?php 
+      $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
        <div class="nav-wrapper container" >
@@ -765,6 +783,11 @@ section{
       </ul>
 
          <a class="brand-logo right">
+<<<<<<< HEAD
+           <div class="chip" >
+      <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+      <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
+=======
            <!--for the notification-->
 
             <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
@@ -775,6 +798,7 @@ section{
            <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
       <img src="../simages/card3.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
+>>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -795,14 +819,14 @@ section{
  <div class="background">
   <img src="../simages/card3.jpg">
  </div>
- <a href="#user"><img class="circle" src="../simages/card3.jpg"></a>
- <a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
- <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
+ <a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
+ <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
+ <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
    <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
- <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
+ <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
   </div>

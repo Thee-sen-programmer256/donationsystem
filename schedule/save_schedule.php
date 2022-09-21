@@ -1,5 +1,11 @@
 <?php 
 require_once('db-connect.php');
+
+session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
+
 if($_SERVER['REQUEST_METHOD'] !='POST'){
     echo "<script> alert('Error: No data to save.'); location.replace('./') </script>";
     $conn->close();
