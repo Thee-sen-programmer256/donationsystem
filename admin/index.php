@@ -4,6 +4,11 @@
     $result =" SELECT * FROM request where statuss = 'Pending' LIMIT 6 " ;
     $display=mysqli_query($con, $result);
 
+    session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +22,23 @@
 
 </head>
 <body>
+<?php 
+       session_start();
+      include "../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
     <input type="checkbox" id="nav-toggle">
     <!-- Sidebar start -->
     <div class="sidebar">
         <div class="sidebar-brand">
             <h2><span class="las la-hand-holding-heart"><span>OrgDonor</span> </span></h2>
         </div>
+
 
         <div class="sidebar-menu">
             <ul>
@@ -76,14 +92,32 @@
             <div class="user-wrapper">
                 <img src="images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
+                    <h4><?php echo $rows['username']; ?></h4>
                     <small>Super admin</small>
                 </div>
             </div>
         </header>
         <!-- Header End -->
+
 <section>
         <main>
+            
+        <?php 
+    
+    
+    if(isset($_SESSION['id']))
+    {
+        ?> <div>
+        <div style="width:300px; margin-left:5%; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Your Welcome !</strong><?php echo $rows['username']; ?><?= $_SESSION['id']; ?>
+            <a href="admin/index.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+        </div>
+</div>
+        <?php 
+        unset($_SESSION['id']);
+    }
+
+?>
             <!-- Display Cards showing individual element totals -->
                 <div class="cards">
                     <div class="card-single">
@@ -181,7 +215,7 @@
                                             while ( $row=mysqli_fetch_assoc($display)) {
                                                 ?>
                                             <tr>
-                                                <td><?php echo $row['full_name'];  ?></td>
+                                                <td><?php echo $row['fname'];  ?></td>
                                                 <td><?php echo $row['organ'];  ?></td>
                                                 <td>
                                                     <span class="status purple"></span>
@@ -219,9 +253,9 @@
                                             <!-- Name & Contacts -->
                                 <div class="patient">
                                     <div class="info">
-                                        <img src="<?php echo $row['image'];  ?>" width="48px" height="40px" alt="">
+                                        <img src="images/<?php echo $rows['image']; ?>" width="48px" height="40px" alt="">
                                         <div>
-                                            <h4><?php echo $prow['full_name'];  ?></h4>
+                                            <h4><?php echo $prow['fname'];  ?></h4>
                                             <small><?php echo $row['email'];  ?></small>
                                         </div>
                                     </div>

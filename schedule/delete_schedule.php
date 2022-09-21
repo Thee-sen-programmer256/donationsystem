@@ -1,5 +1,11 @@
 <?php 
 require_once('db-connect.php');
+
+session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
+
 if(!isset($_GET['id'])){
     echo "<script> alert('Undefined Schedule ID.'); location.replace('./') </script>";
     $conn->close();

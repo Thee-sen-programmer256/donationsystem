@@ -1,6 +1,10 @@
 <?php 
      $con = mysqli_connect("localhost","root","","donation_procurement");
 
+     session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+} 
      $result =" SELECT * FROM shedule " ;
      $display=mysqli_query($con, $result);
 

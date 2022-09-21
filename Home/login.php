@@ -15,7 +15,7 @@ include "../config/check-login.php";
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
-<body>
+<body style="background-color: blue;">
     <div class="wrapper">
 <section class="form login">
     <header style="text-align: center;">Login</header>
@@ -24,6 +24,8 @@ include "../config/check-login.php";
      	<?php } ?>
     <form action="" method="post" enctype="multipart/form-data" >
         <!-- <div class="error-txt">This is an error message</div> -->
+       
+  
         <div class="name-details">
            
             <div class="field input">
