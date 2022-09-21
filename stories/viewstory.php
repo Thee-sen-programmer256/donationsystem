@@ -814,7 +814,8 @@ section{
         <i class="fas fa-times close-btn"></i>
         <h2>Hey User</h2>
         <p>Welcome back to your stories</p>
-        <a href="#" class="btn">Don't forget to like and donate</a>
+        <a href="#" class="btn" style="vertical-align:middle;padding-bottom:5px">DONATE</a>
+            <p>Everyone can save a life!!</p>
       </div>
     </div>
     <h3>View Stories</h3>
@@ -842,7 +843,16 @@ section{
                 <td></td>
                 <td>
                   <div class="card-action right-align" style="margin-right:50%;">
-                  <a href="" class="btn green">Donate</a>
+                  <a href="" class="dropdown-trigger btn green"  data-target='dropdown2'>Donate</a>
+                  <!-- Dropdown Structure -->
+<ul id='dropdown2' class='dropdown-content'>
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider" tabindex="-1"></li>
+  <li><a href="#!">three</a></li>
+  <li><a href="#!"><img src="../blood-transfusion-surgery-svgrepo-com.svg" style="height:20px;width:30px">TISSUE</a></li>
+  <li><a href="#!"><i class="material-icons">local_atm</i>MONEY</a></li>
+</ul>
                 </div>
                 </td>
               </tr>

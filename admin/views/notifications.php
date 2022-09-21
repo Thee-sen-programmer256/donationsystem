@@ -1,9 +1,9 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM notify" ;
+    $result =" SELECT * FROM notifications" ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    
+
 -->
 <title>Notifications</title>
 
@@ -130,35 +130,40 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
-                            <th>Notification</th>
-                            <th>Status</th>
+                            <th>Nofification</th>
+                            <th>Message</th>
+                            <th>Active</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                      <!-- Fetch data from notify table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
                         <tr style ="text-align:center;">
-                            <td><?php echo $row['notifyId'];  ?></td>
-                             <td><?php echo $row['notifications'];  ?></td>
-                             <td><?php echo $row['statuss'];  ?></td>
+                            <td><?php echo $row['n_id'];  ?></td>
+                            <td><?php echo $row['notifications_name'];  ?></td>
+
+                            <td><?php echo $row['message'];  ?></td>
+
+                             <td><?php echo $row['active'];  ?></td>
+
 
                             <td>
-                               
+
         <!-- //  checking for status -->
 
-                                <a href="partials/deactivate-notify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
+                                <a href="partials/deactivate-notify.php?a=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
-                                <a href="partials/editnotify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width: 75px">Edit</button></a>
-                                 <a href="partials/delnotify.php?pd=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left:7px;">Delete</button></a>
+                                <a href="partials/editnotify.php?a=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width: 75px">Edit</button></a>
+                                 <a href="partials/delnotify.php?pd=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left:7px;">Delete</button></a>
                                 &nbsp;
                             </td>
                         </tr>
