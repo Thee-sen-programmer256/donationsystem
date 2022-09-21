@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-<?php 
+<?php
  include "config/connection.php";
 
  session_start();
@@ -766,13 +766,13 @@ section{
  </style>
   </head>
   <body style="background:white">
-  <?php 
+  <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
     <!--the navbar-->
     <!-- the nav bar -->
@@ -818,7 +818,7 @@ section{
            <i class="material-icons" onclick="M.toast       ({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
            <div class="chip" style="vertical-align:middle;">
       <img src="images/<?php echo $rows['image']; ?>" alt="Contact Person">
-      
+
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
     </div> &nbsp;  </a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
@@ -853,9 +853,9 @@ section{
     <!-- slider -->
     <!-- slider -->
 <section class="product" style="height:350px">
-<?php 
-    
-    
+<?php
+
+
     if(isset($_SESSION['pid']))
     {
         ?> <div>
@@ -864,7 +864,7 @@ section{
                 <a href="patientint.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
             </div>
     </div>
-        <?php 
+        <?php
         unset($_SESSION['pid']);
     }
 
