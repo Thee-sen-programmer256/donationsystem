@@ -3,7 +3,7 @@
 
     $result =" SELECT * FROM organ" ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -135,14 +135,14 @@
                             <th>Blood Group </th>
                             <th>Donor</th>
                             <th>Date Added</th>
-                            <th>Statuss</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                 <!-- Fetch data from patient table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
@@ -155,8 +155,7 @@
                              <td><?php echo $row['date_added'];  ?></td>
                              <td><?php echo $row['statuss'];  ?></td>
                             <td>
-                                <a href="partials/delorgans.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
-                                &nbsp;
+                                
         <!-- //  checking for status -->
 
                                 <a href="partials/deactivate-organ.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
@@ -164,9 +163,11 @@
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
-
-
-                                <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
+                                <a href="partials/editorgan.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width:75px;">Edit</button></a>
+                                
+                                <a href="partials/delorgans.php?pd=<?php echo $row['organId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left: 5px;">Delete</button></a>
+                                &nbsp;
+                            
                             </td>
                         </tr>
                     <?php    }?>

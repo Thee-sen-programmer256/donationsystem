@@ -35,6 +35,702 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 position: fixed;
  width: 100 */
  }
+ a.new:hover button{
+   background: #ff7d7d;
+   color: #fff;
+ }
+ ul.select-dropdown,
+ul.dropdown-content {
+  width: 300px !important;
+
+  li > span {
+    white-space: nowrap;
+  }
+}
+ ul.select-dropdown,ul.dropdown-content{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+ ul.select-dropdown::-webkit-scrollbar {
+                display: none;
+            }
+            ul.dropdown-content::-webkit-scrollbar {
+                           display: none;
+                       }
+
+                       /* <!--notyy--> */
+                       ul.dots * {
+  /* disable border-box from bootstrap */
+  box-sizing: content-box;
+  list-style-type: none;
+}
+ul.dropdown-content > li:hover{
+color:black;
+background:black
+}
+ul.dots a {
+  text-decoration: none;
+  margin-top: -4%;
+
+  /* font-size: 20px; */
+  color: #34495e;
+}
+ul.dots a:hover {
+  text-decoration: none;
+  background: none;
+  /* font-size: 20px; */
+  color: #bdc3c7;
+}
+ul.dots li {
+  display: box;
+  position: relative;
+  /* width: 100%; */
+  padding: 10px 0 ;
+}
+/* ul.dots li:hover {
+  background: #2c3e50;
+} */
+ul.dots li span {
+  /* display: block; */
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: #FFF;
+  /* -webkit-box-shadow: 1px 1px 5px #808080; */
+  /* -moz-box-shadow: 1px 1px 5px #808080; */
+  /* box-shadow: 1px 1px 5px #808080 */
+  padding: 10px;
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  line-height: 30px;
+  text-align: center;
+  position: relative;
+}
+ul.dots li mark {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  /* border: 2px solid #FFF; */
+  width: 20px;
+  height: 20px;
+  background-color:black;
+  position: absolute;
+  top: -5px;
+  left: -10px;
+  font-size: 10px;
+  line-height: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #FFF;
+  font-weight: 700;
+}
+ul.dots li mark.big {
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  top: -10px;
+  left: -15px;
+}
+ul.dots li mark.green {
+  background-color: #27ae60;
+}
+ul.dots li mark.blue {
+  background-color: #3498db;
+}
+ul.dots > li > a > span > mark {
+  -webkit-animation-name: bounceIn;
+          animation-name: bounceIn;
+  -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+-webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+}
+ul.dots > li:hover > a > span > mark {
+  -webkit-animation-name: bounce;
+          animation-name: bounce;
+
+}
+ul.dots > li:hover > a > span > mark.rubberBand {
+  -webkit-animation-name: rubberBand;
+          animation-name: rubberBand;
+}
+
+ul.dots > li:hover > a > span > mark.swing {
+  -webkit-transform-origin: top center;
+      -ms-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-animation-name: swing;
+          animation-name: swing;
+}
+ul.dots > li:hover > a > span > mark.tada {
+  -webkit-animation-name: tada;
+          animation-name: tada;
+}
+ul.dots > li:hover > a > span > mark.wobble {
+  -webkit-animation-name: wobble;
+          animation-name: wobble;
+}
+li {
+  list-style-type: circle;
+}
+
+code {
+  background: #ecf0f1;
+}
+
+/* animation keyframes */
+@-webkit-keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -30px, 0);
+            transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -15px, 0);
+            transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+            transform: translate3d(0,-4px,0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+  }
+
+  40%, 43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -30px, 0);
+            transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+            transition-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    -webkit-transform: translate3d(0, -15px, 0);
+            transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0,-4px,0);
+            transform: translate3d(0,-4px,0);
+  }
+}
+
+@-webkit-keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounceIn {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+            transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(.9, .9, .9);
+            transform: scale3d(.9, .9, .9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(.97, .97, .97);
+            transform: scale3d(.97, .97, .97);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+            transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+            transform: scale3d(1.05, .95, 1);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(.95, 1.05, 1);
+            transform: scale3d(.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, .95, 1);
+            transform: scale3d(1.05, .95, 1);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+            transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+            transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+            transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+            transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+            transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+            transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+            transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+            transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+@-webkit-keyframes tada {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes tada {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes wobble {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  15% {
+    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  30% {
+    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+            transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+
+  45% {
+    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+            transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+
+  60% {
+    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+            transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+            transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@keyframes wobble {
+  0% {
+    -webkit-transform: none;
+            transform: none;
+  }
+
+  15% {
+    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+  }
+
+  30% {
+    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+            transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+  }
+
+  45% {
+    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+            transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+  }
+
+  60% {
+    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+            transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+            transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+  }
+
+  100% {
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+}
+
+.popup-screen{
+  z-index: 999999;
+  position: fixed;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  transition: 0.5s ease;
+  transition-property: visibility;
+}
+
+.popup-screen.active{
+  visibility: visible;
+}
+
+.popup-box{
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 50px 40px;
+  border-radius: 20px;
+  box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
+  transform: scale(0);
+  transition: 0.5s ease;
+  transition-property: transform;
+}
+
+.popup-screen.active .popup-box{
+  transform: scale(1);
+}
+
+.popup-box h2{
+  font-size: 2.1em;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.popup-box p{
+  font-size: 1em;
+  margin-bottom: 30px;
+}
+
+.popup-box .btn{
+  color: #fff;
+  background: red;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 7px 27px;
+  border-radius: 3px;
+}
+
+.close-btn{
+  position: absolute;
+  font-size: 1em;
+  top: 0;
+  right: 0;
+  margin: 15px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.3s ease;
+  transition-property: opacity;
+}
+
+.close-btn:hover{
+  opacity: 1;
+}
+
+section{
+  padding: 50px 100px;
+}
+
+.home{
+  margin-top: -10%;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image{
+  position: relative;
+  width: 45%;
+  min-height: 450px;
+}
+
+.image img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.info{
+  position: relative;
+  width: 52%;
+    margin-top: -1%;
+}
+
+.info h2{
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.info p{
+  font-size: 1em;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+@media (max-width: 990px){
+  section{
+    padding: 50px 30px;
+  }
+
+  .home{
+    display: block;
+  }
+
+  .image{
+    width: 100%;
+  }
+
+  .info{
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+
  </style>
   </head>
   <body style="background:white">
@@ -52,11 +748,57 @@ position: fixed;
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
        <div class="nav-wrapper container" >
-         <p class="brand-logo center" style="color:white;top:3%">Patient</p>
+         <p class="brand-logo center" style="color:white">Patient</p>
+
+         <?php
+         include "../config/connection.php";
+         $select="SELECT * FROM notifications WHERE active='1'";
+         $query=mysqli_query($connection,$select);
+         $count=mysqli_num_rows($query);
+
+
+          ?>
+
+         <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+        <li>
+          <a href="#" >
+            <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="rubberBand"><?php echo $count; ?></mark></span>
+          </a>
+        </li>
+      </ul>
+
+      <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+        <?php
+              if ($count > 0) {
+                foreach ($query as $item) {
+              ?>
+        <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+          <!-- <li class="divider" tabindex="-4"></li> -->
+          <!-- <hr class="solid"> -->
+      <?php }
+    } else{?>
+        <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+  <?php } ?>
+
+      </ul>
+
          <a class="brand-logo right">
+<<<<<<< HEAD
            <div class="chip" >
       <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
+=======
+           <!--for the notification-->
+
+            <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
+            <!-- Dropdown Structure -->
+
+
+
+           <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
+      <img src="../simages/card3.jpg" alt="Contact Person">
+      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
+>>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -83,6 +825,7 @@ position: fixed;
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
  <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
@@ -90,79 +833,48 @@ position: fixed;
 
     <!--the navbar-->
     <!-- add story -->
+    <div class="popup-screen">
+      <div class="popup-box">
+        <i class="fas fa-times close-btn"></i>
+        <h2>Hey User</h2>
+        <p>Welcome back to your stories</p>
+        <a href="#" class="btn">Don't forget to like and donate</a>
+      </div>
+    </div>
     <h3>View Stories</h3>
 
-    <div class="section-container">
-            <div class="columns image" style="background-image:url('img/1.jpg')">
-               &nbsp;
-            </div>
-            <div class="columns content">
-               <div class="content-container">
-                  <h5>Why do we use it?</h5>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-                  <table>
-                    <tr>
-                      <td>
-                        <div class="card-action left-align" style="margin-left:50%">
-                        <a href="" class="btn blue">Read More</a>
-                      </div>
-                      </td>
-
-                      <td></td>
-                      <td>
-                        <div class="card-action right-align" style="margin-right:50%;">
-                        <a href="" class="btn green">Donate</a>
-                      </div>
-                      </td>
-                    </tr>
-                  </table>
-                  <!-- <div class="row"> -->
 
 
 
-                  <!-- </div> -->
+<!--story-->
+        <section class="home">
+          <div class="image">
+            <img src="img.jpg" alt="">
+          </div>
+          <div class="info">
+            <h2>Popup Screen With Cookies</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <table>
+              <tr>
+                <td>
+                  <div class="card-action left-align" style="margin-left:50%">
+                  <a href="" class="btn blue">Read More</a>
+                </div>
+                </td>
 
-               </div>
+                <td></td>
+                <td>
+                  <div class="card-action right-align" style="margin-right:50%;">
+                  <a href="" class="btn green">Donate</a>
+                </div>
+                </td>
+              </tr>
+            </table>
+          </div>
 
-            </div>
-         </div>
-         <div class="section-container">
-            <div class="columns content">
-               <div class="content-container">
-                  <h5>Why do we use it?</h5>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-               </div>
-            </div>
-            <div class="columns image" style="background-image:url('img/2.jpg')">
-               &nbsp;
-            </div>
-         </div>
-         <div class="section-container">
-            <div class="columns image" style="background-image:url('img/3.jpg')">
-               &nbsp;
-            </div>
-            <div class="columns content">
-               <div class="content-container">
-                  <h5>Why do we use it?</h5>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-                  <p>
-                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </p>
-               </div>
-            </div>
-         </div>
+        </section>
+
 
     <!-- end of story -->
 
@@ -200,8 +912,45 @@ position: fixed;
   </ul>
 </div>
 <!-- end of floating button -->
+<script>
+ $(document).ready(function() {
+   $("#notifications").on("click", function() {
+     $.ajax({
+       url: "../readNotify.php",
+       success: function(res) {
+         console.log(res);
+       }
+     });
+   });
+ });
+</script>
+<script type="text/javascript">
+const popupScreen = document.querySelector(".popup-screen");
+const popupBox = document.querySelector(".popup-box");
+const closeBtn = document.querySelector(".close-btn");
 
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    popupScreen.classList.add("active");
+  }, 2000); //Popup the screen in 02 seconds after the page is loaded.
+});
 
+closeBtn.addEventListener("click", () => {
+  popupScreen.classList.remove("active"); //Close the popup screen on click the close button.
+  //Create a cookie for a day (to expire within a day) on click the close button.
+  document.cookie = "WebsiteName=testWebsite; max-age=" + 24 * 60 * 60; //1 day = 24 hours = 24*60*60
+});
+
+//Use the created cookie to hide or show the popup screen.
+const WebsiteCookie = document.cookie.indexOf("WebsiteName=");
+
+if(WebsiteCookie != -1){
+  popupScreen.style.display = "none"; //Hide the popup screen if the cookie is not expired.
+}
+else{
+  popupScreen.style.display = "flex"; //Show the popup screen if the cookie is expired.
+}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
@@ -209,6 +958,7 @@ position: fixed;
     $(document).ready(function(){
       $('.modal').modal();
     });
+
     <script src="sliscript.js"></script>
     <script type="text/javascript">
     M.Sidenav.init(document.querySelector('.sidenav'));
@@ -234,6 +984,8 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function(){
   $('.modal').modal();
 });
+
+  $('.dropdown-trigger').dropdown();
     </script>
   </body>
   <!-- Swiper JS -->

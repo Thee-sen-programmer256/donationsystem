@@ -11,8 +11,9 @@
     // Assigning input data into a variable then inserting it into the database
 if(isset($_POST["submit"])){
     $notifications= $_POST["notifications"];
+    $statuss= $_POST["statuss"];
 
-$sql = "INSERT INTO notify(notifications)VALUE('$notifications')";
+$sql = "INSERT INTO notify(notifications, statuss)VALUE('$notifications','$statuss')";
 //echo $sql;
 // excecuting the query
 if(mysqli_query($con,$sql)){
@@ -170,12 +171,13 @@ if(mysqli_query($con,$sql)){
                               <div class="card-body">
                                   <div class="container-fluid">
                                       <form action="" method="post" id="schedule-form">
-                                          <input type="hidden" name="Id" value="">
+                                          <input type="hidden" name="notifyId" value="">
                                       
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
                                               <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" required></textarea>
                                           </div>
+                                          <input type="hidden" name="statuss" value="Active">
 
                                           <div class="card-footer">
                                               <div class="text-center">

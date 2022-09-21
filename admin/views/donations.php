@@ -16,6 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script></script>
 <!--
      <link href="admin-assets/css/font-face.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -102,7 +104,8 @@
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
+                <input type="search" onkeyup="imu(this.value)" placeholder="search here" id="live_search">
+                
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
@@ -113,13 +116,12 @@
                 </div>
             </div>
         </header>
+        
         <!-- Header End -->
+        
 <section>
         <main>
-
-
-
-
+        <div id="searchresult">gfhk</div>
     <a href="">
         <!-- <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
             Add Donor
@@ -183,11 +185,60 @@
             <!-- END DATA TABLE-->
         </div>
     </div>
+
         </main>
+
+        <script type="text/javascript">
+            let content = document.getElementById('live_search');
+
+            function imu(result){
+                if(x.length == 0){
+                    content.innerHTML = 'empty..'
+                }
+                else{
+                    var XML = new XMLHttpRequest();
+                    XML.onreadystatechange = function(){
+
+                        if(XML.readyState==4 && XML.status==200){
+                            content.innerHTML=XML.responseText;
+                        }
+                    };
+                    XML.open('GET','livesearch.php?data='+x, true);
+                    XML.send();
+                }
+            }
+
+        </script>
+
+    
+    <!-- <script type="text/javascript">
+        $(document).ready(function(){
+            $('#live_search').keyup(function(){
+                var input = $(this).val();
+                //alert(input)
+
+                if(input != ''){
+                    $.ajax({
+                        url:"livesearch.php",
+                        method:"POST",
+                        data:{input:input},
+
+                        success:function(data){
+                            $('#searchresult').html(data);
+                        }
+                    });
+                }else{
+                    $('#searchresult').css("display","none");
+                }
+            });
+        });
+    </script> -->
+
     </section>
 
 
 
     </div>
+    
 </body>
 </html>

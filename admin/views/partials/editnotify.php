@@ -65,16 +65,16 @@
                     <a href="../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
+                    <a href="../patients.php" ><span class="las la-users"></span><span>Patients</span></a>
                 </li>
                 <li>
-                    <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
+                    <a href="../donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
                     <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>

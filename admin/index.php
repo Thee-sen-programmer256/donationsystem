@@ -86,7 +86,7 @@ if(!isset($_SESSION['email'])){
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
+                <input type="search" placeholder="search here" id="live_search" >
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
@@ -170,7 +170,7 @@ if(!isset($_SESSION['email'])){
 
                     <div class="card-single">
                     <?php
-                                $donresult =" SELECT SUM(amount) AS value_sum FROM donation " ;
+                                $donresult =" SELECT SUM(amount) AS value_sum FROM donation where statuss = 'confirmed'  " ;
                                $dondisplay=mysqli_query($con, $donresult);
                                 $donrow=mysqli_fetch_assoc($dondisplay);
                                
@@ -194,7 +194,7 @@ if(!isset($_SESSION['email'])){
                             <div class="card-header">
                                 <h3>Recent Requests</h3>
 
-                                <button>See all <span class="las la-arrow-right">
+                                <button><a href="./views/requesthistory.php" style="color: #fff;">See all</a><span class="las la-arrow-right">
                                 </span></button>
                             </div>
 
@@ -238,7 +238,7 @@ if(!isset($_SESSION['email'])){
                             <div class="card-header">
                                 <h3>New patient</h3>
 
-                                <button>See all <span class="las la-arrow-right">
+                                <button><a href="./views/patients.php" style="color: #fff;">See all</a><span class="las la-arrow-right">
                                 </span></button>
                             </div>
                             <!-- Name & Contacts -->
@@ -300,5 +300,31 @@ if(!isset($_SESSION['email'])){
 
 
     </div>
+
+    <div id="searchresult"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#live_search").keyup(function(){
+                var input = $(this).val();
+                //alert(input)
+
+                if(input !=""){
+                    $.ajax({
+                        url:"livesearch.php",
+                        method:"POST",
+                        data:{input:input},
+
+                        success:function(data){
+                            $("searchresult").html(data);
+                        }
+                    });
+                }else{
+                    $("#searchresult").css("display","none");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
