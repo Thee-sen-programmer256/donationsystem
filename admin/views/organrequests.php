@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM request where statuss = 'Pending' and statuss = 'Approved'" ;
+    $result =" SELECT * FROM request where status = 'Pending' and status = 'Approved'" ;
     $display=mysqli_query($con, $result);
 
 ?>

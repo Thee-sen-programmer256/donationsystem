@@ -1,8 +1,8 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $notifyId= $_GET['a'];
-        $result =" SELECT * FROM notify where notifyId = $notifyId " ;
+    $n_id= $_GET['a'];
+        $result =" SELECT * FROM notifications where n_id = $n_id " ;
         $display=mysqli_query($con, $result);
         
     
@@ -40,7 +40,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center
+            justify-content:  center;
         }
         a{
           text-decoration: none;
@@ -150,12 +150,12 @@
                                             $row=mysqli_fetch_assoc($display);
                                         ?>
 
-                                          <input type="hidden" name="id" value="<?php echo $row['notifyId']; ?>">
-
-
+                                          <input type="hidden" name="n_id" value="<?php echo $row['n_id']; ?>">
+                                            <label for="">Title</label> <br>
+                                            <input type="text" name="notifications_name" value="<?php echo $row['notifications_name']; ?>">
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" ><?php echo $row['notifications']; ?></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="message" id="description" ><?php echo $row['message']; ?></textarea>
                                           </div>
 
                                           <div class="card-footer">
@@ -172,12 +172,12 @@
                                             //click on submit button then update data
                                             //get values
                                              //change data using notification ID
-                                            $notifications=$_POST['notifications'];
-                                            
+                                            $notifications_name=$_POST['notifications_name'];
+                                            $message=$_POST['message'];
                     
                     
                                             $con=mysqli_connect("localhost","root","","donation_procurement");
-                                            $change ="UPDATE notify SET notifications='$notifications' WHERE notifyId= $notifyId " ;
+                                            $change ="UPDATE notifications SET notifications_name='$notifications_name', message='$message' WHERE n_id= $n_id " ;
                                             $update=mysqli_query($con,$change);
                     
                                             if($update == TRUE){

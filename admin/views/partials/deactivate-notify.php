@@ -1,8 +1,8 @@
 <?php 
 $con = mysqli_connect("localhost","root","","donation_procurement");
 
-$notifyId=$_GET['a'];
-$result =" UPDATE notify SET statuss='Inactive' WHERE notifyId= $notifyId" ;
+$n_id=$_GET['a'];
+$result =" UPDATE notifications SET status='Inactive' WHERE n_id= $n_id" ;
 $display=mysqli_query($con, $result);
 
 if($display){

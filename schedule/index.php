@@ -1,7 +1,7 @@
 <?php 
      $con = mysqli_connect("localhost","root","","donation_procurement");
 
-     $result =" SELECT * FROM shedule " ;
+     $result =" SELECT * FROM schedule " ;
      $display=mysqli_query($con, $result);
 
 

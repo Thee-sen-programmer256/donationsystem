@@ -492,11 +492,11 @@ if(mysqli_query($con,$sql)){
     
             <div class="inner-footer">
                 <h2>More</h2>
-                <a href="#">Sign Up Now</a>
-                <a href="#">How Donation Works</a>
-                <a href="#">Who Can Donate</a>
-                <a href="#">Get Involved</a>
-                <a href="#">Fundraise</a>
+                <a href="../more_pages/why-sign-up.html">Sign Up Now</a>
+                <a href="../more_pages/how-organ-donation-works.html">How Donation Works</a>
+                <a href="../more_pages/living-donation.html">Who Can Donate</a>
+                <a href="../more_pages/get_involved.html">Get Involved</a>
+                <a href="../Fin-Donation/don.php">Fundraise</a>
             </div>
     
             <div class="inner-footer">
@@ -510,8 +510,8 @@ if(mysqli_query($con,$sql)){
     
             <div class="inner-footer">
                 <h2>Info</h2>
-                <a href="#">Terms and Conditions</a>
-                <a href="#">Privacy Policy</a>
+                <a href="../more_pages/terms-and-conditions.html">Terms and Conditions</a>
+                <a href="../more_pages/privacy-policy.html">Privacy Policy</a>
                 <a href="#">Notice of Privacy Practices</a>
                 <a href="#">Notice of Nondiscrimination</a>
                 <a href="#">Back to Top</a>

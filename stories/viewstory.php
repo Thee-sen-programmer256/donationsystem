@@ -1,3 +1,12 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+        $result =" SELECT * FROM story " ;
+        $display=mysqli_query($con, $result);
+        
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -734,7 +743,7 @@ section{
 
          <?php
          include "../config/connection.php";
-         $select="SELECT * FROM notifications WHERE active='1'";
+         $select="SELECT * FROM notifications WHERE status='Active'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 

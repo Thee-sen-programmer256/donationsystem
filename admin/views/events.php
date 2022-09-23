@@ -141,13 +141,13 @@
                     </thead>
                     <tbody>
 
-<<<<<<< HEAD
+
                 <!-- Fetch data from notify table -->
 
-=======
+
                 <!-- Fetch data from schedule table -->
             
->>>>>>> 15702e31e0dfc731efc29c77c78ec43aa5573851
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 

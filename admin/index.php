@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM request where statuss = 'Pending' LIMIT 6 " ;
+    $result =" SELECT * FROM request where status = 'Pending' LIMIT 6 " ;
     $display=mysqli_query($con, $result);
 
 ?>

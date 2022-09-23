@@ -10,10 +10,11 @@
 
     // Assigning input data into a variable then inserting it into the database
 if(isset($_POST["submit"])){
-    $notifications= $_POST["notifications"];
-    $statuss= $_POST["statuss"];
+    $notifications_name= $_POST["notifications_name"];
+    $message= $_POST["message"];
+    $status= $_POST["status"];
 
-$sql = "INSERT INTO notify(notifications, statuss)VALUE('$notifications','$statuss')";
+$sql = "INSERT INTO notifications(notifications_name,message, status)VALUE('$notifications_name','$message','$status')";
 //echo $sql;
 // excecuting the query
 if(mysqli_query($con,$sql)){
@@ -65,7 +66,7 @@ if(mysqli_query($con,$sql)){
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center
+            justify-content:  center;
         }
         a{
           text-decoration: none;
@@ -99,13 +100,13 @@ if(mysqli_query($con,$sql)){
                     <a href="../organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="../events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -171,13 +172,16 @@ if(mysqli_query($con,$sql)){
                               <div class="card-body">
                                   <div class="container-fluid">
                                       <form action="" method="post" id="schedule-form">
-                                          <input type="hidden" name="notifyId" value="">
+                                          <input type="hidden" name="n_id" value="">
+                                          
+                                          <label for="">Title</label> <br>
+                                          <input type="text" name="notifications_name">
                                       
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="notifications" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="message" id="description" required></textarea>
                                           </div>
-                                          <input type="hidden" name="statuss" value="Active">
+                                          <input type="hidden" name="status" value="Active">
 
                                           <div class="card-footer">
                                               <div class="text-center">

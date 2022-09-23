@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM notify" ;
+    $result =" SELECT * FROM notifications" ;
     $display=mysqli_query($con, $result);
     
 ?>
@@ -130,7 +130,8 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
-                            <th>Notification</th>
+                            <th>Title</th>
+                            <th>Message</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -144,21 +145,22 @@
 
                     ?>
                         <tr style ="text-align:center;">
-                            <td><?php echo $row['notifyId'];  ?></td>
-                             <td><?php echo $row['notifications'];  ?></td>
-                             <td><?php echo $row['statuss'];  ?></td>
+                            <td><?php echo $row['n_id'];  ?></td>
+                            <td><?php echo $row['notifications_name'];  ?></td>
+                             <td><?php echo $row['message'];  ?></td>
+                             <td><?php echo $row['status'];  ?></td>
 
                             <td>
                                
         <!-- //  checking for status -->
 
-                                <a href="partials/deactivate-notify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
+                                <a href="partials/deactivate-notify.php?a=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
-                                <a href="partials/editnotify.php?a=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width: 75px">Edit</button></a>
-                                 <a href="partials/delnotify.php?pd=<?php echo $row['notifyId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left:7px;">Delete</button></a>
+                                <a href="partials/editnotify.php?a=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width: 75px">Edit</button></a>
+                                 <a href="partials/delnotify.php?pd=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left:7px;">Delete</button></a>
                                 &nbsp;
                             </td>
                         </tr>

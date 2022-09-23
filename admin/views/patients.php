@@ -66,7 +66,7 @@
                     <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
                     <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
@@ -148,11 +148,14 @@
                     ?>
                         <tr>
                             <td><?php echo $row['pid'];  ?></td>
-                             <td><?php echo $row['full_name'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['email'];  ?></td>
+                             <td><?php echo $row['dob'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['nationality'];  ?></td>
                              <td><?php echo $row['image'];  ?></td>
                             <td><?php echo $row['gender'];  ?></td>
+                            <td><?php echo $row['password'];  ?></td>
 
                             <td>
                                 <a href="partials/delpatient.php?pd=<?php echo $row['pid'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
