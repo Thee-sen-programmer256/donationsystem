@@ -31,6 +31,8 @@ include "../config/check-login.php";
      	<?php } ?>
     <form action="" method="post" enctype="multipart/form-data" >
         <!-- <div class="error-txt">This is an error message</div> -->
+       
+  
         <div class="name-details">
 
             <div class="field input">

@@ -60,7 +60,7 @@ include "config/check-reg.php";
           </div>
           <div class="input-box">
             <span class="details">Date of Birth</span>
-            <input type="date" name="dob" required>
+            <input type="datetime-local" name="dob" required>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>

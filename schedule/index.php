@@ -1,8 +1,21 @@
-<?php 
+<?php
      $con = mysqli_connect("localhost","root","","donation_procurement");
 
+<<<<<<< HEAD
      $result =" SELECT * FROM schedule " ;
+=======
+<<<<<<< HEAD
+     // $result =" SELECT * FROM shedule " ;
+     // $display=mysqli_query($con, $result);
+=======
+     session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+} 
+     $result =" SELECT * FROM shedule " ;
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
      $display=mysqli_query($con, $result);
+>>>>>>> 54603a3f5b8f8244d2d8df37ea2722d7e8078563
 
 
 ?>
@@ -61,7 +74,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         body {
             height: 100%;
             width: 100%;
-            font-family: Apple Chancery, cursive;
+            font-family: sans-serif;
         }
 
         .btn-info.text-light:hover,
@@ -747,7 +760,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
                             <dt class="text-muted">Title</dt>
                             <dd id="title" class="fw-bold fs-4"></dd>
                             <dt class="text-muted">Description</dt>
-                            <dd id="description" class=""></dd>
+                            <dd id="she_description" class=""></dd>
                             <dt class="text-muted">Start</dt>
                             <dd id="start" class=""></dd>
                             <dt class="text-muted">End</dt>
@@ -757,8 +770,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
                 </div>
                 <div class="modal-footer rounded-0">
                     <div class="text-end">
-                        <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Delete</button>
+
                         <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>

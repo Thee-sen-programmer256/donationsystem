@@ -1,6 +1,5 @@
 <?php 
-
- session_start(); 
+session_start();
  $server="localhost";
  $user="root";
  $pass="";
@@ -10,77 +9,6 @@
  if($connection==TRUE){
    // echo "success";
  }
-
-
-
-// submitting to the login form
-// if(isset($_POST['Login'])){
-
-//     function validate($data){
-//                $data = trim($data);
-//                $data = stripslashes($data);
-//                $data = htmlspecialchars($data);
-//                return $data;
-//             }
-
-//     //echo working
-//     $email = validate($_POST['email']);
-//     $pass = validate($_POST['password']);
-//     // $user = validate($_POST['username']);
-
-//        if (empty($email)) {
-//                 header("Location: ../Home/login.php?error=Email is required");
-//                 exit();
-//             }else if(empty($pass)){
-//                 header("Location: ../Home/login.php?error=Password is required");
-//                 exit();
-//             }else{
-//                 // hashing the password
-//                 $pass = md5($pass);
-        
-  
-  
-//        $sql_fetch="SELECT * FROM admin WHERE email='$email' AND password='$pass'";
-//     $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error()); 
-//     $count=mysqli_num_rows($sql_query);
-//      if ($count >0) { 
-         
-//          $rows=mysqli_fetch_assoc($sql_query); 
-//      $_SESSION['id']=$rows['id'];
-//       // $_SESSION['username']=$user;
-//       header("location: ../Home/index.html");
-//     }else{
-  
-//     $sql_fetch="SELECT * FROM donor WHERE email='$email' AND Password='$pass'";
-//     $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error());
-//     $count=mysqli_num_rows($sql_query);
-//      if ($count >0) {
-
-//         $rows=mysqli_fetch_assoc($sql_query); 
-//         $_SESSION['id']=$rows['id'];
-//          $_SESSION['email']=$email;
-//          header("location: ../Home/index.html");
-//     }else{
-  
-//     $sql_fetch="SELECT * FROM patient WHERE email='$email' AND password='$pass'";
-//     $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error());
-//     $count=mysqli_num_rows($sql_query);
-//      if ($count >0) {
-//       // echo "FOUND";
-//       $_SESSION['pid']=$rows['pid'];
-//       $_SESSION['email']=$email;
-//       header("location: ../Home/index.html");
-//      }
-//      else{
-      
-//        header("Location: ../Homme/login.php?error=unknown error occurred&$user_data");
-//        exit();
-//     }
-    
-//   }      
-//   }
-//   }
-// }
 
 
 // submitting to the login form
@@ -93,43 +21,42 @@ if(isset($_POST['Login'])){
   
 
 
-
- 	$sql_fetch="SELECT * FROM admin WHERE email='$email' AND password='$pass'";
-  $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error()); 
-  $count=mysqli_num_rows($sql_query);
-   if ($count >0) { 
-   	
-   	$rows=mysqli_fetch_assoc($sql_query); 
-   $_SESSION['id']=$rows['id'];
+  $sql_fetch=mysqli_query($connection,"SELECT * FROM admin WHERE email='".$email."' AND password='".$pass."'");
+  if ($rows=mysqli_num_rows($sql_fetch) > 0) {
+   // echo "FOUND";
+   session_start();
+   $_SESSION['email']=$email;
+   $_SESSION['id']="";
+   // $_SESSION['fname']=$count['fname'];
    
-   
-    $_SESSION['email']=$email;
-    header("location: ../Home/index.html");
+   header("location: ../admin/index.php");
   }else{
 
-  $sql_fetch="SELECT * FROM patient WHERE email='$email' AND Password='$pass'";
-  $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error());
-  $count=mysqli_num_rows($sql_query);
-   if ($count >0) {
-   	// echo ($_SESSION['workerId']);
-   	// $rows=mysqli_fetch_assoc($sql_query);
-   	$_SESSION['pid']=$rows['pid'];
+    $result=mysqli_query($connection,"SELECT * FROM patient WHERE email='".$email."' AND password='".$pass."'");
+   if ($rows=mysqli_num_rows($result) > 0) {
     // echo "FOUND";
+    session_start();
     $_SESSION['email']=$email;
-    header("location: ../Home/index.html");
+    $_SESSION['pid']="";
+    // $_SESSION['fname']=$count['fname'];
+    
+    header("location: ../patientint.php");
   }else{
 
-  $sql_fetch="SELECT * FROM donor WHERE email='$email' AND password='$pass'";
-  $sql_query=mysqli_query($connection, $sql_fetch) or die(mysqli_error());
-  $count=mysqli_num_rows($sql_query);
-   if ($count >0) {
+  $result=mysqli_query($connection,"SELECT * FROM donor WHERE email='".$email."' AND password='".$pass."'");
+  // $sql_query=($connection, $sql_fetch) or die(mysqli_error());
+  // $count=mysqli_fetch_array($sql_query);
+  // $rows=mysqli_num_rows($count);
+   if ($rows=mysqli_num_rows($result) > 0) {
     // echo "FOUND";
-    $_SESSION['id']=$rows['id'];
+    session_start();
     $_SESSION['email']=$email;
-    header("location: ../Home/index.html");
+    // $_SESSION['fname']=$count['fname'];
+    
+    header("location: Home/index.html");
    }
    else{
- 	echo "NOT FOUND";
+    header("Location: login.php?error=Oops, User does not exist!!");
   }
   
 }      

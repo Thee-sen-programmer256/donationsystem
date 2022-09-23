@@ -3,7 +3,7 @@
 
     $result =" SELECT * FROM notifications" ;
     $display=mysqli_query($con, $result);
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,7 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    
+
 -->
 <title>Notifications</title>
 
@@ -130,16 +130,22 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
+<<<<<<< HEAD
                             <th>Title</th>
                             <th>Message</th>
                             <th>Status</th>
+=======
+                            <th>Nofification</th>
+                            <th>Message</th>
+                            <th>Active</th>
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
                      <!-- Fetch data from notify table -->
-            
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
@@ -147,11 +153,19 @@
                         <tr style ="text-align:center;">
                             <td><?php echo $row['n_id'];  ?></td>
                             <td><?php echo $row['notifications_name'];  ?></td>
+<<<<<<< HEAD
                              <td><?php echo $row['message'];  ?></td>
                              <td><?php echo $row['status'];  ?></td>
+=======
+
+                            <td><?php echo $row['message'];  ?></td>
+
+                             <td><?php echo $row['active'];  ?></td>
+
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
 
                             <td>
-                               
+
         <!-- //  checking for status -->
 
                                 <a href="partials/deactivate-notify.php?a=<?php echo $row['n_id'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>

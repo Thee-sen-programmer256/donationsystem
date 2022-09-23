@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
@@ -30,6 +31,73 @@ if(mysqli_query($con,$sql)){
     
 ?>
 
+=======
+<?php 
+
+$server="localhost";
+ $user="root";
+ $pass="";
+ $dbname="donation_procurement";
+ 
+ $connection=mysqli_connect($server,$user,$pass,$dbname);
+
+ session_start();
+ if(!isset($_SESSION['email'])){
+    header("Location: Home/login.php");
+ }
+
+
+ if($connection==TRUE){
+   // echo "success";
+ }
+
+
+if(isset($_POST['tell'])){
+
+  if (isset($_POST['tell'])){
+    $filetmp=$_FILES["photo"]["tmp_name"];
+    $filename=$_FILES["photo"]["name"];
+    $filetype=$_FILES["photo"]["type"];
+    $target_dir="../images/";
+    $img_url=$target_dir.basename($_FILES["photo"]["name"]);
+  
+    if(move_uploaded_file($filetmp, $img_url)==TRUE){
+      echo "successful";
+  
+    }else{
+      echo "Not successful";
+    }
+  }
+
+	$title=$_POST['title'];
+	$status=$_POST['status'];
+	$tell_us=$_POST['tell_us'];
+	
+	    // $file_name= $_FILES['photo']['name'];
+	    // $file_tmp = $_FILES['photo']['tmp_name'];
+
+
+	    //          //image Upload
+      //           move_uploaded_file($file_tmp,"images/".$file_name); 
+	
+
+	$sql_insert="INSERT INTO `story`(`title`, `status`, `photo`, `tell_us`) VALUES('$title','$status','$img_url','$tell_us')";
+	$sql_query=mysqli_query($connection,$sql_insert);
+	if ($sql_query==TRUE) {
+		// echo "successful";
+    header("Location:../stories/addstory.php?success=Story has been added successfully");
+	}else{
+		echo mysqli_error($connection);
+	}
+}
+
+
+?>
+
+<?php session_start();?>
+
+
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -644,16 +712,17 @@ code {
       </ul>
 
          <a class="brand-logo right">
-           <!--for the notification-->
-
-            <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
-            <!-- Dropdown Structure -->
-
-
-
-           <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
-      <img src="../simages/card3.jpg" alt="Contact Person">
-      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
+           <div class="chip" >
+           <?php 
+      $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
+      <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+      <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -672,11 +741,11 @@ code {
     <ul id="slide-out" class="sidenav">
  <li><div class="user-view">
  <div class="background">
-  <img src="../simages/card3.jpg">
+  <img src="../images/<?php echo $rows['image']; ?>">
  </div>
- <a href="#user"><img class="circle" src="../simages/card3.jpg"></a>
- <a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
- <a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
+ <a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
+ <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
+ <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
@@ -690,9 +759,19 @@ code {
     <!--the navbar-->
     <!-- add story -->
     <h3>Add Story</h3>
+    <div class="center" >
+    <?php if(isset($_GET['success'])){ ?>
+        <p class="success" style="margin-left:38%;background-color:green;width:300px;padding:10px;border-radius:5px;align-items:center;color:white"><?php echo $_GET['success'] ?><a href="addstory.php" style="margin-left:3%;color:red;font-weight:bold;width:5px">&times;</a></p>
+   <?php } ?>
+    </div>
+  
 
 <div class="row">
+<<<<<<< HEAD
  <form action=" " method="post" class="col s12">
+=======
+ <form action="#" class="col s12"  method="post" enctype="multipart/form-data">
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
  <div class="row">
        <div class="input-field col s12">
          <input id="title" type="text" name="title" >
@@ -711,21 +790,26 @@ code {
 
  <div class="row">
        <div class="input-field col s12">
-         <textarea id="body" class="materialize-textarea" name="body"></textarea>
+         <textarea id="body"  name="tell_us" class="materialize-textarea"></textarea>
          <label for="body">Tell us your story</label>
        </div>
  </div>
 
  <div class="row">
        <div class="input-field col s12">
-         <input id="title" type="file" name="storyimage" >
+         <input type="file" id="title" type="file" name="photo" >
            <p>Story image</p>
        </div>
  </div>
 
  <div class="row">
+<<<<<<< HEAD
    <input type="submit" value="Save" class="btn" name="submit">
    <a href="/dashboard" class="btn orange">Cancel</a>
+=======
+   <input type="submit" value="Submit" name="tell"  class="btn">
+   <a href="addstory.php" class="btn orange">Refresh</a>
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
  </div>
 
  </form>
