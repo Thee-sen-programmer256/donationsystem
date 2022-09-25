@@ -18,8 +18,6 @@
  }
 ?>
 
-
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -810,7 +808,7 @@ section{
            <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
       <img src="../simages/card3.jpg" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
->>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
+>
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -837,7 +835,7 @@ section{
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
  <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
@@ -1015,5 +1013,6 @@ $(document).ready(function(){
 
   <!-- JavaScript -->
   <script src="jsl/script.js"></script>
+
 
 </html>

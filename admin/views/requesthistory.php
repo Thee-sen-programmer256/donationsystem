@@ -152,8 +152,8 @@
                              <td><?php echo $row['age'];  ?></td>
                              <td><?php echo $row['organ'];  ?></td>
                              <td><?php echo $row['blood_group'];  ?></td>
-                             <td><?php echo $row['date_requested'];  ?></td>
-                             <td><?php echo $row['statuss'];  ?></td>
+                             <td><?php echo $row['date_request'];  ?></td>
+                             <td><?php echo $row['status'];  ?></td>
                         </tr>
                     <?php   }?>
                     </tbody>
@@ -168,5 +168,32 @@
 
 
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#live_search').keyup(function(){
+                $("#searchresult").show();
+
+                var input = $(this).val();
+                //alert(input)
+
+                if(input != ''){
+                    $.ajax({
+                        url:"live_searches/requesthistory-search.php",
+                        method:"GET",
+                        data:{input:input},
+
+                        success:function(data){
+                            $('#searchresult').html(data);
+                        }
+                    });
+                }else{
+                    $('#searchresult').css("display","none");
+                }
+            });
+        });
+</script>
+
 </body>
 </html>

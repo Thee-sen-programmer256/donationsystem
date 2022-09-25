@@ -128,11 +128,7 @@ if(mysqli_query($con,$sql)){
                 </label>
               Add Notifications
             </h2>
-           <!-- Search Bar -->
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
-            </div>
+           
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">

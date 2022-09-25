@@ -1,9 +1,7 @@
 <?php
-<<<<<<< HEAD
+
 include "config/check-reg.php";
 
-
-=======
 include "config/connection.php";
 
  //    Patient registration
@@ -127,7 +125,7 @@ include "config/connection.php";
 // 	header("Location: donorreg.php");
 // 	exit();
 // }
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
 ?>
 <?php session_start();?>
 <!DOCTYPE html>

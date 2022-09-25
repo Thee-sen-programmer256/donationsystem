@@ -103,13 +103,13 @@ if(mysqli_query($con,$sql)){
                     <a href="../organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
                     <a href="../organstock.php" class="active" ><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="../events.php" ><span class="las la-calendar"></span><span>Events</span></a>
@@ -131,12 +131,7 @@ if(mysqli_query($con,$sql)){
                 </label>
               Add Organs
             </h2>
-           <!-- Search Bar -->
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
-            </div>
-            <!-- Admin Pic & Names -->
+           
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">
                 <div>

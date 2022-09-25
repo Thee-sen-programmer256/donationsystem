@@ -100,7 +100,7 @@
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
+                <input type="search" placeholder="search here" id="live_search">
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
@@ -115,7 +115,7 @@
 <section>
         <main>
 
-
+        <div id ="searchresult" style="position:absolute;"></div>
 
 
       <a href="partials/addorgans.php">
@@ -183,5 +183,31 @@
 
 
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#live_search').keyup(function(){
+                $("#searchresult").show();
+
+                var input = $(this).val();
+                //alert(input)
+
+                if(input != ''){
+                    $.ajax({
+                        url:"live_searches/organstock-search.php",
+                        method:"GET",
+                        data:{input:input},
+
+                        success:function(data){
+                            $('#searchresult').html(data);
+                        }
+                    });
+                }else{
+                    $('#searchresult').css("display","none");
+                }
+            });
+        });
+</script>
 </body>
 </html>

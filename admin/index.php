@@ -6,7 +6,7 @@
 
     session_start();
 if(!isset($_SESSION['email'])){
-   header("Location: Home/login.php");
+   header("Location: ../Home/login.php");
 }
 
 ?>
@@ -102,6 +102,7 @@ if(!isset($_SESSION['email'])){
 <section>
         <main>
             
+        <div id ="searchresult" style="position:absolute;"></div>
         <?php 
     
     
@@ -200,6 +201,12 @@ if(!isset($_SESSION['email'])){
 
                             <div class="card-body">
                                 <div class="table responsive">
+                                <?php
+                                $rresult =" SELECT * FROM request " ;
+                               if($rdisplay=mysqli_query($con, $rresult)) {
+                                $rrow=mysqli_num_rows($rdisplay);
+                               }
+                            ?>
                                     <table width="100%">
                                         <thead>
                                             <tr>
@@ -212,14 +219,14 @@ if(!isset($_SESSION['email'])){
 
                                             <!-- Fetch data from the request database -->
                                             <?php
-                                            while ( $row=mysqli_fetch_assoc($display)) {
+                                            while ( $rrow=mysqli_fetch_assoc($rdisplay)) {
                                                 ?>
                                             <tr>
-                                                <td><?php echo $row['fname'];  ?></td>
-                                                <td><?php echo $row['organ'];  ?></td>
+                                                <td><?php echo $rrow['full_name'];  ?></td>
+                                                <td><?php echo $rrow['organ'];  ?></td>
                                                 <td>
                                                     <span class="status purple"></span>
-                                                    <?php echo $row['statuss'];  ?>
+                                                    <?php echo $rrow['status'];  ?>
                                                 </td>
                                             </tr>
                                             <?php  }?>
@@ -253,40 +260,18 @@ if(!isset($_SESSION['email'])){
                                             <!-- Name & Contacts -->
                                 <div class="patient">
                                     <div class="info">
-                                        <img src="images/<?php echo $rows['image']; ?>" width="48px" height="40px" alt="">
+                                            <img src="<?php echo $prow['image'];  ?>" width="48px" height="40px" alt="">
                                         <div>
                                             <h4><?php echo $prow['fname'];  ?></h4>
-                                            <small><?php echo $row['email'];  ?></small>
+                                            <small><?php echo $prow['email'];  ?></small>
                                         </div>
                                     </div>
-                                    <div class="contact">
-                                        <span class="las la-user-circle"></span>
-                                        <span class="las la-comment"></span>
-                                        <span class="las la-phone"></span>
-                                    </div>
+                                    
                                 </div>
 
                                 <?php   }?>
                                 
-                                <!-- Name & Contacts -->
-                                <div class="patient">
-                                    <div>
-                                        <div class="info">
-                                            <img src="images.jpg" width="48px" height="40px" alt="">
-                                        <div>
-                                            <h4>Aareba Teddy</h4>
-                                            <small>CEO Excerpt</small>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="contact">
-                                            <span class="las la-user-circle"></span>
-                                            <!-- <span class="las la-comment"></span>
-                                            <span class="las la-phone"></span> -->
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 
                             </div>
 
@@ -301,30 +286,31 @@ if(!isset($_SESSION['email'])){
 
     </div>
 
-    <div id="searchresult"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("#live_search").keyup(function(){
+            $('#live_search').keyup(function(){
+                $("#searchresult").show();
+
                 var input = $(this).val();
                 //alert(input)
 
-                if(input !=""){
+                if(input != ''){
                     $.ajax({
-                        url:"livesearch.php",
-                        method:"POST",
+                        url:"views/live_searches/patient-search.php",
+                        method:"GET",
                         data:{input:input},
 
                         success:function(data){
-                            $("searchresult").html(data);
+                            $('#searchresult').html(data);
                         }
                     });
                 }else{
-                    $("#searchresult").css("display","none");
+                    $('#searchresult').css("display","none");
                 }
             });
         });
-    </script>
+</script>
 </body>
 </html>

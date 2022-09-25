@@ -99,7 +99,7 @@
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
+                <input type="search" placeholder="search here" id="live_search" >
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
@@ -114,7 +114,7 @@
 <section>
         <main>
 
-
+        <div id ="searchresult" style="position:absolute;"></div>
 
 
     <a href="partials/addnotify.php">
@@ -130,15 +130,9 @@
                     <thead style="padding: 30px;background-color: black;color: white;">
                         <tr>
                             <th>ID</th>
-<<<<<<< HEAD
                             <th>Title</th>
                             <th>Message</th>
-                            <th>Status</th>
-=======
-                            <th>Nofification</th>
-                            <th>Message</th>
-                            <th>Active</th>
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+                            <th>Status</th>                       
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -153,16 +147,10 @@
                         <tr style ="text-align:center;">
                             <td><?php echo $row['n_id'];  ?></td>
                             <td><?php echo $row['notifications_name'];  ?></td>
-<<<<<<< HEAD
+
                              <td><?php echo $row['message'];  ?></td>
                              <td><?php echo $row['status'];  ?></td>
-=======
 
-                            <td><?php echo $row['message'];  ?></td>
-
-                             <td><?php echo $row['active'];  ?></td>
-
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
 
                             <td>
 
@@ -191,5 +179,31 @@
 
 
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#live_search').keyup(function(){
+                $("#searchresult").show();
+
+                var input = $(this).val();
+                //alert(input)
+
+                if(input != ''){
+                    $.ajax({
+                        url:"live_searches/notification-search.php",
+                        method:"GET",
+                        data:{input:input},
+
+                        success:function(data){
+                            $('#searchresult').html(data);
+                        }
+                    });
+                }else{
+                    $('#searchresult').css("display","none");
+                }
+            });
+        });
+</script>
 </body>
 </html>
