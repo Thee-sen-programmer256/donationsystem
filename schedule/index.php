@@ -1,20 +1,12 @@
 <?php
-     $con = mysqli_connect("localhost","root","","donation_procurement");
-
-<<<<<<< HEAD
-     // $result =" SELECT * FROM shedule " ;
-     // $display=mysqli_query($con, $result);
-=======
-     session_start();
+session_start();
 if(!isset($_SESSION['email'])){
-   header("Location: Home/login.php");
-} 
-     $result =" SELECT * FROM shedule " ;
-     $display=mysqli_query($con, $result);
->>>>>>> 54603a3f5b8f8244d2d8df37ea2722d7e8078563
-
+header("Location: Home/login.php");
+}
+    include "../config/connection.php"
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -801,7 +793,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         <!-- end of modal -->
 
 <?php
-$schedules = $con->query("SELECT * FROM `schedule`");
+$schedules = $connection->query("SELECT * FROM `schedule`");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
@@ -810,7 +802,7 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 }
 ?>
 <?php
-if(isset($con)) $con->close();
+if(isset($connection)) $connection->close();
 ?>
 </body>
 <script type="text/javascript">

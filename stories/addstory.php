@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 $server="localhost";
  $user="root";
  $pass="";
  $dbname="donation_procurement";
- 
+
  $connection=mysqli_connect($server,$user,$pass,$dbname);
 
  session_start();
@@ -26,10 +26,10 @@ if(isset($_POST['tell'])){
     $filetype=$_FILES["photo"]["type"];
     $target_dir="../images/";
     $img_url=$target_dir.basename($_FILES["photo"]["name"]);
-  
+
     if(move_uploaded_file($filetmp, $img_url)==TRUE){
       echo "successful";
-  
+
     }else{
       echo "Not successful";
     }
@@ -38,14 +38,14 @@ if(isset($_POST['tell'])){
 	$title=$_POST['title'];
 	$status=$_POST['status'];
 	$tell_us=$_POST['tell_us'];
-	
+
 	    // $file_name= $_FILES['photo']['name'];
 	    // $file_tmp = $_FILES['photo']['tmp_name'];
 
 
 	    //          //image Upload
-      //           move_uploaded_file($file_tmp,"images/".$file_name); 
-	
+      //           move_uploaded_file($file_tmp,"images/".$file_name);
+
 
 	$sql_insert="INSERT INTO `story`(`title`, `status`, `photo`, `tell_us`) VALUES('$title','$status','$img_url','$tell_us')";
 	$sql_query=mysqli_query($connection,$sql_insert);
@@ -653,7 +653,7 @@ code {
 
           ?>
 
-         <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+         <ul class="dots " id="notifications" style="position: absolute;margin-left:69%">
         <li>
           <a href="#" >
             <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="tada"><?php echo $count; ?></mark></span>
@@ -678,13 +678,13 @@ code {
 
          <a class="brand-logo right">
            <div class="chip" >
-           <?php 
+           <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
       <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
@@ -729,7 +729,7 @@ code {
         <p class="success" style="margin-left:38%;background-color:green;width:300px;padding:10px;border-radius:5px;align-items:center;color:white"><?php echo $_GET['success'] ?><a href="addstory.php" style="margin-left:3%;color:red;font-weight:bold;width:5px">&times;</a></p>
    <?php } ?>
     </div>
-  
+
 
 <div class="row">
  <form action="#" class="col s12"  method="post" enctype="multipart/form-data">

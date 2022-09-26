@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
  include "config/connection.php";
 
@@ -8,15 +8,9 @@ if(!isset($_SESSION['email'])){
 }
 
 ?>
-=======
-<?php $con = mysqli_connect("localhost","root","","donation_procurement");
 
-if(!$con){
-        die("Could not connect: ". mysqli_connect_error());
-}
-  ?>
 
->>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -791,7 +785,7 @@ section{
 
           ?>
 
-          <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+          <ul class="dots " id="notifications" style="position: absolute;margin-left:70%">
          <li>
            <a href="#" >
              <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class=""><?php echo $count; ?></mark></span>
@@ -815,9 +809,9 @@ section{
        </ul>
 
          <a class="brand-logo right">
-           <i class="material-icons" onclick="M.toast       ({html:'donation notifications here',classes: 'black darken-1 rounded',displayLength: 10000})" style="cursor:pointer">notifications_active<span class="new badge green"  style="margin-top:25%;cursor:pointer">4</span></i>
+
            <div class="chip" style="vertical-align:middle;">
-      <img src="images/<?php echo $rows['image']; ?>" alt="Contact Person">
+      <img src="./images/<?php echo $rows['image']; ?>">
 
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
     </div> &nbsp;  </a>
@@ -1139,6 +1133,10 @@ section{
      });
    });
  });
+$('.dropdown-trigger').dropdown();
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
 </script>
   <script>
     $(document).ready(function(){

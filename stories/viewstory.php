@@ -1,4 +1,4 @@
-<?php 
+<?php
 
  include "../config/connection.php";
  session_start();
@@ -737,13 +737,13 @@ section{
 
     <!--the navbar-->
     <!-- the nav bar -->
-    <?php 
+    <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
@@ -759,7 +759,7 @@ section{
 
           ?>
 
-         <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+      <ul class="dots " id="notifications" style="position: absolute;margin-left:74%">
         <li>
           <a href="#" >
             <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="rubberBand"><?php echo $count; ?></mark></span>
@@ -783,11 +783,11 @@ section{
       </ul>
 
          <a class="brand-logo right">
-<<<<<<< HEAD
-           <div class="chip" >
-      <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+
+           <div class="chip right" style="margin-top:10%;vertical-align:middle;margin-right:-54%">
+      <img src="../images/<?php echo $rows['image']; ?>" >
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
-=======
+
            <!--for the notification-->
 
             <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
@@ -795,10 +795,7 @@ section{
 
 
 
-           <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
-      <img src="../simages/card3.jpg" alt="Contact Person">
-      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
->>>>>>> b6c2d84f19673ebe67f3d9b11b9891278aedce5d
+
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -933,6 +930,8 @@ section{
      });
    });
  });
+
+ $('.dropdown-trigger').dropdown1();
 </script>
 <script type="text/javascript">
 const popupScreen = document.querySelector(".popup-screen");
