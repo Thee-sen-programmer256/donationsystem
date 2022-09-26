@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 <!--
      <link href="admin-assets/css/font-face.css" rel="stylesheet" media="all">
@@ -66,7 +67,7 @@
                     <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-sync"></span><span>Organ Requests</span></a>
+                    <a href="organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
                     <a href="requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
@@ -100,7 +101,7 @@
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" placeholder="search here" >
+                <input type="search" placeholder="search here" id="live_search" >
             </div>
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
@@ -115,7 +116,7 @@
 <section>
         <main>
 
-
+        <div id ="searchresult" style="position:absolute; z-index: index 100;"></div>
 
 
     <a href="">
@@ -133,7 +134,9 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>DOB</th>
                             <th>Blood group</th>
+                            <th>Nationality</th>
                             <th>Image</th>
                             <th>Gender</th>
                             <th>Action</th>
@@ -148,9 +151,11 @@
                     ?>
                         <tr>
                             <td><?php echo $row['pid'];  ?></td>
-                             <td><?php echo $row['full_name'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['email'];  ?></td>
+                             <td><?php echo $row['dob'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['nationality'];  ?></td>
                              <td><?php echo $row['image'];  ?></td>
                             <td><?php echo $row['gender'];  ?></td>
 
@@ -166,7 +171,7 @@
 
 
 
-                                <a href=""><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Edit</button></a>
+                                
                             </td>
                         </tr>
                     <?php  }?>
@@ -176,9 +181,33 @@
             <!-- END DATA TABLE-->
         </div>
     </div>
+
         </main>
     </section>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#live_search').keyup(function(){
+                $("#searchresult").show();
 
+                var input = $(this).val();
+                //alert(input)
+
+                if(input != ''){
+                    $.ajax({
+                        url:"live_searches/patient-search.php",
+                        method:"GET",
+                        data:{input:input},
+
+                        success:function(data){
+                            $('#searchresult').html(data);
+                        }
+                    });
+                }else{
+                    $('#searchresult').css("display","none");
+                }
+            });
+        });
+</script>
 
 
     </div>

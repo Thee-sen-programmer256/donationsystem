@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2022 at 08:02 PM
+-- Generation Time: Sep 23, 2022 at 04:24 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -115,15 +115,15 @@ CREATE TABLE `notifications` (
   `n_id` int(11) NOT NULL,
   `notifications_name` text NOT NULL,
   `message` text NOT NULL,
-  `active` tinyint(4) NOT NULL
+  `status` varchar(45) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `active`) VALUES
-(1, 'Greetings', 'Hello, how are you', 0);
+INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `status`) VALUES
+(1, 'Greetings', 'Hello, How are you', 'Active');
 
 -- --------------------------------------------------------
 
@@ -212,6 +212,27 @@ INSERT INTO `schedule` (`id`, `title`, `she_description`, `start_datetime`, `end
 (5, 'Feast', 'Big meal', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
 (7, 'hcvjbknl', 'vbklj. ', '2022-10-19 22:48:00', '2022-12-01 22:48:00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `story`
+--
+
+CREATE TABLE `story` (
+  `id` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `body` longtext NOT NULL,
+  `storyimage` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `story`
+--
+
+INSERT INTO `story` (`id`, `title`, `status`, `body`, `storyimage`) VALUES
+(1, 'My Life', 'public', 'I dont Want', 'dp.JPG');
+
 --
 -- Indexes for dumped tables
 --
@@ -277,6 +298,12 @@ ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `story`
+--
+ALTER TABLE `story`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -314,7 +341,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `organ`
@@ -339,6 +366,12 @@ ALTER TABLE `request`
 --
 ALTER TABLE `schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `story`
+--
+ALTER TABLE `story`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

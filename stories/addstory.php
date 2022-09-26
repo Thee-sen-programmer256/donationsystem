@@ -1,4 +1,42 @@
+<<<<<<< HEAD
 <?php
+=======
+<<<<<<< HEAD
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    $title= $_POST["title"];
+    $status= $_POST["status"];
+    $body= $_POST["body"];
+    $storyimage= $_POST["storyimage"];
+
+$sql = "INSERT INTO story(title,status, body,storyimage)VALUE('$title','$status','$body','$storyimage')";
+//echo $sql;
+// excecuting the query
+if(mysqli_query($con,$sql)){
+
+    ?>
+    
+    <script type="text/javascript">
+        alert("Story Successfully Added");
+        window.location= "../stories/addstory.php";
+    </script>
+    <?php 
+    }else{
+    echo mysqli_error($con);
+    }
+    
+    }
+    
+?>
+
+=======
+<?php 
+>>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
 
 $server="localhost";
  $user="root";
@@ -63,6 +101,7 @@ if(isset($_POST['tell'])){
 <?php session_start();?>
 
 
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -646,7 +685,7 @@ code {
 
          <?php
          include "../config/connection.php";
-         $select="SELECT * FROM notifications WHERE active='1'";
+         $select="SELECT * FROM notifications WHERE status='Active'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
@@ -715,8 +754,8 @@ code {
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
- <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
+  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
   </div>
@@ -732,7 +771,11 @@ code {
 
 
 <div class="row">
+<<<<<<< HEAD
+ <form action=" " method="post" class="col s12">
+=======
  <form action="#" class="col s12"  method="post" enctype="multipart/form-data">
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
  <div class="row">
        <div class="input-field col s12">
          <input id="title" type="text" name="title" >
@@ -764,8 +807,13 @@ code {
  </div>
 
  <div class="row">
+<<<<<<< HEAD
+   <input type="submit" value="Save" class="btn" name="submit">
+   <a href="/dashboard" class="btn orange">Cancel</a>
+=======
    <input type="submit" value="Submit" name="tell"  class="btn">
    <a href="addstory.php" class="btn orange">Refresh</a>
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
  </div>
 
  </form>

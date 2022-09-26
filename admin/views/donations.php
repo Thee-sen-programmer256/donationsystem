@@ -104,7 +104,7 @@
            <!-- Search Bar -->
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="search" onkeyup="imu(this.value)" placeholder="search here" id="live_search">
+                <input type="search" placeholder="search here" id="live_search">
                 
             </div>
             <!-- Admin Pic & Names -->
@@ -121,7 +121,7 @@
         
 <section>
         <main>
-        <div id="searchresult">gfhk</div>
+        <div id ="searchresult" style="position:absolute;"></div>
     <a href="">
         <!-- <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
             Add Donor
@@ -185,42 +185,20 @@
             <!-- END DATA TABLE-->
         </div>
     </div>
-
         </main>
-
-        <script type="text/javascript">
-            let content = document.getElementById('live_search');
-
-            function imu(result){
-                if(x.length == 0){
-                    content.innerHTML = 'empty..'
-                }
-                else{
-                    var XML = new XMLHttpRequest();
-                    XML.onreadystatechange = function(){
-
-                        if(XML.readyState==4 && XML.status==200){
-                            content.innerHTML=XML.responseText;
-                        }
-                    };
-                    XML.open('GET','livesearch.php?data='+x, true);
-                    XML.send();
-                }
-            }
-
-        </script>
-
     
-    <!-- <script type="text/javascript">
+<script type="text/javascript">
         $(document).ready(function(){
             $('#live_search').keyup(function(){
+                $("#searchresult").show();
+
                 var input = $(this).val();
                 //alert(input)
 
                 if(input != ''){
                     $.ajax({
-                        url:"livesearch.php",
-                        method:"POST",
+                        url:"partials/livesearch.php",
+                        method:"GET",
                         data:{input:input},
 
                         success:function(data){
@@ -232,7 +210,7 @@
                 }
             });
         });
-    </script> -->
+</script>
 
     </section>
 

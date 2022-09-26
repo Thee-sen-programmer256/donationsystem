@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 <?php
+=======
+<<<<<<< HEAD
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+        $result =" SELECT * FROM story " ;
+        $display=mysqli_query($con, $result);
+        
+    
+?>
+
+=======
+<?php 
+>>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
 
  include "../config/connection.php";
  session_start();
@@ -6,7 +21,6 @@
     header("Location: Home/login.php");
  }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -752,7 +766,7 @@ section{
 
          <?php
          include "../config/connection.php";
-         $select="SELECT * FROM notifications WHERE active='1'";
+         $select="SELECT * FROM notifications WHERE status='Active'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
@@ -795,7 +809,14 @@ section{
 
 
 
+<<<<<<< HEAD
 
+=======
+           <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
+      <img src="../simages/card3.jpg" alt="Contact Person">
+      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
+>
+>>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
@@ -822,7 +843,7 @@ section{
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
  <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
@@ -1002,5 +1023,6 @@ $(document).ready(function(){
 
   <!-- JavaScript -->
   <script src="jsl/script.js"></script>
+
 
 </html>

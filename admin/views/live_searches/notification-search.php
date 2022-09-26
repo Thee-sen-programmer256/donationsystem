@@ -1,11 +1,12 @@
 <?php
-
 $con = mysqli_connect("localhost","root","","donation_procurement");
+
+
 
 if(isset($_GET['input'])){
     $input = $_GET['input'];
 
-    $query = "SELECT * FROM donation WHERE fname LIKE '$input%'OR lname LIKE '$input%'  ";
+    $query = "SELECT * FROM notifications WHERE notifications_name LIKE '$input%' Or message LIKE '$input%' Or status LIKE '$input%' ";
 
     $result = mysqli_query($con, $query);
 
@@ -15,13 +16,10 @@ if(isset($_GET['input'])){
             <thead>
                 <tr style="background-color: black; color:white;">
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Contact</th>
-                    <th>Amount</th>
-                    <th>Display</th>
-                    <th>Email</th>
-                    <th>Status</th>
+                    <th>Title</th>
+                    <th>Message</th>
+                    <th>Status</th>  
+
                 </tr>
             </thead>
 
@@ -31,14 +29,11 @@ if(isset($_GET['input'])){
 
                     ?>
                         <tr>
-                            <td><?php echo $row['donationId'];  ?></td>
-                             <td><?php echo $row['fname'];  ?></td>
-                             <td><?php echo $row['lname'];  ?></td>
-                             <td><?php echo $row['contact'];  ?></td>
-                             <td><?php echo $row['amount'];  ?></td>
-                            <td><?php echo $row['display'];  ?></td>
-                            <td><?php echo $row['email'];  ?></td>
-                            <td><?php echo $row['statuss'];  ?></td>
+                            <td><?php echo $row['n_id'];  ?></td>
+                            <td><?php echo $row['notifications_name'];  ?></td>
+
+                             <td><?php echo $row['message'];  ?></td>
+                             <td><?php echo $row['status'];  ?></td>
                         </tr>
                     <?php } ?>
             </tbody>
@@ -52,7 +47,4 @@ if(isset($_GET['input'])){
         echo "<h6 class = 'text-danger text-center mt-3'>No data Found</h6>";
     }
 }
-
-
-
 ?>

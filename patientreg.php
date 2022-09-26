@@ -1,4 +1,7 @@
 <?php
+
+include "config/check-reg.php";
+
 include "config/connection.php";
 
  //    Patient registration
@@ -132,6 +135,7 @@ include "config/connection.php";
 // 	header("Location: donorreg.php");
 // 	exit();
 // }
+
 ?>
 <?php session_start();?>
 <!DOCTYPE html>

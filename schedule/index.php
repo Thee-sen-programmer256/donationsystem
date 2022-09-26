@@ -1,9 +1,30 @@
 <?php
+<<<<<<< HEAD
 session_start();
 if(!isset($_SESSION['email'])){
 header("Location: Home/login.php");
 }
     include "../config/connection.php"
+=======
+     $con = mysqli_connect("localhost","root","","donation_procurement");
+
+<<<<<<< HEAD
+     $result =" SELECT * FROM schedule " ;
+=======
+<<<<<<< HEAD
+     // $result =" SELECT * FROM shedule " ;
+     // $display=mysqli_query($con, $result);
+=======
+     session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+} 
+     $result =" SELECT * FROM shedule " ;
+>>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+     $display=mysqli_query($con, $result);
+>>>>>>> 54603a3f5b8f8244d2d8df37ea2722d7e8078563
+
+>>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
 
 ?>
 

@@ -1,8 +1,8 @@
 <?php 
 $con = mysqli_connect("localhost","root","","donation_procurement");
 
-$notifyId=$_GET['pd'];
-$result =" DELETE FROM notify WHERE notifyId= '$notifyId'" ;
+$n_id=$_GET['pd'];
+$result =" DELETE FROM notifications WHERE n_id= '$n_id'" ;
 $display=mysqli_query($con, $result);
 
 if($display){
