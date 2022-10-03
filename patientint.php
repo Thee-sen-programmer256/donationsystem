@@ -605,13 +605,7 @@ code {
   }
 }
 
-body{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  min-height: 100vh;
-}
+
 
 .popup-screen{
   z-index: 999999;
@@ -759,7 +753,7 @@ section{
 
  </style>
   </head>
-  <body style="background:white">
+  <body style="background:white;">
   <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
@@ -778,7 +772,7 @@ section{
 
          <?php
          include "config/connection.php";
-         $select="SELECT * FROM notifications WHERE status='Active'";
+         $select="SELECT * FROM notifications WHERE active='1'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
@@ -963,6 +957,93 @@ section{
  </section>
 <!-- end of slider -->
 
+
+<!-- for the activity -->
+&nbsp;
+<div class="right" >
+  <p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>
+</div>
+<p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
+
+<div class="container" style="width:100%;">
+  <div class="row">
+
+          <!-- start of card -->
+          <div class="col 18 m3 s12">
+            <div class="card z-depth-5" style="height:150px">
+
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Requests made...<i class="material-icons right">add_circle_outline</i></span>
+                <p><a href="#">This is a link</a></p>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">Requests Made<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+              </div>
+            </div>
+
+          </div>
+        <!-- end of card -->
+        <!-- start of card -->
+        <div class="col 18 m3 s12">
+          <div class="card z-depth-5" style="height:150px">
+
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">Pending Requests<i class="material-icons right">compare_arrows</i></span>
+              <p><a href="#">This is a link</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Pending Requests<i class="material-icons right">close</i></span>
+              <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+          </div>
+
+        </div>
+      <!-- end of card -->
+      <!-- start of card -->
+      <div class="col 18 m3 s12">
+        <div class="card z-depth-5" style="height:150px">
+
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Approved Request<i class="material-icons right">check_circle</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Approved Requests<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          </div>
+        </div>
+
+      </div>
+      <!-- start of card -->
+      <div class="col 18 m3 s12">
+        <div class="card z-depth-5" style="height:135px">
+
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">Rejected Requests<i class="material-icons right ">block</i></span>
+            <p><a href="#">This is a link</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Rejected Requests<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+          </div>
+        </div>
+
+      </div>
+       <!-- end of card -->
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+
+
     <!-- end of slider -->
     <!-- modals -->
     <div class="container" style="height:1000vh;overflow">
@@ -1039,13 +1120,13 @@ section{
   </ul>
 </div> -->
 <!-- end of floating button -->
-<div class="">
+
   &nbsp;
-</div>
-  <h1>Frequently asked questions</h1>
+
+  <h1 class="center">Frequently asked questions</h1>
   <!-- section for the accordition -->
   <section >
-    <div style="margin-left:-6%">
+    <div style="margin-left:-6%;margin-top:-6%">
 
 
     <div class="accordion">

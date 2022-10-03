@@ -1,15 +1,13 @@
 
 <?php
- include "config/connection.php";
 
+
+ include "../config/connection.php";
  session_start();
-if(!isset($_SESSION['email'])){
-   header("Location: Home/login.php");
-}
-
+ if(!isset($_SESSION['email'])){
+    header("Location: Home/login.php");
+ }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -17,49 +15,26 @@ if(!isset($_SESSION['email'])){
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="lib/owlcarousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="lib/owlcarousel/owl.theme.default.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!-- <link rel="stylesheet" type="text/css" href="css/styles.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="sstyles.css"> -->
-  <link rel="stylesheet" href="main.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="newsli.css">
-  <link rel="stylesheet" href="accordition/accd.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="sstyle.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css" />
   <script type="text/javascript"
 src="https://code.jquery.com/jquery-1.12.0.min.js">
  </script>
+
  <!-- Compiled and minified JavaScript -->
  <script src=
 "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
  </script>
-
  <style type="text/css">
- a{
-   text-decoration: none;
- }
- body,html{
-    height: 1054px;
-  overflow-y: auto;
-
-
-
- }
- body::-webkit-scrollbar {
-                display: none;
-                height: 100vh;
-                /* max-height: inherit; */
-            }
  nav{
    /* top: 0;
  z-index: 100;
 position: fixed;
- /* width: 100 */
+ width: 100 */
  }
  a.new:hover button{
    background: #ff7d7d;
@@ -760,7 +735,10 @@ section{
  </style>
   </head>
   <body style="background:white">
-  <?php
+
+    <!--the navbar-->
+    <!-- the nav bar -->
+    <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
@@ -768,231 +746,153 @@ section{
 
 
       ?>
-    <!--the navbar-->
-    <!-- the nav bar -->
     <div class="navbar-fixed" >
       <nav class="bondi blue" style="color:#29ccf5">
        <div class="nav-wrapper container" >
-       <p class="brand-logo center" style="color:white">
          <p class="brand-logo center" style="color:white">Patient</p>
 
          <?php
-         include "config/connection.php";
-         $select="SELECT * FROM notifications WHERE active='1'";
+         include "../config/connection.php";
+         $select="SELECT * FROM notifications WHERE status='Active'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
 
           ?>
 
-          <ul class="dots " id="notifications" style="position: absolute;margin-left:87%">
-         <li>
-           <a href="#" >
-             <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class=""><?php echo $count; ?></mark></span>
-           </a>
-         </li>
-       </ul>
+      <ul class="dots " id="notifications" style="position: absolute;margin-left:74%">
+        <li>
+          <a href="#" >
+            <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="rubberBand"><?php echo $count; ?></mark></span>
+          </a>
+        </li>
+      </ul>
 
-       <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
-         <?php
-               if ($count > 0) {
-                 foreach ($query as $item) {
-               ?>
-         <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
-           <!-- <li class="divider" tabindex="-4"></li> -->
-           <!-- <hr class="solid"> -->
-       <?php }
-     } else{?>
-         <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
-   <?php } ?>
+      <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+        <?php
+              if ($count > 0) {
+                foreach ($query as $item) {
+              ?>
+        <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+          <!-- <li class="divider" tabindex="-4"></li> -->
+          <!-- <hr class="solid"> -->
+      <?php }
+    } else{?>
+        <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+  <?php } ?>
 
-       </ul>
+      </ul>
 
          <a class="brand-logo right">
 
-           <div class="chip" style="vertical-align:middle;">
-      <img src="images/<?php echo $rows['image']; ?>" alt="Contact Person">
-
+           <div class="chip right" style="margin-top:10%;vertical-align:middle;margin-right:-54%">
+      <img src="../images/<?php echo $rows['image']; ?>" >
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
-    </div> &nbsp;  </a>
+
+           <!--for the notification-->
+
+            <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
+            <!-- Dropdown Structure -->
+
+
+
+
+      </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
            <li><a href="" style="text-decoration:none;">Stories</a></li>
            <li><a href="" style="text-decoration:none;">Dashboard</a></li>
            <li><a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')">Open tap target</a></li> -->
+
+
       <!-- Tap Target Structure -->
+
            <!-- <li><a href="" style="text-decoration:none;">Logout</a></li>
          </ul> -->
+
       </nav>
     </div>
     <ul id="slide-out" class="sidenav">
  <li><div class="user-view">
  <div class="background">
-  <img src="Home/images/background1.jpg">
+  <img src="../simages/card3.jpg">
  </div>
- <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
- <a href="#user"><img class="circle" src="images/<?php echo $rows['image']; ?>"></a>
+ <a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
  <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
  <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
  </div></li>
- <!-- <li><a href="patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li> -->
- <li><a href="stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
-  <li><a href="Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-    <li><a href="schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
- <li><a href="./Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
+ <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
+ <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
+ <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
   </div>
+
     <!--the navbar-->
-    <!-- slider -->
-    <!-- slider -->
-<section class="product" style="height:350px">
-<?php
-
-
-    if(isset($_SESSION['pid']))
-    {
-        ?> <div>
-            <div style="width:300px; margin-left:5%; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Your Welcome !</strong><?php echo $rows['fname']; ?><?= $_SESSION['pid']; ?>
-                <a href="patientint.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
-            </div>
+    <!-- add story -->
+    <div class="popup-screen">
+      <div class="popup-box">
+        <i class="fas fa-times close-btn"></i>
+        <h2>Hey User</h2>
+        <p>Welcome back to your stories</p>
+        <a href="#" class="btn" style="vertical-align:middle;padding-bottom:5px">DONATE</a>
+            <p>Everyone can save a life!!</p>
+      </div>
     </div>
-        <?php
-        unset($_SESSION['pid']);
-    }
+    <h3>View Stories</h3>
 
-?>
-     <h2 class="product-category" style="text-align:center">Check out organs available</h2>
-     <button class="pre-btn"><img src="simages/arrow.png" alt=""></button>
-     <button class="nxt-btn"><img src="simages/arrow.png" alt=""></button>
-     <div class="product-container">
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag" style="background-color:green;color:white">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag"  style="background-color:maroon;color:white">Inactive</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         </div>
-     </div>
- </section>
-<!-- end of slider -->
 
-    <!-- end of slider -->
+
+
+<!--story-->
+        <section class="home">
+          <div class="image">
+            <img src="img.jpg" alt="">
+          </div>
+          <div class="info">
+            <h2>Popup Screen With Cookies</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <table>
+              <tr>
+                <td>
+                  <div class="card-action left-align" style="margin-left:50%">
+                  <a href="" class="btn blue">Read More</a>
+                </div>
+                </td>
+
+                <td></td>
+                <td>
+                  <div class="card-action right-align" style="margin-right:50%;">
+                  <a href="" class="dropdown-trigger btn green"  data-target='dropdown2'>Donate</a>
+                  <!-- Dropdown Structure -->
+<ul id='dropdown2' class='dropdown-content'>
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider" tabindex="-1"></li>
+  <li><a href="#!">three</a></li>
+  <li><a href="#!"><img src="../blood-transfusion-surgery-svgrepo-com.svg" style="height:20px;width:30px">TISSUE</a></li>
+  <li><a href="#!"><i class="material-icons">local_atm</i>MONEY</a></li>
+</ul>
+                </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+        </section>
+
+
+    <!-- end of story -->
+
     <!-- modals -->
-    <div class="container" style="height:1000vh;overflow">
+    <div class="container">
         <!-- <h2>Modals</h2> -->
+
         <!-- <a class="btn orange modal-trigger" href="#terms">Help Info</a> -->
-        <div id="terms" class="modal modal-fixed-footer"  >
-          <h4>Hey User</h4>
-          <p style="font-style:Times New Roman" style="text-size:5px">Here is a little guide for through the system</p>
-          <p style="text-size:5px">1. On this page (the index page),First is the navbar where you will get to see tripple bars <a class="small btn-floating pulse blue"><i class="material-icons">menu</i></a> and this will help you navigate to and fro pages like the sotories page where
-            you will be able to view all your stories as well as those of other patients,
-            the next on the list is the fundraise page where you will be able to view all the fundraising events and how much has been raised.
-            Next is the notification bell
-          <a class="btn-floating pulse blue"><img src="bell-svgrepo-com.svg" style="height:30px;vertical-align:middle;padding-left:5px"></a>; This is where all the notifications we send to you will appear
-          <p>2. Next,you get to see the organs available including tissues like stem cells. You can request for any that you need by clicking the <em style="color:red">request</em> button
-          where a popup will appear and you will be requested to confirm what you need.</p>
-          <p>3. On the right side, you will a plus button<a class="small btn-floating pulse red"><i class="material-icons">add</i></a>. Click here to be taken to the redirected to the add story page where you will be able to add to be viewed by donors and fellow
-          patients thus increasing a chance of being donated to. The button below that is the chat button<a class="small btn-floating pulse blue"><i class="material-icons">chat</i></a>and here you will be able to seek any consultation from our experts and if
-        necessary be redirected to the professional for furthur consultation using our two channels of whatsapp and telegram , you just have to click them and you will be able to see view the mentioned channels</p>
-        <p>
-          <strong>Note:</strong> Patients will allowed to view thier request history in order to keep track of all the requests made. Organs requests will be approved on the first come first serve as well as top priority patients or otherwise having severe conditions. An email will be sent to
-        all those who request with information on the organ requested whether approved or not. If a patient's request has not been approved, they will be considered first for the next set of organs and communicated to via email respectively.
-      Lastly, you will be abe to view the Frequently asked question on organ donation.
-    Finally, feel free to reach out to all our social  platforms to know more about us or contact: +256-789274772   </p>
-    <!-- <div class="modal-content maroon">
-    </div> -->
-    <div class="modal-footer" style="margin-bottom:-5%">
-      <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Okay</a>
-    </div>
-  </div>
-        <!-- <div id="terms" class="modal">
+
+        <div id="terms" class="modal">
           <div class="modal-content">
             <h4>Welcome patient</h4>
             <p>Here is a few tips to know when using the application</p>
@@ -1001,170 +901,82 @@ section{
             <a href="#!" class="modal-close btn blue"><span style="color:white">okay</span></a>
           </div>
         </div>
-      </div> -->
-        <!-- end of modal -->
-    <!-- floating button1 -->
-    <div class="fixed-action-btn" style="bottom:23%">
-    <a  class="btn-floating btn-large blue tooltipped" href="#top" data-position="left" data-tooltip="Back to top">
-    <i class="large material-icons">arrow_upward</i>
-    </a>
-    </div>
-    <!-- end of floating button -->
-    <!-- floating button2 -->
-    <div class="fixed-action-btn" style="bottom:13%">
-    <a  class="btn-floating btn-large red tooltipped" href="stories/addstory.php" data-position="left" data-tooltip="Add your story">
-    <i class="large material-icons">add</i>
-    </a>
-    </div>
-    <!-- end of floating button -->
-    <!-- floating button3 -->
-    <div class="fixed-action-btn">
-  <a class="btn-floating btn-large black">
-    <i class="large material-icons">chat</i>
-  </a>
-  <ul>
-    <li><a href="http://wa.me/+256789274772" target="_blank" class="btn-floating green"><i class="material-icons"><img src="whats.svg" style="color:white;padding:3px;padding-bottom:14px"></i></a></li>
-    <li><a href="http://t.me/@New_Rhon" target="_blank" class="btn-floating blue darken-1"><i class="material-icons">telegram</i></a></li>
 
-  </ul>
-</div>
-<!-- <div class="fixed-action-btn">
-  <a   class="btn-floating btn-large black" >
-    <i class="large material-icons">chat</i>
+      </div>
+        <!-- end of modal -->
+
+
+
+    <!-- floating button -->
+<div class="fixed-action-btn">
+  <a  class="btn-floating btn-large red" >
+    <i class="large material-icons">mode_edit</i>
   </a>
   <ul>
-    <li><a href="http://wa.me/+256789274772" target="_blank" class="btn-floating green" ><i class="material-icons" ><img src="whats.svg" style="color:white"></i></a></li>
+    <li><a class="btn-floating green" ><i class="material-icons" >arrow_upward</i></a></li>
     <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+
     <li><a class="btn-floating blue"><i class="material-icons">add</i></a></li>
   </ul>
-</div> -->
-<!-- end of floating button -->
-<div class="">
-  &nbsp;
 </div>
-  <h1>Frequently asked questions</h1>
-  <!-- section for the accordition -->
-  <section >
-    <div style="margin-left:-6%">
-
-
-    <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-item-header">
-        What is Web Development?
-      </div>
-      <div class="accordion-item-body">
-        <div class="accordion-item-body-content">
-          Web Development broadly refers to the tasks associated with developing functional websites and applications for the Internet. The web development process includes web design, web content development, client-side/server-side scripting and network security configuration, among other tasks.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-item-header">
-        What is HTML?
-      </div>
-      <div class="accordion-item-body">
-        <div class="accordion-item-body-content">
-          HTML, aka HyperText Markup Language, is the dominant markup language for creating websites and anything that can be viewed in a web browser.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-item-header">
-        What are some basic technical skills of a Front-End developer?
-      </div>
-      <div class="accordion-item-body">
-        <div class="accordion-item-body-content">
-          <ul style="padding-left: 1rem;">
-            <li>HTML, CSS, JavaScript</li>
-            <li>Frameworks (CSS and JavaScript frameworks)</li>
-            <li>Responsive Design</li>
-            <li>Version Control/Git</li>
-            <li>Testing/Debugging</li>
-            <li>Browser Developer Tools</li>
-            <li>Web Performance</li>
-            <li>SEO (Search Engine Optimization)</li>
-            <!-- <li>CSS Preprocessing</li> -->
-            <li>Command Line</li>
-            <li>CMS (Content Management System)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-item-header">
-        What is HTTP?
-      </div>
-      <div class="accordion-item-body">
-        <div class="accordion-item-body-content">
-          HTTP, aka HyperText Transfer Protocol, is the underlying protocol used by the World Wide Web and this protocol defines how messages are formatted and transmitted, and what actions Web servers and browsers should take in response to various commands.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-item-header">
-        What is CORS?
-      </div>
-      <div class="accordion-item-body">
-        <div class="accordion-item-body-content">
-          CORS, aka Cross-Origin Resource Sharing, is a mechanism that enables many resources (e.g. images, stylesheets, scripts, fonts) on a web page to be requested from another domain outside the domain from which the resource originated.
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-  </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-  <script src="accordition/accd.js">
-
-  </script>
-
+<!-- end of floating button -->
 <script>
  $(document).ready(function() {
    $("#notifications").on("click", function() {
      $.ajax({
-       url: "readNotify.php",
+       url: "../readNotify.php",
        success: function(res) {
          console.log(res);
        }
      });
    });
  });
-$('.dropdown-trigger').dropdown();
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
+
+ $('.dropdown-trigger').dropdown1();
 </script>
+<script type="text/javascript">
+const popupScreen = document.querySelector(".popup-screen");
+const popupBox = document.querySelector(".popup-box");
+const closeBtn = document.querySelector(".close-btn");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    popupScreen.classList.add("active");
+  }, 2000); //Popup the screen in 02 seconds after the page is loaded.
+});
+
+closeBtn.addEventListener("click", () => {
+  popupScreen.classList.remove("active"); //Close the popup screen on click the close button.
+  //Create a cookie for a day (to expire within a day) on click the close button.
+  document.cookie = "WebsiteName=testWebsite; max-age=" + 24 * 60 * 60; //1 day = 24 hours = 24*60*60
+});
+
+//Use the created cookie to hide or show the popup screen.
+const WebsiteCookie = document.cookie.indexOf("WebsiteName=");
+
+if(WebsiteCookie != -1){
+  popupScreen.style.display = "none"; //Hide the popup screen if the cookie is not expired.
+}
+else{
+  popupScreen.style.display = "flex"; //Show the popup screen if the cookie is expired.
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
     $(document).ready(function(){
       $('.modal').modal();
     });
-    $(document).ready(function(){
-   $('.tooltipped').tooltip();
- });
 
-
-  $('.dropdown-trigger').dropdown();
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      direction: 'left',
-      hoverEnabled: false
-    });
-  });
-  </script>
     <script src="sliscript.js"></script>
     <script type="text/javascript">
     M.Sidenav.init(document.querySelector('.sidenav'));
-    M.toast({html: toastHTML});
-    function toast() {
-        document.body.style.color = "black";
-        return false;
-    }
+      M.FormSelect.init(document.querySelector('#status'))
+   document.addEventListener('DOMContentLoaded', function() {
+ var elems = document.querySelectorAll('.carousel');
+ var instances = M.Carousel.init(elems, options);
+});
 //chip
 document.addEventListener('DOMContentLoaded', function() {
  var elems = document.querySelectorAll('.chips');
@@ -1182,12 +994,15 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function(){
   $('.modal').modal();
 });
+
+  $('.dropdown-trigger').dropdown();
     </script>
-
-
   </body>
   <!-- Swiper JS -->
   <script src="jsl/swiper-bundle.min.js"></script>
+
   <!-- JavaScript -->
   <script src="jsl/script.js"></script>
+
+
 </html>

@@ -1,42 +1,16 @@
-<<<<<<< HEAD
+
 <?php
-=======
-<<<<<<< HEAD
-<?php
-    $con = mysqli_connect("localhost","root","","donation_procurement");
 
 
 
-    // Assigning input data into a variable then inserting it into the database
-if(isset($_POST["submit"])){
-    $title= $_POST["title"];
-    $status= $_POST["status"];
-    $body= $_POST["body"];
-    $storyimage= $_POST["storyimage"];
+session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
 
-$sql = "INSERT INTO story(title,status, body,storyimage)VALUE('$title','$status','$body','$storyimage')";
-//echo $sql;
-// excecuting the query
-if(mysqli_query($con,$sql)){
 
-    ?>
-    
-    <script type="text/javascript">
-        alert("Story Successfully Added");
-        window.location= "../stories/addstory.php";
-    </script>
-    <?php 
-    }else{
-    echo mysqli_error($con);
-    }
-    
-    }
-    
-?>
 
-=======
-<?php 
->>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
+
 
 $server="localhost";
  $user="root";
@@ -45,20 +19,9 @@ $server="localhost";
 
  $connection=mysqli_connect($server,$user,$pass,$dbname);
 
- session_start();
- if(!isset($_SESSION['email'])){
-    header("Location: Home/login.php");
- }
 
 
- if($connection==TRUE){
-   // echo "success";
- }
-
-
-if(isset($_POST['tell'])){
-
-  if (isset($_POST['tell'])){
+  if (isset($_POST['tel'])){
     $filetmp=$_FILES["photo"]["tmp_name"];
     $filename=$_FILES["photo"]["name"];
     $filetype=$_FILES["photo"]["type"];
@@ -73,35 +36,13 @@ if(isset($_POST['tell'])){
     }
   }
 
-	$title=$_POST['title'];
-	$status=$_POST['status'];
-	$tell_us=$_POST['tell_us'];
-
-	    // $file_name= $_FILES['photo']['name'];
-	    // $file_tmp = $_FILES['photo']['tmp_name'];
-
-
-	    //          //image Upload
-      //           move_uploaded_file($file_tmp,"images/".$file_name);
-
-
-	$sql_insert="INSERT INTO `story`(`title`, `status`, `photo`, `tell_us`) VALUES('$title','$status','$img_url','$tell_us')";
-	$sql_query=mysqli_query($connection,$sql_insert);
-	if ($sql_query==TRUE) {
-		// echo "successful";
-    header("Location:../stories/addstory.php?success=Story has been added successfully");
-	}else{
-		echo mysqli_error($connection);
-	}
-}
-
 
 ?>
 
-<?php session_start();?>
 
 
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -771,11 +712,11 @@ code {
 
 
 <div class="row">
-<<<<<<< HEAD
- <form action=" " method="post" class="col s12">
-=======
+
+
+
  <form action="#" class="col s12"  method="post" enctype="multipart/form-data">
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
  <div class="row">
        <div class="input-field col s12">
          <input id="title" type="text" name="title" >
@@ -807,13 +748,11 @@ code {
  </div>
 
  <div class="row">
-<<<<<<< HEAD
-   <input type="submit" value="Save" class="btn" name="submit">
-   <a href="/dashboard" class="btn orange">Cancel</a>
-=======
-   <input type="submit" value="Submit" name="tell"  class="btn">
+
+
+   <input type="submit" value="Submit" name="tel"  class="btn">
    <a href="addstory.php" class="btn orange">Refresh</a>
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
  </div>
 
  </form>

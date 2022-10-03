@@ -1,19 +1,6 @@
-<<<<<<< HEAD
-<?php
-=======
-<<<<<<< HEAD
-<?php
-    $con = mysqli_connect("localhost","root","","donation_procurement");
 
-        $result =" SELECT * FROM story " ;
-        $display=mysqli_query($con, $result);
-        
-    
-?>
+<?php
 
-=======
-<?php 
->>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
 
  include "../config/connection.php";
  session_start();
@@ -809,14 +796,7 @@ section{
 
 
 
-<<<<<<< HEAD
 
-=======
-           <div class="chip right"  style="margin-top:15%;vertical-align:middle;margin-right:-29%">
-      <img src="../simages/card3.jpg" alt="Contact Person">
-      <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
->
->>>>>>> dcd3502072eb55ffb44b69c741e26383b9e5da2d
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
          <!-- <ul class="sidenav" id="mobile-demo">
