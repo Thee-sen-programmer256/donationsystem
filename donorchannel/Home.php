@@ -774,7 +774,7 @@
           </div>
           <!-- start of card -->
           <div class="col 18 m3 s12">
-            <div class="card z-depth-5" style="height:135px">
+            <div class="card z-depth-5" style="height:134px">
 
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Rejected Donations<i class="material-icons right ">block</i></span>
