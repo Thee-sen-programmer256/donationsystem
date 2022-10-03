@@ -610,14 +610,14 @@
       <ul class="right hide-on-med-and-down" >
         <!-- <li><a href="sass.html" >Patients</a></li> -->
         <!-- <li><a href="sass.html" >Fundraise</a></li> -->
-        <li><a href="badges.html">Schedule</a></li>
+        <li><a href="scheduleD/">Schedule</a></li>
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
     <?php
     include "../config/connection.php";
-    $select="SELECT * FROM notifications WHERE active='1'";
+    $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
     $query=mysqli_query($connection,$select);
     $count=mysqli_num_rows($query);
 

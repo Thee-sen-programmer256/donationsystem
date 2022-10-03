@@ -13,25 +13,26 @@ if(isset($_POST["submit"])){
     $notifications_name= $_POST["notifications_name"];
     $message= $_POST["message"];
     $status= $_POST["status"];
+        $client= $_POST["client_type"];
 
-$sql = "INSERT INTO notifications(notifications_name,message, status)VALUE('$notifications_name','$message','$status')";
+$sql = "INSERT INTO notifications(notifications_name,message, status,client_type)VALUE('$notifications_name','$message','$status','$client')";
 //echo $sql;
 // excecuting the query
 if(mysqli_query($con,$sql)){
 
     ?>
-    
+
     <script type="text/javascript">
         alert("Notification Successfully Added");
         window.location= "../notifications.php";
     </script>
-    <?php 
+    <?php
     }else{
     echo mysqli_error($con);
     }
-    
+
     }
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -128,7 +129,7 @@ if(mysqli_query($con,$sql)){
                 </label>
               Add Notifications
             </h2>
-           
+
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">
@@ -169,19 +170,29 @@ if(mysqli_query($con,$sql)){
                                   <div class="container-fluid">
                                       <form action="" method="post" id="schedule-form">
                                           <input type="hidden" name="n_id" value="">
-                                          
+
+                                            <div class="form-group mb-2">
                                           <label for="">Title</label> <br>
                                           <input type="text" name="notifications_name">
-                                      
+                                        </div>
+
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Notification</label>
                                               <textarea rows="3" class="form-control form-control-sm rounded-0" name="message" id="description" required></textarea>
                                           </div>
+                                          <div class="form-group mb-2">
+                                        <label for="">client Type</label> <br>
+                                      <select class="" name="client_type">
+                                        <option value="all">All</option>
+                                        <option value="patients">Patients</option>
+                                        <option value="donors">Donors</option>
+                                      </select>
+                                      </div>
                                           <input type="hidden" name="status" value="Active">
 
                                           <div class="card-footer">
                                               <div class="text-center">
-                                    
+
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>

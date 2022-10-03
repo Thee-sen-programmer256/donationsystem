@@ -590,7 +590,7 @@ code {
 
               <?php
               include "../config/connection.php";
-              $select="SELECT * FROM notifications WHERE active='1'";
+              $select="SELECT * FROM notifications WHERE active='1' and client_type='patients'";
               $query=mysqli_query($connection,$select);
               $count=mysqli_num_rows($query);
 

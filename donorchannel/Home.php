@@ -648,14 +648,14 @@
       <ul class="right hide-on-med-and-down" >
         <li><a href="patients.php" >Patients</a></li>
         <li><a class="modal-trigger" href="#terms" >Quick Info</a></li>
-        <li><a href="badges.html">Schedule</a></li>
+        <li><a href="scheduleD/">Schedule</a></li>
         <!-- Dropdown Trigger -->
         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
     <?php
     include "../config/connection.php";
-    $select="SELECT * FROM notifications WHERE active='1'";
+    $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
     $query=mysqli_query($connection,$select);
     $count=mysqli_num_rows($query);
 
@@ -766,7 +766,7 @@
                 <p><a href="#">This is a link</a></p>
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Approved Donations<i class="material-icons right">close</i></span>
+                <span class="card-title grey-text text-darken-4">Approved Donation<i class="material-icons right">close</i></span>
                 <p>Here is some more information about this product that is only revealed once clicked on.</p>
               </div>
             </div>

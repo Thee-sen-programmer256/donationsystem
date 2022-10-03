@@ -6,7 +6,7 @@ header("Location: Home/login.php");
 }
     include "../config/connection.php"
 
-    
+
 
 ?>
 
@@ -156,7 +156,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
          /* border: 2px solid #FFF; */
          width: 20px;
          height: 20px;
-         background-color: #FF6B6B;
+         background-color: black;
          position: absolute;
          top: -5px;
          left: -10px;
@@ -630,77 +630,86 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <div class="navbar-fixed" >
     <nav class="bondi blue" style="color:#29ccf5">
      <div class="nav-wrapper container" >
-       <p class="brand-logo center" style="color:white">Patient</p>
+       <p class="brand-logo center" style="color:white;top:2%">Patient</p>
 
-       <ul class="dots right" >
+       <?php
+       include "../config/connection.php";
+       $select="SELECT * FROM notifications WHERE active='1' and client_type='patients'";
+       $query=mysqli_query($connection,$select);
+       $count=mysqli_num_rows($query);
+
+
+        ?>
+
+       <ul class="dots " id="notifications" style="position: absolute;margin-left:69%">
       <li>
-        <a href="#">
-          <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark>23</mark></span>
+        <a href="#" >
+          <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="tada"><?php echo $count; ?></mark></span>
         </a>
       </li>
     </ul>
 
+    <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+      <?php
+            if ($count > 0) {
+              foreach ($query as $item) {
+            ?>
+      <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+        <!-- <li class="divider" tabindex="-4"></li> -->
+        <!-- <hr class="solid"> -->
+    <?php }
+  } else{?>
+      <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+  <?php } ?>
+
+    </ul>
+
        <a class="brand-logo right">
-        <!--for the notification-->
-
-         <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
-         <!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
-  <li><a href="#!"  data-constrainWidth="false">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution</a></li>
-  <!-- <li class="divider" tabindex="-4"></li> -->
-  <li><a href="#!">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution</a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">view_module</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabin  dex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-</ul>
-
-         <div class="chip right" style="margin-top:1.5%;vertical-align:middle;">
-    <img src="../images/cute.jpg" alt="Contact Person">
-    <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
-  </div> &nbsp;  </a>
+         <div class="chip" >
+         <?php
+    $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
+    $sql_query=mysqli_query($connection, $sql_fetch);
+    $rows=mysqli_fetch_assoc($sql_query);
+    // $patient=mysqli_num_rows($sql_query);
 
 
-
+    ?>
+    <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+    <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
+    </div></a>
        <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
        <!-- <ul class="sidenav" id="mobile-demo">
          <li><a href="" style="text-decoration:none;">Stories</a></li>
          <li><a href="" style="text-decoration:none;">Dashboard</a></li>
          <li><a class="waves-effect waves-light btn" onclick="$('.tap-target').tapTarget('open')">Open tap target</a></li> -->
+
+
     <!-- Tap Target Structure -->
+
          <!-- <li><a href="" style="text-decoration:none;">Logout</a></li>
        </ul> -->
+
     </nav>
   </div>
   <ul id="slide-out" class="sidenav">
-<li><div class="user-view">
-<div class="background">
-<img src="../simages/card3.jpg">
-</div>
-<a href="#user"><img class="circle" src="../simages/card3.jpg"></a>
-<a href="#name" style="text-decoration:none"><span class="white-text name" >John Doe</span></a>
-<a href="#email" style="text-decoration:none"><span class="white-text email">jdandturk@gmail.com</span></a>
-</div></li>
-<li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
-<li><a href="../stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
-<li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
-  <!-- <li><a href="schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li> -->
-<li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
-<li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
-</ul>
-</div>
-  <!--the navbar-->
+  <li><div class="user-view">
+  <div class="background">
+  <img src="../images/<?php echo $rows['image']; ?>">
+  </div>
+  <a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
+  <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
+  <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
+  </div></li>
+  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
+  <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
+  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
+  <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
+  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
+  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+  </ul>
+  </div>
 
+  <!--the navbar-->
     <div class="container py-5" id="page-container" style="align:center">
         <div class="row">
             <div class="col-md-9">
@@ -808,6 +817,18 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 if(isset($connection)) $connection->close();
 ?>
 </body>
+<script>
+ $(document).ready(function() {
+   $("#notifications").on("click", function() {
+     $.ajax({
+       url: "../readNotify.php",
+       success: function(res) {
+         console.log(res);
+       }
+     });
+   });
+ });
+</script>
 <script type="text/javascript">
 
 </script>

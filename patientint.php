@@ -12,7 +12,7 @@ if(!isset($_SESSION['email'])){
 
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" style="height:1000px">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -43,18 +43,20 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
  a{
    text-decoration: none;
  }
- body,html{
-    height: 1054px;
-  overflow-y: auto;
+ body{
 
+  overflow-y: 1000px;
+height: 1000px
 
 
  }
- body::-webkit-scrollbar {
-                display: none;
-                height: 100vh;
-                /* max-height: inherit; */
-            }
+body::-webkit-scrollbar{
+  display: none;
+  max-height: 150px;
+}
+html{
+  height: 1000px
+}
  nav{
    /* top: 0;
  z-index: 100;
@@ -772,7 +774,7 @@ section{
 
          <?php
          include "config/connection.php";
-         $select="SELECT * FROM notifications WHERE active='1'";
+         $select="SELECT * FROM notifications WHERE active='1' and client_type='patients'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
@@ -840,23 +842,24 @@ section{
     <!--the navbar-->
     <!-- slider -->
     <!-- slider -->
+    <?php
+
+
+        if(isset($_SESSION['pid']))
+        {
+            ?> <div>
+                <div style="width:300px; margin-left:0; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Your Welcome !</strong><?php echo $rows['fname']; ?><?= $_SESSION['pid']; ?>
+                    <a href="patientint.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+                </div>
+        </div>
+            <?php
+            unset($_SESSION['pid']);
+        }
+
+    ?>
 <section class="product" style="height:350px">
-<?php
 
-
-    if(isset($_SESSION['pid']))
-    {
-        ?> <div>
-            <div style="width:300px; margin-left:5%; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Your Welcome !</strong><?php echo $rows['fname']; ?><?= $_SESSION['pid']; ?>
-                <a href="patientint.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
-            </div>
-    </div>
-        <?php
-        unset($_SESSION['pid']);
-    }
-
-?>
      <h2 class="product-category" style="text-align:center">Check out organs available</h2>
      <button class="pre-btn"><img src="simages/arrow.png" alt=""></button>
      <button class="nxt-btn"><img src="simages/arrow.png" alt=""></button>
@@ -960,8 +963,10 @@ section{
 
 <!-- for the activity -->
 &nbsp;
+&nbsp;
+
 <div class="right" >
-  <p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>  </strong>
 </div>
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
 
@@ -1017,7 +1022,7 @@ section{
       </div>
       <!-- start of card -->
       <div class="col 18 m3 s12">
-        <div class="card z-depth-5" style="height:134px">
+        <div class="card z-depth-5" style="height:150px">
 
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">Rejected Requests<i class="material-icons right ">block</i></span>
