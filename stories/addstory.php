@@ -1,103 +1,47 @@
-<<<<<<< HEAD
 <?php
-    $con = mysqli_connect("localhost","root","","donation_procurement");
 
 
 
-    // Assigning input data into a variable then inserting it into the database
-if(isset($_POST["submit"])){
-    $title= $_POST["title"];
-    $status= $_POST["status"];
-    $body= $_POST["body"];
-    $storyimage= $_POST["storyimage"];
+session_start();
+if(!isset($_SESSION['email'])){
+   header("Location: Home/login.php");
+}
 
-$sql = "INSERT INTO story(title,status, body,storyimage)VALUE('$title','$status','$body','$storyimage')";
-//echo $sql;
-// excecuting the query
-if(mysqli_query($con,$sql)){
 
-    ?>
-    
-    <script type="text/javascript">
-        alert("Story Successfully Added");
-        window.location= "../stories/addstory.php";
-    </script>
-    <?php 
-    }else{
-    echo mysqli_error($con);
-    }
-    
-    }
-    
-?>
 
-=======
-<?php 
+
 
 $server="localhost";
  $user="root";
  $pass="";
  $dbname="donation_procurement";
- 
+
  $connection=mysqli_connect($server,$user,$pass,$dbname);
 
- session_start();
- if(!isset($_SESSION['email'])){
-    header("Location: Home/login.php");
- }
 
 
- if($connection==TRUE){
-   // echo "success";
- }
-
-
-if(isset($_POST['tell'])){
-
-  if (isset($_POST['tell'])){
+  if (isset($_POST['tel'])){
     $filetmp=$_FILES["photo"]["tmp_name"];
     $filename=$_FILES["photo"]["name"];
     $filetype=$_FILES["photo"]["type"];
     $target_dir="../images/";
     $img_url=$target_dir.basename($_FILES["photo"]["name"]);
-  
+
     if(move_uploaded_file($filetmp, $img_url)==TRUE){
       echo "successful";
-  
+
     }else{
       echo "Not successful";
     }
   }
 
-	$title=$_POST['title'];
-	$status=$_POST['status'];
-	$tell_us=$_POST['tell_us'];
-	
-	    // $file_name= $_FILES['photo']['name'];
-	    // $file_tmp = $_FILES['photo']['tmp_name'];
-
-
-	    //          //image Upload
-      //           move_uploaded_file($file_tmp,"images/".$file_name); 
-	
-
-	$sql_insert="INSERT INTO `story`(`title`, `status`, `photo`, `tell_us`) VALUES('$title','$status','$img_url','$tell_us')";
-	$sql_query=mysqli_query($connection,$sql_insert);
-	if ($sql_query==TRUE) {
-		// echo "successful";
-    header("Location:../stories/addstory.php?success=Story has been added successfully");
-	}else{
-		echo mysqli_error($connection);
-	}
-}
-
 
 ?>
 
-<?php session_start();?>
 
 
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -681,14 +625,14 @@ code {
 
          <?php
          include "../config/connection.php";
-         $select="SELECT * FROM notifications WHERE status='Active'";
+         $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient'";
          $query=mysqli_query($connection,$select);
          $count=mysqli_num_rows($query);
 
 
           ?>
 
-         <ul class="dots " id="notifications" style="position: absolute;margin-left:80%">
+         <ul class="dots " id="notifications" style="position: absolute;margin-left:69%">
         <li>
           <a href="#" >
             <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="tada"><?php echo $count; ?></mark></span>
@@ -713,13 +657,13 @@ code {
 
          <a class="brand-logo right">
            <div class="chip" >
-           <?php 
+           <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
       <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
@@ -764,14 +708,14 @@ code {
         <p class="success" style="margin-left:38%;background-color:green;width:300px;padding:10px;border-radius:5px;align-items:center;color:white"><?php echo $_GET['success'] ?><a href="addstory.php" style="margin-left:3%;color:red;font-weight:bold;width:5px">&times;</a></p>
    <?php } ?>
     </div>
-  
+
 
 <div class="row">
-<<<<<<< HEAD
- <form action=" " method="post" class="col s12">
-=======
+
+
+
  <form action="#" class="col s12"  method="post" enctype="multipart/form-data">
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
  <div class="row">
        <div class="input-field col s12">
          <input id="title" type="text" name="title" >
@@ -803,13 +747,11 @@ code {
  </div>
 
  <div class="row">
-<<<<<<< HEAD
-   <input type="submit" value="Save" class="btn" name="submit">
-   <a href="/dashboard" class="btn orange">Cancel</a>
-=======
-   <input type="submit" value="Submit" name="tell"  class="btn">
+
+
+   <input type="submit" value="Submit" name="tel"  class="btn">
    <a href="addstory.php" class="btn orange">Refresh</a>
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+
  </div>
 
  </form>

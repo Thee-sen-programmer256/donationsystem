@@ -142,7 +142,7 @@ input[type="checkbox"]{
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 .background-image{
-    background: url(images/kid2.jpg);
+    background: url(images/background.jpg);
     width: 100%;
     height: 100vh;
     background-size: cover;
@@ -160,12 +160,15 @@ input[type="checkbox"]{
 }
 .background-content h1{
     color: black;
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 20px;
 }
 .background-content p{
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 40px;
+    font-weight: 700;
+    color: white;
+
 }
 
 .background-content a{
@@ -358,7 +361,7 @@ input[type="checkbox"]{
     position: absolute;
     bottom: 2%;
 }
-.doc-icons div{
+.doc-icons a{
     font-size: 2rem;
     color: var(--mainclr);
     background: white;
@@ -370,7 +373,7 @@ input[type="checkbox"]{
     text-align: center;
     cursor: pointer;
 }
-.doc-icons div:hover{
+.doc-icons a:hover{
     transform: scale(1.1);
 }
 .why-choseus{

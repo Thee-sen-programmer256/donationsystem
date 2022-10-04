@@ -19,6 +19,37 @@ if(!isset($_SESSION['email'])){
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['organname', 'number'],
+          <?php 
+          $con = mysqli_connect("localhost","root","","donation_procurement");
+          $msql="SELECT organname, COUNT(*) as number FROM organ group by   organname";
+          $fire= mysqli_query($con, $msql);
+            while($result=mysqli_fetch_assoc($fire)){
+                echo "['".$result['organname']."',".$result['number']."],";
+            }
+
+          ?>
+        
+        ]);
+
+        var options = {
+          title: 'Available Organs'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 </head>
 <body>
@@ -284,7 +315,125 @@ if(!isset($_SESSION['email'])){
     </section>
 
 
+    <div class="chart">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>                              
+
     </div>
+
+
+    <div class="line2" style="width: 70%; margin-left: 3rem;">
+            <?php 
+
+        $conn = mysqli_connect("localhost","root","","donation_procurement");
+
+        $results =" SELECT
+        DATE(`donor`.`created`) AS `dates`,
+        COUNT(`donor`.`donorId`) AS `counts`
+        FROM `donor`
+        WHERE `donor`.`created` BETWEEN '2022-09-01 00:00:00' AND '2022-11-31 23:59:59'
+        GROUP BY `dates`
+        ORDER BY `dates`" ;
+        $displays=mysqli_query($conn, $results);
+
+        foreach($displays As $dataSet){
+            $dates[] = $dataSet['dates'];
+            $counts[] = $dataSet['counts'];
+
+        }
+
+
+        ?>
+            <div>
+                <canvas id="myChart2" style="height: 240px;"></canvas>
+            </div>
+
+                <script>
+            const labels2 = <?php echo json_encode($dates) ?>;
+
+            const data2 = {
+                labels: labels2,
+                datasets: [{
+                label: 'Number of Donor registered on a daily basis',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: <?php echo json_encode($counts) ?>,
+                }]
+            };      
+        
+            const config2 = {
+                type: 'bar',
+                data: data2,
+                options: {}
+            };
+            </script>
+            
+            <script>
+            const myChart2 = new Chart(
+                document.getElementById('myChart2'),
+                config2
+            );
+            </script>
+    </div>
+
+    <div class="line3" style="width: 70%; margin-left: 3rem;">
+            <?php 
+
+        $connection = mysqli_connect("localhost","root","","donation_procurement");
+
+        $resultss =" SELECT
+        DATE(`patient`.`created`) AS `dates`,
+        COUNT(`patient`.`pid`) AS `counts`
+        FROM `patient`
+        WHERE `patient`.`created` BETWEEN '2022-09-01 00:00:00' AND '2022-11-31 23:59:59'
+        GROUP BY `dates`
+        ORDER BY `dates`" ;
+        $displayss=mysqli_query($connection, $resultss);
+
+        foreach($displayss As $dataSett){
+            $datess[] = $dataSett['dates'];
+            $countss[] = $dataSett['counts'];
+
+        }
+
+
+        ?>
+            <div>
+                <canvas id="myChart3" style="height: 240px;"></canvas>
+            </div>
+
+                <script>
+            const labels3 = <?php echo json_encode($datess) ?>;
+
+            const data3 = {
+                labels: labels3,
+                datasets: [{
+                label: 'Number of Patients registered on a daily basis',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: <?php echo json_encode($countss) ?>,
+                }]
+            };      
+        
+            const config3 = {
+                type: 'bar',
+                data: data3,
+                options: {}
+            };
+            </script>
+            
+            <script>
+            const myChart3 = new Chart(
+                document.getElementById('myChart3'),
+                config3
+            );
+            </script>
+    </div>
+
+
+    </div>
+
+
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

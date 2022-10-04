@@ -1,21 +1,15 @@
 <?php
      $con = mysqli_connect("localhost","root","","donation_procurement");
 
-<<<<<<< HEAD
-     $result =" SELECT * FROM schedule " ;
-=======
-<<<<<<< HEAD
+
      // $result =" SELECT * FROM shedule " ;
      // $display=mysqli_query($con, $result);
-=======
      session_start();
 if(!isset($_SESSION['email'])){
    header("Location: Home/login.php");
 } 
-     $result =" SELECT * FROM shedule " ;
->>>>>>> 34683e1aa658cef1916107208fee89fb42088f6c
+     $result =" SELECT * FROM schedule " ;
      $display=mysqli_query($con, $result);
->>>>>>> 54603a3f5b8f8244d2d8df37ea2722d7e8078563
 
 
 ?>
@@ -640,11 +634,19 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
     <nav class="bondi blue" style="color:#29ccf5">
      <div class="nav-wrapper container" >
        <p class="brand-logo center" style="color:white">Patient</p>
+       <?php
+        include "../config/connection.php";
+        $select="SELECT * FROM notifications WHERE status='Active' and client_type = 'Patient'";
+        $query=mysqli_query($connection,$select);
+        $count=mysqli_num_rows($query);
+
+
+         ?>
 
        <ul class="dots right" >
       <li>
         <a href="#">
-          <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark>23</mark></span>
+          <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark><?php echo $count; ?></mark></span>
         </a>
       </li>
     </ul>
@@ -655,23 +657,17 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
          <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
          <!-- Dropdown Structure -->
 <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
-  <li><a href="#!"  data-constrainWidth="false">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution</a></li>
-  <!-- <li class="divider" tabindex="-4"></li> -->
-  <li><a href="#!">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution</a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">view_module</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabindex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
-  <!-- <li class="divider" tabin  dex="-1"></li> -->
-  <li><a href="#!"><i class="material-icons">cloud</i>t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The </a></li>
+<?php
+             if ($count > 0) {
+               foreach ($query as $item) {
+             ?>
+       <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+         <!-- <li class="divider" tabindex="-4"></li> -->
+         <!-- <hr class="solid"> -->
+     <?php }
+   } else{?>
+       <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+ <?php } ?>
 </ul>
 
          <div class="chip right" style="margin-top:1.5%;vertical-align:middle;">

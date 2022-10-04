@@ -151,7 +151,7 @@
                     ?>
                         <tr>
                             <td><?php echo $row['donorId'];  ?></td>
-                             <td><?php echo $row['full_name'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
                              <td><?php echo $row['image'];  ?></td>

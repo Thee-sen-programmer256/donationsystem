@@ -1,4 +1,4 @@
-<?php 
+<?php
  include "../config/connection.php";
 
  session_start();
@@ -590,14 +590,14 @@ code {
 
               <?php
               include "../config/connection.php";
-              $select="SELECT * FROM notifications WHERE active='1'";
+              $select="SELECT * FROM notifications WHERE status='Active' and client_type = 'Patient'";
               $query=mysqli_query($connection,$select);
               $count=mysqli_num_rows($query);
 
 
                ?>
 
-              <ul class="dots " id="notifications" style="position: absolute;margin-left:82%">
+              <ul class="dots " id="notifications" style="position: absolute;margin-left:75%">
              <li>
                <a href="#" >
                  <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="wobble"><?php echo $count; ?></mark></span>
@@ -622,13 +622,13 @@ code {
 
          <a class="brand-logo right" style="top:-10%;margin-right:-6%">
            <div class="chip" >
-           <?php 
+           <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
       <img src="../images/<?php echo $rows['image'] ?>" alt="Contact Person">
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
@@ -652,13 +652,13 @@ code {
  <div class="background">
   <img src="../simages/card3.jpg">
  </div>
- <?php 
+ <?php
       $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
       $sql_query=mysqli_query($connection, $sql_fetch);
       $rows=mysqli_fetch_assoc($sql_query);
       // $patient=mysqli_num_rows($sql_query);
-      
-      
+
+
       ?>
  <a href="#user"><img class="circle" src="../images/<?php echo $rows['image'] ?>"></a>
  <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname'] ?></span></a>
@@ -707,7 +707,7 @@ code {
                     <td></td>
                     <td>
                       <div class="card-action right-align" style="margin-right:75%;">
-                      <a href="" class="btn green">Fundraise</a>
+                      <a href="../Fin-Donation/don.php" class="btn green">Fundraise</a>
                     </div>
                     </td>
                   </tr>
