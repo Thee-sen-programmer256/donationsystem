@@ -856,27 +856,16 @@ section{
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <table>
               <tr>
-                <td>
-                  <div class="card-action left-align" style="margin-left:50%">
-                  <a href="" class="btn blue">Read More</a>
-                </div>
-                </td>
-
+                    <td></td>
+                  <td></td>
                 <td></td>
                 <td>
                   <div class="card-action right-align" style="margin-right:50%;">
-                  <a href="" class="dropdown-trigger btn green"  data-target='dropdown2'>Donate</a>
-                  <!-- Dropdown Structure -->
-<ul id='dropdown2' class='dropdown-content'>
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider" tabindex="-1"></li>
-  <li><a href="#!">three</a></li>
-  <li><a href="#!"><img src="../blood-transfusion-surgery-svgrepo-com.svg" style="height:20px;width:30px">TISSUE</a></li>
-  <li><a href="#!"><i class="material-icons">local_atm</i>MONEY</a></li>
-</ul>
+                  <a href="" class=" btn green"  >Donate</a>
+
                 </div>
                 </td>
+                  <td></td>
               </tr>
             </table>
           </div>
