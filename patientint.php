@@ -751,7 +751,9 @@ section{
     margin-top: 15px;
   }
 }
-
+html, body {
+     min-height: 100vh;
+}
 
  </style>
   </head>
@@ -873,7 +875,7 @@ section{
                        <p class="product-short-description price">Donor</p>
                        <span class="price">$20</span><span class="actual-price">$40</span>
                     </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
+                    <a href="#request" class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
                  </div>
              </div>
          </div>
@@ -899,7 +901,7 @@ section{
                        <p class="product-short-description price">Donor</p>
                        <span class="price">$20</span><span class="actual-price">$40</span>
                     </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
+                    <a class="new" href="#request"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
                  </div>
              </div>
          </div>
@@ -965,8 +967,8 @@ section{
 &nbsp;
 &nbsp;
 
-<div class="right" >
-  <strong><p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>  </strong>
+<div class="right" style="margin-left:-5%">
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">not verified</span></p>  </strong>
 </div>
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
 
@@ -1126,7 +1128,73 @@ section{
 </div> -->
 <!-- end of floating button -->
 
+
+
+
   &nbsp;
+
+
+
+
+    <!-- requesting -->
+  <p  id="request" style="font-weight:bold;font-size:14pt;margin-left:-6%">Request Organ Here</p>
+    <section  style="background:#36454f;width:1300px;margin-left:-8%;margin-top:-1%">
+
+      <form>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-field col  s12">
+              <input class="fon" id="name" type="text" name="" value="<?php echo $rows['fname']; ?>" style="color:white">
+              <label for="name">Name</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-field col  s12">
+              <input class="fon" id="name" type="email" name="" value="<?php echo $rows['email']; ?>" style="color:white">
+              <label for="email">Email</label>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="input-field col  s12">
+              <input class="fon" id="name" type="email" name="" >
+              <label for="email">Organ</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-field col s12">
+               <select id="blood" name="bloodgroup">
+                   <option value="public" selected  style="color:white">--select blood group--</option>
+                   <option value="private"  style="color:white">A</option>
+                   <option value="private"  style="color:white">AB</option>
+                   <option value="private"  style="color:white">B</option>
+                   <option value="private"  style="color:white">O</option>
+                
+               </select>
+        <label>Blood Group</label>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="center">
+            <input class="btn btn-primary" type="submit" value="Request">
+        </div>
+
+      </form>
+
+    </section>
+
+
+
+    <!-- end of requesting -->
+
+
 
   <h1 class="center">Frequently asked questions</h1>
   <!-- section for the accordition -->
@@ -1223,6 +1291,7 @@ $('.dropdown-trigger').dropdown();
   $(document).ready(function(){
     $('.modal').modal();
   });
+    M.FormSelect.init(document.querySelector('#blood'))
 </script>
   <script>
     $(document).ready(function(){
