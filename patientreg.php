@@ -11,7 +11,7 @@ include "config/connection.php";
 
 
 
-    
+
   function validate($data){
      $data = trim($data);
      $data = stripslashes($data);
@@ -69,6 +69,16 @@ include "config/connection.php";
       header("Location: patientreg.php?error=The contact exists already&$user_data");
       exit();
     }else{
+      //
+      // if(isset($_POST['pat'])){
+      //   $filetmp=$_FILES['image']['tmp_name'];
+      //   $filename=$_FILES['image']['name'];
+      //   $filetype=$_FILES['image']['type'];
+      //   $target_dir= "images/";
+      //   $url=$target_dir.basename($_FILES['image']['name']);
+      // }
+
+
 
       if(isset($_POST['pat'])){
         $fname=$_POST['fname'];
@@ -85,12 +95,12 @@ include "config/connection.php";
 
 
          //image Upload
-        move_uploaded_file($file_tmp,"images/".$file_name); 
-  
-    
-    
+        move_uploaded_file($_FILES['image']['tmp_name'],"./images/".$file_name);
+
+
+
        $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`)
-       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$file_name','$gender','$pass')";
+       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$url','$gender','$pass')";
        $input = mysqli_query($connection, $pat);
       }
        if ($input) {
@@ -101,14 +111,14 @@ include "config/connection.php";
     session_start();
     $_SESSION['email']=$email;
     // $_SESSION['fname']=$count['fname'];
-    
+
     header("location:patientint.php");
       // $_SESSION['donorId']=$rows['donorId'];
       // header("Location: patientint.php");
       // 				$_SESSION['email']=$email;
-              
+
       //  exit();
-   
+
        }else {
            header("Location: patientreg.php?error=unknown error occurred&$user_data");
         exit();
@@ -159,19 +169,21 @@ include "config/connection.php";
     <div class="title">Patient_Registration</div>
     <div class="content">
       <form action="#" method="post" enctype="multipart/form-data">
+        <div class="" style="">
+          <?php if (isset($_GET['error'])) { ?>
+              <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
+        </div>
 
-        <?php if (isset($_POST['error'])) { ?>
-     		<p class="error"><?php echo $_POST['error']; ?></p>
-     	<?php } ?>
 
 
         <div class="user-details">
           <div class="input-box">
-            <span class="details">Full Name</span>
+            <span class="details">Full Name <span style="color: #FF0000">*</span></span>
             <input type="text" placeholder="Enter your name" name="fname" required>
           </div>
           <div class="input-box">
-            <span class="details">Email</span>
+            <span class="details">Email<span style="color: #FF0000">*</span> </span>
             <?php if (isset($_POST['email'])) { ?>
             <input type="email" placeholder="Enter your email"
             value="<?php echo $_POST['email']; ?>" name="email" required><br>
@@ -183,15 +195,15 @@ include "config/connection.php";
 
           </div>
           <div class="input-box">
-            <span class="details">Date of Birth</span>
+            <span class="details">Date of Birth <span style="color: #FF0000">*</span></span>
             <input type="datetime-local" name="dob" required>
           </div>
           <div class="input-box">
-            <span class="details">Phone Number</span>
+            <span class="details">Phone Number <span style="color: #FF0000">*</span></span>
             <input type="text" placeholder="Enter your number" name="contact" required>
           </div>
           <div class="input-box">
-            <span class="details">Blood group</span>
+            <span class="details">Blood group <span style="color: #FF0000">*</span></span>
             <select class="select" name="bloodgroup" style="height: 65%;
             width: 100%;  max-height: 300px;border-radius:5px;border: 1px solid #ccc;">
             <option style="color:gray;">--select--</option>
@@ -204,7 +216,7 @@ include "config/connection.php";
             </select>
           </div>
           <div class="input-box">
-            <span class="details">Nationality</span>
+            <span class="details">Nationality <span style="color: #FF0000">*</span></span>
             <select class="" name="nationality" style="height: 62%;
             width: 100%;  max-height: 300px;border-radius:5px;border: 1px solid #ccc;">
             <option value="">--select--</option>
@@ -595,12 +607,12 @@ include "config/connection.php";
             </select>
           </div>
           <div class="input-box">
-            <span class="details">Password</span>
+            <span class="details">Password <span style="color: #FF0000">*</span></span>
             <input type="password" name="password" value=""  required>
           </div>
 
           <div class="input-box">
-            <span class="details">Image</span>
+            <span class="details">Image <span style="color: #FF0000">*</span></span>
             <input type="file" name="image" required>
           </div>
           <!-- <div class="">

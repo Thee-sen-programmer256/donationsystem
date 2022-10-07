@@ -31,18 +31,19 @@ include "../config/check-login.php";
      	<?php } ?>
     <form action="" method="post" enctype="multipart/form-data" >
         <!-- <div class="error-txt">This is an error message</div> -->
-       
-  
+
+
         <div class="name-details">
 
             <div class="field input">
-                <label>Email Address</label>
+                <label>Email Address <span style="color: #FF0000">*</span></label>
                 <input type="email" name="email" placeholder="Enter your Email Address">
             </div>
             <div class="field input">
-                <label>Password</label>
+                <label>Password <span style="color: #FF0000">*</span></label>
                 <input type="password" name="password" autocomplete="current-password" class="fa fa-eye" required="" id="id_password>
                 <i class="fa fa-eye" id="togglePassword" ></i>
+                
 <script>
                 const togglePassword = document.querySelector('#togglePassword');
   const password = document.querySelector('#id_password');

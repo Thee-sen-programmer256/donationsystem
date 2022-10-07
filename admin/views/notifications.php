@@ -132,6 +132,7 @@
                             <th>ID</th>
                             <th>Title</th>
                             <th>Message</th>
+                            <th>Client</th>
                             <th>Status</th>                       
                             <th>Action</th>
                         </tr>
@@ -149,6 +150,7 @@
                             <td><?php echo $row['notifications_name'];  ?></td>
 
                              <td><?php echo $row['message'];  ?></td>
+                             <td><?php echo $row['client_type'];  ?></td>
                              <td><?php echo $row['status'];  ?></td>
 
 

@@ -253,7 +253,7 @@ if(!isset($_SESSION['email'])){
                                             while ( $rrow=mysqli_fetch_assoc($rdisplay)) {
                                                 ?>
                                             <tr>
-                                                <td><?php echo $rrow['full_name'];  ?></td>
+                                                <td><?php echo $rrow['fname'];  ?></td>
                                                 <td><?php echo $rrow['organ'];  ?></td>
                                                 <td>
                                                     <span class="status purple"></span>

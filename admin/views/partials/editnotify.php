@@ -157,7 +157,13 @@
                                               <label for="description" class="control-label">Notification</label>
                                               <textarea rows="3" class="form-control form-control-sm rounded-0" name="message" id="description" ><?php echo $row['message']; ?></textarea>
                                           </div>
-
+                                          <label for="">Client</label> <br>
+                                          
+                                          <Select name="client_type" value="<?php echo $row['client_type']; ?>">
+                                          <option value="All">All</option>
+                                          <option value="Patient">Patient</option>
+                                            <option value="Donor">Donor</option>
+                                          </Select>
                                           <div class="card-footer">
                                               <div class="text-center">
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form" name="submit"><i class="fa fa-save"></i> Save</button>
@@ -177,7 +183,7 @@
                     
                     
                                             $con=mysqli_connect("localhost","root","","donation_procurement");
-                                            $change ="UPDATE notifications SET notifications_name='$notifications_name', message='$message' WHERE n_id= $n_id " ;
+                                            $change ="UPDATE notifications SET notifications_name='$notifications_name', message='$message',client_type='$client_type' WHERE n_id= $n_id " ;
                                             $update=mysqli_query($con,$change);
                     
                                             if($update == TRUE){

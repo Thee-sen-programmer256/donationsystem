@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM request where status = 'Approved' and status ='Rejected'" ;
+    $result =" SELECT * FROM request where status = 'Approved' or status ='Rejected'" ;
     $display=mysqli_query($con, $result);
     
 ?>
@@ -132,7 +132,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Patient Name</th>
-                            <th>Age </th>
+                            <th>Email</th>
                             <th>Organ Requested</th>
                             <th>Blood Group</th>
                             <th>Request Date</th>
@@ -148,11 +148,11 @@
                     ?>
                         <tr>
                              <td><?php echo $row['requestId'];  ?></td>
-                             <td><?php echo $row['full_name'];  ?></td>
-                             <td><?php echo $row['age'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
+                             <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['organ'];  ?></td>
-                             <td><?php echo $row['blood_group'];  ?></td>
-                             <td><?php echo $row['date_request'];  ?></td>
+                             <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['created'];  ?></td>
                              <td><?php echo $row['status'];  ?></td>
                         </tr>
                     <?php   }?>

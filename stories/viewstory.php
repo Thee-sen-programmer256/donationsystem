@@ -753,7 +753,7 @@ section{
 
         <?php
         include "../config/connection.php";
-        $select="SELECT * FROM notifications WHERE status='Active' and client_type = 'Patient'";
+        $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
         $query=mysqli_query($connection,$select);
         $count=mysqli_num_rows($query);
 

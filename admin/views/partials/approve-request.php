@@ -2,11 +2,11 @@
 $con = mysqli_connect("localhost","root","","donation_procurement");
 
 $requestId=$_GET['a'];
-$result =" UPDATE request SET statuss='Approved' WHERE requestId= $requestId" ;
+$result =" UPDATE request SET status='Approved' WHERE requestId= $requestId" ;
 $display=mysqli_query($con, $result);
 
 if($display){
-    echo '<script> alert("Request Rejected");</script>';
+    echo '<script> alert("Request Approved");</script>';
     echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../organrequests.php">';    
     exit;
 }else{

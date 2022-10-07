@@ -2,7 +2,7 @@
 $con = mysqli_connect("localhost","root","","donation_procurement");
 
 $requestId=$_GET['a'];
-$result =" UPDATE request SET statuss='Rejected' WHERE requestId= $requestId" ;
+$result =" UPDATE request SET status='Rejected' WHERE requestId= $requestId" ;
 $display=mysqli_query($con, $result);
 
 if($display){

@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM request where status = 'Pending' and status = 'Approved'" ;
+    $result =" SELECT * FROM request where status = 'Pending' or status = 'Approved'" ;
     $display=mysqli_query($con, $result);
 
 ?>
@@ -129,7 +129,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Patient Name</th>
-                            <th>Age </th>
+                            <th>Email</th>
                             <th>Organ Requested</th>
                             <th>Blood Group</th>
                             <th>Request Date</th>
@@ -146,19 +146,19 @@
                     ?>
                         <tr>
                              <td><?php echo $row['requestId'];  ?></td>
-                             <td><?php echo $row['full_name'];  ?></td>
-                             <td><?php echo $row['age'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
+                             <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['organ'];  ?></td>
-                             <td><?php echo $row['blood_group'];  ?></td>
-                             <td><?php echo $row['date_requested'];  ?></td>
-                             <td><?php echo $row['statuss'];  ?></td>
+                             <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['created'];  ?></td>
+                             <td><?php echo $row['status'];  ?></td>
                             <td>
-                                <a href="partials/reject-organ.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Reject</button></a>
+                                <a href="partials/reject-request.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Reject</button></a>
                                 &nbsp;
         <!-- //  checking for status -->
 
                                
-                                <a href="partials/approve-organ.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Approve</button></a>
+                                <a href="partials/approve-request.php?a=<?php echo $row['requestId'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white">Approve</button></a>
                             </td>
                         </tr>
                     <?php   }?>
