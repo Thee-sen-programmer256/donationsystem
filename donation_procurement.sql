@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 04:24 PM
+-- Generation Time: Oct 08, 2022 at 07:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -33,6 +33,14 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
+(1, 'markRoi', 'kalemamark46@gmail.com', '12345'),
+(2, 'markRoi', 'kalemamark46@gmail.com', '12345');
 
 -- --------------------------------------------------------
 
@@ -88,8 +96,22 @@ CREATE TABLE `donor` (
   `nationality` varchar(255) NOT NULL,
   `image` text NOT NULL,
   `gender` enum('Male','Female') NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donor`
+--
+
+INSERT INTO `donor` (`donorId`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
+(1, 'Mark', 'mukasa.fred@gmail.com', '2022-09-27 13:52:00', '0789755664', 'B', 'chadian', 'avatar.jpg', 'Male', '2022-09-28 17:41:49', '1234'),
+(2, 'Mukwaaya', 'Ku@gmail.com', '2022-09-28 15:21:14', '078656466', 'AB', 'Ugandan', '', 'Male', '2022-09-28 17:41:49', '7654556'),
+(3, 'Enock', 'En@gmail.com ', '2022-09-28 20:19:41', '07536567980', 'O', 'Ugandan', '', 'Male', '2022-09-28 17:41:49', '674wtedyf'),
+(4, 'Mark', 'mark@gmail.com', '2022-09-05 20:42:03', '079543567', 'A', 'Ugandan', '', '', '2022-09-28 17:43:10', 'kjjfhcvj'),
+(5, 'mike Mugera', 'mm@gmail.com', '2012-09-12 23:55:43', '074325656323', 'B', 'Ugandan', '', '', '2022-09-29 20:57:07', 'wfgeg343444'),
+(6, 'Muyere Edgar', 'mug@mail.com', '1997-10-14 11:13:59', '0745675786', 'AB', 'Ugandan', '', '', '2022-10-01 08:15:25', '86i7fru6v67ju'),
+(7, 'Georgia Babirye', 'barb@gmail.com', '1982-10-01 10:18:05', '0776548765', 'O', 'Ugandan', '', 'Female', '2022-10-01 08:19:45', '.ilyktcyjfvgkub');
 
 -- --------------------------------------------------------
 
@@ -115,6 +137,7 @@ CREATE TABLE `notifications` (
   `n_id` int(11) NOT NULL,
   `notifications_name` text NOT NULL,
   `message` text NOT NULL,
+  `client_type` text NOT NULL,
   `status` varchar(45) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -122,8 +145,9 @@ CREATE TABLE `notifications` (
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `status`) VALUES
-(1, 'Greetings', 'Hello, How are you', 'Active');
+INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `client_type`, `status`) VALUES
+(1, 'Greetings', 'Hello, How are you', 'Patient', 'Active'),
+(2, 'Meeting', 'Hello we has a zoom meeting at 10am', 'Donor', 'Active');
 
 -- --------------------------------------------------------
 
@@ -146,10 +170,11 @@ CREATE TABLE `organ` (
 
 INSERT INTO `organ` (`organId`, `organname`, `bloodgroup`, `donor`, `date_added`, `statuss`) VALUES
 (1, 'Heart', 'A+', 'Okello Brian', '2022-09-09 00:00:00', 'Available'),
-(2, 'Kidney', 'B+', 'Aareba Teddy', '2022-09-09 15:57:00', 'Available'),
+(2, 'Heart', 'A+', 'Aareba Teddy', '2022-09-09 15:57:00', 'Available'),
 (3, 'Eyes', 'AB', 'Nakasaga Juliet', '2022-09-09 22:26:00', 'Unavailable'),
-(4, 'Kidney', 'O+', 'Okello Brian', '2022-09-13 12:27:00', 'Available'),
-(5, 'Heart', 'AB', 'Senyonjo Rhonie', '2022-09-17 03:59:00', 'Available');
+(4, 'Kidney', 'O+', 'Okello Brian', '2022-09-13 12:27:00', 'Unavailable'),
+(5, 'Heart', 'AB', 'Senyonjo Rhonie', '2022-09-17 03:59:00', 'Available'),
+(6, 'Lungs', 'B', 'Muyeru Enock', '2022-09-27 20:43:45', 'Available');
 
 -- --------------------------------------------------------
 
@@ -164,11 +189,22 @@ CREATE TABLE `patient` (
   `dob` datetime NOT NULL,
   `contact` varchar(200) NOT NULL,
   `bloodgroup` varchar(200) NOT NULL,
+  `bloodgroupstatus` varchar(45) NOT NULL,
   `nationality` varchar(200) NOT NULL,
   `image` text NOT NULL,
   `gender` varchar(255) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`pid`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `bloodgroupstatus`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
+(1, 'Mutaasa Kafeera', 'muka@gmail.com', '2022-09-25 11:33:08', '0789654544', 'A', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:46:41', '12345'),
+(2, 'Edgar', 'edgar@mail.com', '2000-09-28 20:01:41', '0787535676', 'AB', 'Pending', 'Kenyan', '', 'Male', '2022-10-08 16:33:30', 'liuytucdecu6'),
+(3, 'Bosco Banda', 'bos@gmail.com', '1980-09-27 23:57:24', '0784235645', 'B', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:33:49', '2456te');
 
 -- --------------------------------------------------------
 
@@ -178,13 +214,22 @@ CREATE TABLE `patient` (
 
 CREATE TABLE `request` (
   `requestId` int(11) NOT NULL,
-  `full_name` varchar(60) NOT NULL,
-  `age` int(11) NOT NULL,
+  `fname` varchar(60) NOT NULL,
+  `email` varchar(30) NOT NULL,
   `organ` text NOT NULL,
-  `blood_group` varchar(25) NOT NULL,
-  `date_request` datetime NOT NULL,
-  `status` tinyint(4) NOT NULL
+  `bloodgroup` varchar(25) NOT NULL,
+  `status` varchar(45) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`requestId`, `fname`, `email`, `organ`, `bloodgroup`, `status`, `created`) VALUES
+(1, 'Roi', 'bos@gmail.com', 'Heart', 'A', 'Pending', '2022-10-05 21:08:16'),
+(2, 'Mark', 'bos@gmail.com', 'Heart', 'private', 'Pending', '2022-10-05 21:10:07'),
+(3, 'Bosco', 'bos@gmail.com', 'Kidney', 'private', 'Approved', '2022-10-05 21:33:27');
 
 -- --------------------------------------------------------
 
@@ -231,7 +276,8 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`id`, `title`, `status`, `body`, `storyimage`) VALUES
-(1, 'My Life', 'public', 'I dont Want', 'dp.JPG');
+(1, 'My Life', 'public', 'I dont Want', 'dp.JPG'),
+(2, 'My story', 'public', '<p>klicduyviboyun;il/bk.v kcuxeyxxy dcv kb.ivuyckrexswghjgkb..b,kcukx6r5ey cjvku,ytjhrdg</p>\r\n', '../images/Screenshot (7).png');
 
 --
 -- Indexes for dumped tables
@@ -311,7 +357,7 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `bloodgroup`
@@ -329,7 +375,7 @@ ALTER TABLE `donation`
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -341,25 +387,25 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `organ`
 --
 ALTER TABLE `organ`
-  MODIFY `organId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `organId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `schedule`
@@ -371,7 +417,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
