@@ -136,6 +136,7 @@
                             <th>Email</th>
                             <th>DOB</th>
                             <th>Blood group</th>
+                            <th>Blood group status</th>
                             <th>Nationality</th>
                             <th>Image</th>
                             <th>Gender</th>
@@ -155,6 +156,7 @@
                              <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['dob'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['bloodgroupstatus'];  ?></td>
                              <td><?php echo $row['nationality'];  ?></td>
                              <td><?php echo $row['image'];  ?></td>
                             <td><?php echo $row['gender'];  ?></td>
@@ -164,7 +166,7 @@
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
+                                <a href="partials/bloodverify.php?a=<?php echo $row['pid'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Verify</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->

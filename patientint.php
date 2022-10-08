@@ -968,7 +968,13 @@ html, body {
 &nbsp;
 
 <div class="right" style="margin-left:-5%">
-  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">not verified</span></p>  </strong>
+<?php
+                                $vresult =" SELECT * FROM patient where email='".$_SESSION['email']."' " ;
+                               if($vdisplay=mysqli_query($connection, $vresult)) {
+                                $vrow=mysqli_fetch_assoc($vdisplay);
+                               }
+                            ?>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red"><?php echo $vrow['bloodgroupstatus'];  ?></span></p>  </strong>
 </div>
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
 

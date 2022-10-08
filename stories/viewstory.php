@@ -846,52 +846,49 @@ section{
 
 
 <!--story-->
-       <section class="home">
-       <?php  
-            $result='select * from story';
-            $display=mysqli_query($connection, $result);
-         ?>
-         <?php
-                while ( $row=mysqli_fetch_assoc($display)) {
+      <div class="row">
+        <div>
+        <?php  
+     $result='select * from story';
+     $display=mysqli_query($connection, $result);
+  ?>
+  <?php
+         while ( $row=mysqli_fetch_assoc($display)) {
 
-                    ?>
-         <div class="image">
-           <img src="<?php echo $row['storyimage'] ?>" alt="">
-         </div>
+             ?>
+        <section class="home">
+
+
+             
+  <div class="image">
+    <img src="<?php echo $row['storyimage'] ?>" alt="">
+  </div>
+
+  <div class="info">
+    <h2><?php echo $row['title'] ?></h2>
+    <p><?php echo $row['body'] ?></p>
+    <table>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="card-action right-align" style="margin-right:50%;">
+        <a href="d-story.php" class="btn green">Donate</a></div>
+        </td>
+
+      </tr>
+    </table>
+  </div>
+     
+  
+  
+
+</section>
+<?php  } ?>
+        </div>
+      </div>
        
-         <div class="info">
-           <h2><?php echo $row['title'] ?></h2>
-           <p><?php echo $row['body'] ?></p>
-           <table>
-             <tr>
-               <td>
-                 <div class="card-action left-align" style="margin-left:50%">
-                 <a href="" class="btn blue">Read More</a>
-               </div>
-               </td>
-
-               <td></td>
-               <td>
-                 <div class="card-action right-align" style="margin-right:50%;">
-                 <a href="" class="dropdown-trigger btn green"  data-target='dropdown2'>Donate</a>
-                 <!-- Dropdown Structure -->
-<ul id='dropdown2' class='dropdown-content'>
- <li><a href="#!">one</a></li>
- <li><a href="#!">two</a></li>
- <li class="divider" tabindex="-1"></li>
- <li><a href="#!">three</a></li>
- <li><a href="#!"><img src="../blood-transfusion-surgery-svgrepo-com.svg" style="height:20px;width:30px">TISSUE</a></li>
- <li><a href="../Fin-Donation/don.php"><i class="material-icons">local_atm</i>MONEY</a></li>
-</ul>
-               </div>
-               </td>
-             </tr>
-           </table>
-         </div>
-         <?php  } ?>
-         
-
-       </section>
 
 
    <!-- end of story -->

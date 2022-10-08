@@ -1,4 +1,4 @@
-<?php
+                          <?php
 
 include "config/check-reg.php";
 
@@ -7,8 +7,6 @@ include "config/connection.php";
  //    Patient registration
 
  if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['contact'])) {
-
-
 
 
 
@@ -86,6 +84,7 @@ include "config/connection.php";
         $dob=$_POST['dob'];
         $contact=$_POST['contact'];
         $bloodgroup=$_POST['bloodgroup'];
+        $bloodgroupstatus=$_POST['bloodgroupstatus'];
         $nation=$_POST['nationality'];
         $gender=$_POST['gender'];
         $pass=$_POST['password'];
@@ -99,8 +98,8 @@ include "config/connection.php";
 
 
 
-       $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`)
-       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$url','$gender','$pass')";
+       $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`,  `bloodgroup`, `bloodgroupstatus`, `nationality`, `image`, `gender`, `password`)
+       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$bloodgroupstatus','$nation','$url','$gender','$pass')";
        $input = mysqli_query($connection, $pat);
       }
        if ($input) {
@@ -215,6 +214,7 @@ include "config/connection.php";
 
             </select>
           </div>
+          <input type="hidden" value="Pending" name="bloodgroupstatus">
           <div class="input-box">
             <span class="details">Nationality <span style="color: #FF0000">*</span></span>
             <select class="" name="nationality" style="height: 62%;

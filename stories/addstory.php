@@ -1,7 +1,8 @@
 
 <?php
 
-
+include '../config/connection.php';
+// include '../config/insert.php';
 
 session_start();
 if(!isset($_SESSION['email'])){
@@ -9,35 +10,54 @@ if(!isset($_SESSION['email'])){
 }
 
 
+    // $con = mysqli_connect("localhost","root","","donation_procurement");
+    if(isset($_POST['tell'])){
+
+      if (isset($_POST['tell'])){
+        $filetmp=$_FILES["storyimage"]["tmp_name"];
+        $filename=$_FILES["storyimage"]["name"];
+        $filetype=$_FILES["storyimage"]["type"];
+        $target_dir="../images/";
+        $img_url=$target_dir.basename($_FILES["storyimage"]["name"]);
+
+        if(move_uploaded_file($filetmp, $img_url)==TRUE){
+          echo "successful";
+
+        }else{
+          echo "Not successful";
+        }
+      }
+
+    	$title=$_POST['title'];
+    	$status=$_POST['status'];
+    	$tell_us=$_POST['body'];
+
+    	    // $file_name= $_FILES['photo']['name'];
+    	    // $file_tmp = $_FILES['photo']['tmp_name'];
 
 
-
-$server="localhost";
- $user="root";
- $pass="";
- $dbname="donation_procurement";
-
- $connection=mysqli_connect($server,$user,$pass,$dbname);
+    	    //          //image Upload
+          //           move_uploaded_file($file_tmp,"images/".$file_name);
 
 
-
-  if (isset($_POST['tel'])){
-    $filetmp=$_FILES["photo"]["tmp_name"];
-    $filename=$_FILES["photo"]["name"];
-    $filetype=$_FILES["photo"]["type"];
-    $target_dir="../images/";
-    $img_url=$target_dir.basename($_FILES["photo"]["name"]);
-
-    if(move_uploaded_file($filetmp, $img_url)==TRUE){
-      echo "successful";
-
-    }else{
-      echo "Not successful";
+    	$sql_insert="INSERT INTO `story`(`title`, `status`, `body`, `storyimage`) VALUES('$title','$status','$tell_us','$img_url')";
+    	$sql_query=mysqli_query($connection,$sql_insert);
+    	if ($sql_query==TRUE) {
+    		// echo "successful";
+        header("Location:../stories/addstory.php?success=Story has been added successfully");
+    	}else{
+    		echo mysqli_error($connection);
+    	}
     }
-  }
+
+
 
 
 ?>
+
+
+
+
 
 
 
@@ -54,6 +74,8 @@ $server="localhost";
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="sstyle.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js" integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous">
+
   <script type="text/javascript"
 src="https://code.jquery.com/jquery-1.12.0.min.js">
  </script>
@@ -626,12 +648,9 @@ code {
 
          <?php
          include "../config/connection.php";
-
          $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
-
-         $query=mysqli_query($connection,$select);
-         $count=mysqli_num_rows($query);
-
+        $query=mysqli_query($connection,$select);
+        $count=mysqli_num_rows($query);
 
           ?>
 
@@ -668,7 +687,7 @@ code {
 
 
       ?>
-      <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+      <img src="../images/<?php echo $rows['image']; ?>" >
       <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
       </div></a>
          <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
@@ -713,11 +732,10 @@ code {
     </div>
 
 
+
 <div class="row">
 
-
-
- <form action="#" class="col s12"  method="post" enctype="multipart/form-data">
+ <form  class="col s12" action="#" method="POST" enctype="multipart/form-data">
 
  <div class="row">
        <div class="input-field col s12">
@@ -735,16 +753,16 @@ code {
        </div>
 </div>
 
- <div class="row">
-       <div class="input-field col s12">
-         <textarea id="body"  name="tell_us" class="materialize-textarea"></textarea>
-         <label for="body">Tell us your story</label>
-       </div>
- </div>
+<div class="row">
+           <div class="input-field">
+               <h6>Tell Us Your Story:</h6>
+               <textarea id="story" name="body" rows="10" cols="80" class="ckeditor"></textarea>
+           </div>
+</div>
 
  <div class="row">
        <div class="input-field col s12">
-         <input type="file" id="title" type="file" name="photo" >
+         <input type="file" name="storyimage" >
            <p>Story image</p>
        </div>
  </div>
@@ -752,7 +770,7 @@ code {
  <div class="row">
 
 
-   <input type="submit" value="Submit" name="tel"  class="btn">
+   <input type="submit" value="Submit" name="tell"  class="btn">
    <a href="addstory.php" class="btn orange">Refresh</a>
 
  </div>
@@ -807,7 +825,16 @@ code {
      });
    });
  });
+
+//  CKEDITOR.replace('story', {
+//     plugins: 'wysiwygarea, toolbar, basicstyles, link'
+// });
+CKEDITOR.replace( 'story' );
+
+var textarea = document.body.appendChild( document.createElement( 'textarea' ) );
+CKEDITOR.replace( textarea );
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
