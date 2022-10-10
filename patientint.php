@@ -7,7 +7,12 @@ if(!isset($_SESSION['email'])){
    header("Location: Home/login.php");
 }
 
+
+
+
 ?>
+
+
 
 
 
@@ -865,98 +870,38 @@ html, body {
      <h2 class="product-category" style="text-align:center">Check out organs available</h2>
      <button class="pre-btn"><img src="simages/arrow.png" alt=""></button>
      <button class="nxt-btn"><img src="simages/arrow.png" alt=""></button>
+
      <div class="product-container">
+
+      <?php
+      $sel="SELECT * FROM organ";
+      $query=mysqli_query($connection,$sel);
+      $add=mysqli_num_rows($query);
+      if ($add > 0) {
+        foreach ($query as $item) {
+       ?>
+
          <div class="product-card">
              <div class="product-image">
-                 <span class="discount-tag" style="background-color:green;color:white">Active</span>
+               <?php if ($item['statuss']=='Unavailable') {
+               ?>
+                 <span class="discount-tag"  style="background-color:maroon;color:white">Unavailable</span>
+            <?php }else{ ?>
+            <span class="discount-tag"  style="background-color:green;color:white">Available</span>
+          <?php } ?>
                  <div class="product-info" style="padding-bottom:100%;border-radius:7px">
                     <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a href="#request" class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag"  style="background-color:maroon;color:white">Inactive</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
+                      <h2 class="product-brand" style="padding-top:15%" ><?php echo $item['organname']; ?></h2>
+                       <p class="product-short-description price" style="font-size:12pt"></p>
+                       <span class="price" style="font-size:12pt">bloodgroup:&nbsp;&nbsp;</span><span class="price" style="font-size:12pt"><?php echo $item['bloodgroup']; ?></span>
                     </div>
                     <a class="new" href="#request"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
                  </div>
              </div>
          </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
-         <div class="product-card">
-             <div class="product-image">
-                 <span class="discount-tag">Active</span>
-                 <div class="product-info" style="padding-bottom:100%;border-radius:7px">
-                    <div class="">
-                      <h2 class="product-brand" style="padding-top:15%" >Liver</h2>
-                       <p class="product-short-description price">Donor</p>
-                       <span class="price">$20</span><span class="actual-price">$40</span>
-                    </div>
-                    <a class="new"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
-             </div>
-         </div>
+       <?php }} ?>
+
+
          </div>
      </div>
  </section>
@@ -968,13 +913,7 @@ html, body {
 &nbsp;
 
 <div class="right" style="margin-left:-5%">
-<?php
-                                $vresult =" SELECT * FROM patient where email='".$_SESSION['email']."' " ;
-                               if($vdisplay=mysqli_query($connection, $vresult)) {
-                                $vrow=mysqli_fetch_assoc($vdisplay);
-                               }
-                            ?>
-  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red"><?php echo $vrow['bloodgroupstatus'];  ?></span></p>  </strong>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">not verified</span></p>  </strong>
 </div>
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
 
@@ -983,91 +922,94 @@ html, body {
 
           <!-- start of card -->
           <div class="col 18 m3 s12">
-            <div class="card z-depth-5" style="height:150px">
+                 <div class="card z-depth-5" style="height:150px">
 
-              <div class="card-content">
-              <?php
-                                $cdresult =" SELECT * FROM request where email='".$_SESSION['email']."' " ;
-                               if($cddisplay=mysqli_query($connection, $cdresult)) {
-                                $cdrow=mysqli_num_rows($cddisplay);
-                               }
-                            ?>
-                <span class="card-title activator grey-text text-darken-4">Requests made...<i class="material-icons right">add_circle_outline</i></span>
-                <p><a href="#">Click icon to View</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Requests Made<i class="material-icons right">close</i></span>
-                <p><?php echo $cdrow;  ?></p>
-              </div>
-            </div>
+                   <div class="card-content">
+                   <?php
+                                     $cdresult =" SELECT * FROM request where email='".$_SESSION['email']."' " ;
+                                    if($cddisplay=mysqli_query($connection, $cdresult)) {
+                                     $cdrow=mysqli_num_rows($cddisplay);
+                                    }
+                                 ?>
+                     <span class="card-title activator grey-text text-darken-4">Requests made...<i class="material-icons right">add_circle_outline</i></span>
+                     <p><a href="#">Click icon to View</a></p>
+                   </div>
+                   <div class="card-reveal">
+                     <span class="card-title grey-text text-darken-4">Requests Made<i class="material-icons right">close</i></span>
+                     <p><?php echo $cdrow;  ?></p>
+                   </div>
+                 </div>
 
-          </div>
-        <!-- end of card -->
-        <!-- start of card -->
-        <div class="col 18 m3 s12">
-          <div class="card z-depth-5" style="height:150px">
+               </div>
+             <!-- end of card -->
+             <!-- start of card -->
+             <div class="col 18 m3 s12">
+               <div class="card z-depth-5" style="height:150px">
 
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">Pending Requests<i class="material-icons right">compare_arrows</i></span>
-              <p><a href="#">Click icon to View</a></p>
-            </div>
-            <div class="card-reveal">
-            <?php
-                                $dresult =" SELECT * FROM request where email='".$_SESSION['email']."' and status = 'Pending' " ;
-                               if($ddisplay=mysqli_query($connection, $dresult)) {
-                                $drow=mysqli_num_rows($ddisplay);
-                               }
-                            ?>
-              <span class="card-title grey-text text-darken-4">Pending Requests<i class="material-icons right">close</i></span>
-              <p><?php echo $drow;  ?></p>
-            </div>
-          </div>
+                 <div class="card-content">
+                   <span class="card-title activator grey-text text-darken-4">Pending Requests<i class="material-icons right">compare_arrows</i></span>
+                   <p><a href="#">Click icon to View</a></p>
+                 </div>
+                 <div class="card-reveal">
+                 <?php
+                                     $dresult =" SELECT * FROM request where email='".$_SESSION['email']."' and status = 'Pending' " ;
+                                    if($ddisplay=mysqli_query($connection, $dresult)) {
+                                     $drow=mysqli_num_rows($ddisplay);
+                                    }
+                                 ?>
+                   <span class="card-title grey-text text-darken-4">Pending Requests<i class="material-icons right">close</i></span>
+                   <p><?php echo $drow;  ?></p>
+                 </div>
+               </div>
 
-        </div>
-      <!-- end of card -->
-      <!-- start of card -->
-      <div class="col 18 m3 s12">
-        <div class="card z-depth-5" style="height:150px">
+             </div>
+           <!-- end of card -->
+           <!-- start of card -->
+           <div class="col 18 m3 s12">
+             <div class="card z-depth-5" style="height:150px">
 
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Approved Request<i class="material-icons right">check_circle</i></span>
-            <p><a href="#">Click icon to View</a></p>
-          </div>
-          <div class="card-reveal">
-          <?php
-                                $result =" SELECT * FROM request where email='".$_SESSION['email']."'and status='Approved' " ;
-                               if($display=mysqli_query($connection, $result)) {
-                                $row=mysqli_num_rows($display);
-                               }
-                            ?>
-            <span class="card-title grey-text text-darken-4">Approved Requests<i class="material-icons right">close</i></span>
-            <p><?php echo $row;  ?></p>
-          </div>
-        </div>
+               <div class="card-content">
+                 <span class="card-title activator grey-text text-darken-4">Approved Request<i class="material-icons right">check_circle</i></span>
+                 <p><a href="#">Click icon to View</a></p>
+               </div>
+               <div class="card-reveal">
+               <?php
+                                     $result =" SELECT * FROM request where email='".$_SESSION['email']."'and status='Approved' " ;
+                                    if($display=mysqli_query($connection, $result)) {
+                                     $row=mysqli_num_rows($display);
+                                    }
+                                 ?>
+                 <span class="card-title grey-text text-darken-4">Approved Requests<i class="material-icons right">close</i></span>
+                 <p><?php echo $row;  ?></p>
+               </div>
+             </div>
 
-      </div>
-      <!-- start of card -->
-      <div class="col 18 m3 s12">
-        <div class="card z-depth-5" style="height:150px">
+           </div>
+           <!-- start of card -->
+           <div class="col 18 m3 s12">
+             <div class="card z-depth-5" style="height:150px">
 
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Rejected Requests<i class="material-icons right ">block</i></span>
-            <p><a href="#">Click icon to View</a></p>
-          </div>
-          <div class="card-reveal">
-          <?php
-                                $result1 =" SELECT * FROM request where email='".$_SESSION['email']."' and status ='Rejected' " ;
-                               if($display1=mysqli_query($connection, $result1)) {
-                                $row1=mysqli_num_rows($display1);
-                               }
-                            ?>
-            <span class="card-title grey-text text-darken-4">Rejected Requests<i class="material-icons right">close</i></span>
-            <p><?php echo $row1;  ?></p>
-          </div>
-        </div>
+               <div class="card-content">
+                 <span class="card-title activator grey-text text-darken-4">Rejected Requests<i class="material-icons right ">block</i></span>
+                 <p><a href="#">Click icon to View</a></p>
+               </div>
+               <div class="card-reveal">
+               <?php
+                                     $result1 =" SELECT * FROM request where email='".$_SESSION['email']."' and status ='Rejected' " ;
+                                    if($display1=mysqli_query($connection, $result1)) {
+                                     $row1=mysqli_num_rows($display1);
+                                    }
+                                 ?>
+                 <span class="card-title grey-text text-darken-4">Rejected Requests<i class="material-icons right">close</i></span>
+                 <p><?php echo $row1;  ?></p>
+               </div>
+             </div>
 
-      </div>
-       <!-- end of card -->
+           </div>
+            <!-- end of card -->
+
+
+
 
 
 
@@ -1168,91 +1110,90 @@ html, body {
 
     <!-- requesting -->
   <p  id="request" style="font-weight:bold;font-size:14pt;margin-left:-6%">Request Organ Here</p>
-    <section  style="background:#36454f;width:1300px;margin-left:-8%;margin-top:-1%">
-      
-    <?php  
-    
-      if(isset($_POST["submit"])){
-        $fname= $_POST["fname"];
-        $email= $_POST["email"];
-        $organ= $_POST["organ"];
-        $bloodgroup= $_POST["bloodgroup"];
-        $status= $_POST["status"];
+  <section  style="background:#36454f;width:1300px;margin-left:-8%;margin-top:-1%">
 
-    
-    $sql = "INSERT INTO request(fname,email,organ,bloodgroup,status)VALUE('$fname','$email','$organ','$bloodgroup','$status')";
-    
-    //echo $sql;
-    // excecuting the query
-    if(mysqli_query($connection,$sql)){
-    
-        ?>
-    
-        <script type="text/javascript">
-            alert("Request Successfully Added");
-            window.location= "patientint.php";
-        </script>
-        <?php
-        }else{
-        echo mysqli_error($connection);
-        }
-    
-        }
-    
-      
+  <?php
+
+    if(isset($_POST["submit"])){
+      $fname= $_POST["fname"];
+      $email= $_POST["email"];
+      $organ= $_POST["organ"];
+      $bloodgroup= $_POST["bloodgroup"];
+      $status= $_POST["status"];
+
+
+  $sql = "INSERT INTO request(fname,email,organ,bloodgroup,status)VALUE('$fname','$email','$organ','$bloodgroup','$status')";
+
+  //echo $sql;
+  // excecuting the query
+  if(mysqli_query($connection,$sql)){
+
       ?>
 
-      <form method="POST"> 
+      <script type="text/javascript">
+          alert("Request Successfully Added");
+          window.location= "patientint.php";
+      </script>
+      <?php
+      }else{
+      echo mysqli_error($connection);
+      }
 
-        <div class="row">
-          <div class="col">
-            <div class="input-field col  s12">
-              <input class="fon" id="name" type="text" name="fname"  style="color:white">
-              <label for="name">Name</label>
-            </div>
+      }
+
+
+    ?>
+
+    <form method="POST">
+
+      <div class="row">
+        <div class="col">
+          <div class="input-field col  s12">
+            <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>"  style="color:white">
+            <label for="name">Name</label>
           </div>
-          <div class="col">
-            <div class="input-field col  s12">
-              <input class="fon" id="name" type="email" name="email" style="color:white">
-              <label for="email">Email</label>
-            </div>
+        </div>
+        <div class="col">
+          <div class="input-field col  s12">
+            <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>" style="color:white">
+            <label for="email">Email</label>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="input-field col  s12">
+            <input class="fon" id="name" type="text" name="organ" style="color:white">
+            <label for="email">Organ</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-field col s12">
+             <select id="blood" name="bloodgroup">
+                 <option value="Choose" selected  style="color:white">--select blood group--</option>
+                 <option value="A"  style="color:white">A</option>
+                 <option value="AB"  style="color:white">AB</option>
+                 <option value="B"  style="color:white">B</option>
+                 <option value="O"  style="color:white">O</option>
+
+             </select>
+      <label>Blood Group</label>
+      <input type="hidden" name="status" value= "Pending">
           </div>
 
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="input-field col  s12">
-              <input class="fon" id="name" type="text" name="organ" >
-              <label for="email">Organ</label>
-            </div>
-          </div>
-          <div class="col">
-            <div class="input-field col s12">
-               <select id="blood" name="bloodgroup">
-                   <option value="Choose" selected  style="color:white">--select blood group--</option>
-                   <option value="A"  style="color:white">A</option>
-                   <option value="AB"  style="color:white">AB</option>
-                   <option value="B"  style="color:white">B</option>
-                   <option value="O"  style="color:white">O</option>
-                
-               </select>
-        <label>Blood Group</label>
-        <input type="hidden" name="status" value= "Pending">
-            </div>
 
-          </div>
-
-        </div>
+      </div>
 
 
-        <div class="center">
-            <input class="btn btn-primary" type="submit" value="Request" name="submit">
-        </div>
+      <div class="center">
+          <input class="btn btn-primary" type="submit" value="Request" name="submit">
+      </div>
 
-      </form>
+    </form>
 
-    </section>
-
+  </section>
 
 
     <!-- end of requesting -->

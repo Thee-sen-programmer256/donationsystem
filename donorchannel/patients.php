@@ -1,3 +1,15 @@
+
+<?php
+
+include "../config/connection.php";
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: ../Home/login.php");
+
+}
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -585,13 +597,21 @@
   </head>
   <body>
 
+    <?php
+    // include "../config/connection.php";
+        $sql_fetch="SELECT * FROM donor where email='".$_SESSION['email']."'";
+        $sql_query=mysqli_query($connection, $sql_fetch);
+        $rows=mysqli_fetch_assoc($sql_query);
+        // $patient=mysqli_num_rows($sql_query);
 
+
+        ?>
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
+  <!-- <li><a href="#!">one</a></li> -->
+  <!-- <li><a href="#!">two</a></li> -->
   <li class="divider"></li>
-  <li><a href="#!">logout</a></li>
+  <li><a href="../Home/logout.php">logout</a></li>
 </ul>
 <div class="navbar-fixed">
   <nav>
@@ -602,9 +622,9 @@
 
       <a href="#!" class="brand-logo center " >
         <div class="chip " style="vertical-align:middle;">
-   <img src="../images/_20200622_003355.jpg" alt="Contact Person">
+   <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
 
-   <span style="font-size:16px;font-weight:bold;">big AN 256</span>
+   <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
   </div>
       </a>
       <ul class="right hide-on-med-and-down" >
@@ -612,7 +632,7 @@
         <!-- <li><a href="sass.html" >Fundraise</a></li> -->
         <li><a href="scheduleD/">Schedule</a></li>
         <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Logout<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
     <?php
@@ -679,135 +699,38 @@
 
     <div class="container" style="width:100%">
       <div class="row">
+        <?php
+        $sel="SELECT p.fname,s.body FROM patient p join story s on p.pid=s.spid";
+        $query=mysqli_query($connection,$sel);
+        $add=mysqli_num_rows($query);
+        if ($add > 0) {
+          foreach ($query as $item) {
+         ?>
              <!-- start of card -->
         <div class="col 18 m3 s12">
           <div class="card sticky-action">
             <div class="card-image">
-              <img src="../images/_20200622_003355.jpg" alt="">
-              <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-              <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
+              <img src="../images/<?php echo $item['image']; ?>" alt="">
+              <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:15px;vertical-align:middle;padding-top:0px"><?php echo $item['fname']; ?></span>
+              <a href="#" class="btn red btn-floating halfway-fab tooltipped  activator" data-position="right" data-tooltip="view story"><i class="material-icons">assignment</i></a>
             </div>
             <div class="card-content">
               <p>Hey there! I need a liver</p>
             </div>
+
             <div class="card-reveal">
-              <span class="card-title">My Story<i class="right">x</i></span>
+              <span class="card-title">My Story<i class="right">&times;</i></span>
+              <p><?php echo $item['body']; ?></p>
+
             </div>
+
             <div class="card-action">
               <a href="#">DONATE</a>
             </div>
           </div>
         </div>
+         <?php }} ?>
               <!-- end of card -->
-              <!-- start of card -->
-        <div class="col 18 m3 s12">
-          <div class="card sticky-action">
-            <div class="card-image">
-              <img src="../images/_20200622_003355.jpg" alt="">
-              <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-              <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
-            </div>
-            <div class="card-content">
-              <p>Hey there! I need a liver</p>
-            </div>
-            <div class="card-reveal">
-              <span class="card-title">My Story<i class="right">x</i></span>
-            </div>
-            <div class="card-action">
-              <a href="#">DONATE</a>
-            </div>
-          </div>
-        </div>
-            <!-- end of card -->
-            <!-- start of card -->
-      <div class="col 18 m3 s12">
-        <div class="card sticky-action">
-          <div class="card-image">
-            <img src="../images/_20200622_003355.jpg" alt="">
-            <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-            <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
-          </div>
-          <div class="card-content">
-            <p>Hey there! I need a liver</p>
-          </div>
-          <div class="card-reveal">
-            <span class="card-title">My Story<i class="right">x</i></span>
-          </div>
-          <div class="card-action">
-            <a href="#">DONATE</a>
-          </div>
-        </div>
-      </div>
-          <!-- end of card -->
-          <!-- start of card -->
-    <div class="col 18 m3 s12">
-      <div class="card sticky-action">
-        <div class="card-image">
-          <img src="../images/_20200622_003355.jpg" alt="">
-          <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-          <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>Hey there! I need a liver</p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title">My Story<i class="right">x</i></span>
-        </div>
-        <div class="card-action">
-          <a href="#">DONATE</a>
-        </div>
-      </div>
-    </div>
-        <!-- end of card -->
-        <!-- start of card -->
-  <div class="col 18 m3 s12">
-    <div class="card sticky-action">
-      <div class="card-image">
-        <img src="../images/_20200622_003355.jpg" alt="">
-        <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-        <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
-      </div>
-      <div class="card-content">
-        <p>Hey there! I need a liver</p>
-      </div>
-      <div class="card-reveal">
-        <span class="card-title">My Story<i class="right">x</i></span>
-      </div>
-      <div class="card-action">
-        <a href="#">DONATE</a>
-      </div>
-    </div>
-  </div>
-      <!-- end of card -->
-      <!-- start of card -->
-<div class="col 18 m3 s12">
-  <div class="card sticky-action">
-    <div class="card-image">
-      <img src="../images/_20200622_003355.jpg" alt="">
-      <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:25px;vertical-align:middle;padding-top:0px">name</span>
-      <a href="#" class="btn red btn-floating halfway-fab pulse activator"><i class="material-icons">add</i></a>
-    </div>
-    <div class="card-content">
-      <p>Hey there! I need a liver</p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title">My Story<i class="right">x</i></span>
-    </div>
-    <div class="card-action">
-      <a href="#">DONATE</a>
-    </div>
-  </div>
-</div>
-    <!-- end of card -->
-    <!-- start of card -->
-
-  <!-- end of card -->
-
-
-
-
-
-
 
 
       </div>

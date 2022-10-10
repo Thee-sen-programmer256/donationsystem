@@ -4,11 +4,12 @@ session_start();
 if(!isset($_SESSION['email'])){
 header("Location: Home/login.php");
 }
-    include "../config/connection.php"
+    include "../../config/connection.php"
 
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

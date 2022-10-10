@@ -1,16 +1,10 @@
 <?php
 
-
-
-     // $result =" SELECT * FROM shedule " ;
-     // $display=mysqli_query($con, $result);
-  
 session_start();
 if(!isset($_SESSION['email'])){
 header("Location: Home/login.php");
 }
     include "../config/connection.php"
-
 
 
 
@@ -636,60 +630,47 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <div class="navbar-fixed" >
     <nav class="bondi blue" style="color:#29ccf5">
      <div class="nav-wrapper container" >
-       <p class="brand-logo center" style="color:white">Patient</p>
+       <p class="brand-logo center" style="color:white;top:2%">Patient</p>
+
        <?php
-        include "../config/connection.php";
-        $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
-        $query=mysqli_query($connection,$select);
-        $count=mysqli_num_rows($query);
+       include "../config/connection.php";
+       $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
+       $query=mysqli_query($connection,$select);
+       $count=mysqli_num_rows($query);
 
 
-         ?>
-
+        ?>
 
        <ul class="dots " id="notifications" style="position: absolute;margin-left:69%">
       <li>
-
         <a href="#" >
           <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class="tada"><?php echo $count; ?></mark></span>
-
         </a>
       </li>
     </ul>
 
+    <ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+      <?php
+            if ($count > 0) {
+              foreach ($query as $item) {
+            ?>
+      <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+        <!-- <li class="divider" tabindex="-4"></li> -->
+        <!-- <hr class="solid"> -->
+    <?php }
+  } else{?>
+      <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
+  <?php } ?>
+
+    </ul>
+
        <a class="brand-logo right">
-
-        <!--for the notification-->
-
-         <!-- <i class="material-icons dropdown-trigger notty right" data-target='dropdown1' style="cursor:pointer;padding-right:250%">notifications_active<span class="circle"style="background-color:red;font-size:13px;vertical-align:middle;border-radius:200px;padding:5px;">5</span></i> -->
-         <!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
-<?php
-             if ($count > 0) {
-               foreach ($query as $item) {
-             ?>
-       <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
-         <!-- <li class="divider" tabindex="-4"></li> -->
-         <!-- <hr class="solid"> -->
-     <?php }
-   } else{?>
-       <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
- <?php } ?>
-</ul>
-
-         <div class="chip right" style="margin-top:1.5%;vertical-align:middle;">
-    <img src="../images/cute.jpg" alt="Contact Person">
-    <span style="font-size:16px;font-weight:bold;">Jane Doe</span>
-  </div> &nbsp;  </a>
-
-
          <div class="chip" >
          <?php
     $sql_fetch="SELECT * FROM patient where email='".$_SESSION['email']."'";
     $sql_query=mysqli_query($connection, $sql_fetch);
     $rows=mysqli_fetch_assoc($sql_query);
     // $patient=mysqli_num_rows($sql_query);
-
 
 
     ?>
