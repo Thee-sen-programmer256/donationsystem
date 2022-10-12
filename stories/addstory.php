@@ -14,11 +14,11 @@ if(!isset($_SESSION['email'])){
     if(isset($_POST['tell'])){
 
       if (isset($_POST['tell'])){
-        $filetmp=$_FILES["storyimage"]["tmp_name"];
-        $filename=$_FILES["storyimage"]["name"];
-        $filetype=$_FILES["storyimage"]["type"];
+        $filetmp=$_FILES["imagestory"]["tmp_name"];
+        $filename=$_FILES["imagestory"]["name"];
+        $filetype=$_FILES["imagestory"]["type"];
         $target_dir="../images/";
-        $img_url=$target_dir.basename($_FILES["storyimage"]["name"]);
+        $img_url=$target_dir.basename($_FILES["imagestory"]["name"]);
 
         if(move_uploaded_file($filetmp, $img_url)==TRUE){
           echo "successful";
@@ -31,6 +31,7 @@ if(!isset($_SESSION['email'])){
     	$title=$_POST['title'];
     	$status=$_POST['status'];
     	$tell_us=$_POST['body'];
+      $spid=$_POST['spid'];
 
     	    // $file_name= $_FILES['photo']['name'];
     	    // $file_tmp = $_FILES['photo']['tmp_name'];
@@ -40,7 +41,7 @@ if(!isset($_SESSION['email'])){
           //           move_uploaded_file($file_tmp,"images/".$file_name);
 
 
-    	$sql_insert="INSERT INTO `story`(`title`, `status`, `body`, `storyimage`) VALUES('$title','$status','$tell_us','$img_url')";
+    	$sql_insert="INSERT INTO `story`(`title`, `status`, `body`,`storyimage`,`spid`) VALUES('$title','$status','$tell_us','$img_url','$spid')";
     	$sql_query=mysqli_query($connection,$sql_insert);
     	if ($sql_query==TRUE) {
     		// echo "successful";
@@ -648,9 +649,10 @@ code {
 
          <?php
          include "../config/connection.php";
-         $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
-        $query=mysqli_query($connection,$select);
-        $count=mysqli_num_rows($query);
+          $select="SELECT * FROM notifications WHERE status='Active' and client_type='Patient' or client_type='All'";
+         $query=mysqli_query($connection,$select);
+         $count=mysqli_num_rows($query);
+
 
           ?>
 
@@ -717,7 +719,7 @@ code {
  <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
    <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
-  <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
+  <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
  </ul>
   </div>
@@ -766,7 +768,7 @@ code {
            <p>Story image</p>
        </div>
  </div>
-
+<input type="hidden" name="spid" value="<?php echo $rows['pid']; ?>">
  <div class="row">
 
 

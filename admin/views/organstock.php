@@ -4,6 +4,10 @@
     $result =" SELECT * FROM organ" ;
     $display=mysqli_query($con, $result);
 
+    $result2 =" SELECT * FROM donationappointment" ;
+    $display2=mysqli_query($con, $result2);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -109,6 +113,9 @@
                     <h4>Mark Roi</h4>
                     <small>Super admin</small>
                 </div>
+                <div>
+                    <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
+                </div>
             </div>
         </header>
         <!-- Header End -->
@@ -123,6 +130,7 @@
               Add Organ
           </button>
       </a>
+
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
@@ -177,6 +185,59 @@
             <!-- END DATA TABLE-->
         </div>
     </div>
+
+
+    <div class="row m-t-30" style="padding-top: 5rem;">
+    <h1>DONATION APPOINTMENTS</h1>
+      <div class="col-md-12">
+            <!-- DATA TABLE-->
+            <div>
+                <table  style="top:1px solid;width: 100%;border-radius: 10px;right:-100px">
+                    <thead style="padding: 30px;background-color: black;color: white;">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Organ</th>
+                            <th>Blood Group</th>
+                            <th>Appointment</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                <!-- Fetch data from patient table -->
+
+                <?php
+                while ( $row=mysqli_fetch_assoc($display2)) {
+
+                    ?>
+                        <tr style="text-align: center;">
+                            <td><?php echo $row['id'];  ?></td>
+                             <td><?php echo $row['fname'];  ?></td>
+                             <td><?php echo $row['email'];  ?></td>
+                             <td><?php echo $row['organ/tissue/blood'];  ?></td>
+                             <td><?php echo $row['bloodgroup'];  ?></td>
+                             <td><?php echo $row['appointdate'];  ?></td>
+                             <td><?php echo $row['status'];  ?></td>
+                            <td>
+                                
+        <!-- //  checking for status -->
+                                
+                                <a href="partials/approve-donationrequest.php?pd=<?php echo $row['id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; margin-left: 5px;">Approve</button></a>
+                                &nbsp;
+                            
+                            </td>
+                        </tr>
+                    <?php    }?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- END DATA TABLE-->
+        </div>
+    </div>
+
         </main>
     </section>
 

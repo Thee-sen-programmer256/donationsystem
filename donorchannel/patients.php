@@ -637,7 +637,7 @@ if (!isset($_SESSION['email'])) {
     </div>
     <?php
     include "../config/connection.php";
-    $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
+    $select="SELECT * FROM notifications WHERE status='Active' and client_type='Donor' or client_type='All'";
     $query=mysqli_query($connection,$select);
     $count=mysqli_num_rows($query);
 
@@ -658,7 +658,7 @@ if (!isset($_SESSION['email'])) {
            if ($count > 0) {
              foreach ($query as $item) {
            ?>
-     <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"]  ?></strong><br><?php echo $item["message"]; ?></a></li>
+     <li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"><?php echo $item["notifications_name"];  ?></strong><br><?php echo $item["message"]; ?></a></li>
        <!-- <li class="divider" tabindex="-4"></li> -->
        <!-- <hr class="solid"> -->
    <?php }
@@ -700,7 +700,7 @@ if (!isset($_SESSION['email'])) {
     <div class="container" style="width:100%">
       <div class="row">
         <?php
-        $sel="SELECT p.fname,s.body FROM patient p join story s on p.pid=s.spid";
+        $sel="SELECT p.fname,s.body,s.storyimage FROM patient p join story s on p.pid=s.spid";
         $query=mysqli_query($connection,$sel);
         $add=mysqli_num_rows($query);
         if ($add > 0) {
@@ -710,7 +710,7 @@ if (!isset($_SESSION['email'])) {
         <div class="col 18 m3 s12">
           <div class="card sticky-action">
             <div class="card-image">
-              <img src="../images/<?php echo $item['image']; ?>" alt="">
+              <img src="../images/<?php echo $item['storyimage']; ?>" alt="">
               <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:15px;vertical-align:middle;padding-top:0px"><?php echo $item['fname']; ?></span>
               <a href="#" class="btn red btn-floating halfway-fab tooltipped  activator" data-position="right" data-tooltip="view story"><i class="material-icons">assignment</i></a>
             </div>
@@ -725,7 +725,7 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="card-action">
-              <a href="#">DONATE</a>
+              <a href="d-patient.php?pd=<?php echo $add['pid'];?>">DONATE</a>
             </div>
           </div>
         </div>

@@ -126,6 +126,9 @@ if(!isset($_SESSION['email'])){
                     <h4><?php echo $rows['username']; ?></h4>
                     <small>Super admin</small>
                 </div>
+                <div>
+                    <a href="../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
+                </div>
             </div>
         </header>
         <!-- Header End -->
@@ -425,6 +428,60 @@ if(!isset($_SESSION['email'])){
             const myChart3 = new Chart(
                 document.getElementById('myChart3'),
                 config3
+            );
+            </script>
+    </div>
+
+    <div class="line4" style="width: 70%; margin-left: 3rem;">
+            <?php 
+
+        $connection = mysqli_connect("localhost","root","","donation_procurement");
+
+        $resultr =" SELECT
+        DATE(`request`.`created`) AS `rdates`,
+        COUNT(`request`.`requestId`) AS `rcounts`
+        FROM `request`
+        WHERE `request`.`created` BETWEEN '2022-09-01 00:00:00' AND '2022-11-31 23:59:59'
+        GROUP BY `rdates`
+        ORDER BY `rdates`" ;
+        $rdisplay=mysqli_query($connection, $resultr);
+
+        foreach($rdisplay As $rdataSet){
+            $rdates[] = $rdataSet['rdates'];
+            $rcounts[] = $rdataSet['rcounts'];
+
+        }
+
+
+        ?>
+            <div>
+                <canvas id="myChart4" style="height: 240px;"></canvas>
+            </div>
+
+                <script>
+            const labels4 = <?php echo json_encode($rdates) ?>;
+
+            const data4 = {
+                labels: labels4,
+                datasets: [{
+                label: 'Number of Requests made on a daily basis',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: <?php echo json_encode($rcounts) ?>,
+                }]
+            };      
+        
+            const config4 = {
+                type: 'bar',
+                data: data4,
+                options: {}
+            };
+            </script>
+            
+            <script>
+            const myChart4 = new Chart(
+                document.getElementById('myChart4'),
+                config4
             );
             </script>
     </div>

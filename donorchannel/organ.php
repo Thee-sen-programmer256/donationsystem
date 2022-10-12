@@ -1,3 +1,40 @@
+
+<?php
+
+include "../config/connection.php";
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: ../Home/login.php");
+
+}
+
+// $con = mysqli_connect("localhost","root","","donation_procurement");
+if(isset($_POST['appo'])){
+
+
+  $name=$_POST['fname'];
+  $email=$_POST['email'];
+  $organ=$_POST['organ/tissue/blood'];
+  $blood=$_POST['bloodgroup'];
+  $appoint=$_POST['appointdate'];
+
+
+
+  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`) VALUES ('$name','$email','$organ','$blood','$appoint')";
+  $sql_query=mysqli_query($connection,$sql_insert);
+  if ($sql_query==TRUE) {
+    // echo "successful";
+    header("Location:./organ.php?success=Donation appointment has been added successfully");
+  }else{
+    echo mysqli_error($connection);
+  }
+}
+
+
+
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -30,6 +67,14 @@
  </script>
 
  <style >
+ .success {
+   background: #D4EDDA;
+   color: #40754C;
+   padding: 10px;
+   width: 50%;
+   border-radius: 5px;
+   margin: 20px auto;
+ }
    a{
      text-decoration: none;
    }
@@ -67,6 +112,8 @@
     box-sizing: content-box;
     list-style-type: none;
   }
+
+
   ul.dropdown-content > li:hover{
   color:black;
   background:black
@@ -589,13 +636,22 @@
   </head>
   <body>
 
+        <?php
+        // include "../config/connection.php";
+            $sql_fetch="SELECT * FROM donor where email='".$_SESSION['email']."'";
+            $sql_query=mysqli_query($connection, $sql_fetch);
+            $rows=mysqli_fetch_assoc($sql_query);
+            // $patient=mysqli_num_rows($sql_query);
+
+
+            ?>
 
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
+  <!-- <li><a href="#!">one</a></li> -->
+  <!-- <li><a href="#!">two</a></li> -->
   <li class="divider"></li>
-  <li><a href="#!">logout</a></li>
+  <li><a href="../Home/logout.php">logout</a></li>
 </ul>
 <div class="navbar-fixed">
   <nav>
@@ -606,9 +662,9 @@
 
       <a href="#!" class="brand-logo center " >
         <div class="chip " style="vertical-align:middle;">
-   <img src="../images/_20200622_003355.jpg" alt="Contact Person">
+   <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
 
-   <span style="font-size:16px;font-weight:bold;">big AN 256</span>
+   <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
   </div>
       </a>
       <ul class="right hide-on-med-and-down" >
@@ -621,7 +677,7 @@
     </div>
     <?php
     include "../config/connection.php";
-    $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
+    $select="SELECT * FROM notifications WHERE status='Active' and client_type='Donor' or client_type='All'";
     $query=mysqli_query($connection,$select);
     $count=mysqli_num_rows($query);
 
@@ -673,8 +729,10 @@
 <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
 </ul>
 
-<p style="font-weight:bold;font-size:14pt;margin-left:1%">Organs You Can Donation</p>
-
+<p style="font-weight:bold;font-size:14pt;margin-left:1%">Organs You Can Donate</p>
+<?php if (isset($_GET['success'])) { ?>
+<p class="success center  "><?php echo $_GET['success']; ?><a href="./organ.php" style="margin-left:10%">&times;</a></p>
+<?php } ?>
 
 <!-- start of crds -->
 <div class="container" style="width:100%;">
@@ -686,7 +744,8 @@
 
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">HEART<i class="material-icons right">add_circle_outline</i></span>
-                <p><a href="#">This is a link</a></p>
+
+                <!-- <p><a href="#">This is a link</a></p> -->
               </div>
               <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">HEART<i class="material-icons right">close</i></span>
@@ -708,7 +767,7 @@
 
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">LUNGS<i class="material-icons right">add_circle_outline</i></span>
-              <p><a href="#">This is a link</a></p>
+              <!-- <p><a href="#">This is a link</a></p> -->
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">LUNGS<i class="material-icons right">close</i></span>
@@ -727,7 +786,7 @@
 
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">LIVER<i class="material-icons right">add_circle_outline</i></span>
-            <p><a href="#">This is a link</a></p>
+            <!-- <p><a href="#">This is a link</a></p> -->
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">LIVER<i class="material-icons right">close</i></span>
@@ -745,7 +804,7 @@
 
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">KIDNEY<i class="material-icons right ">add_circle_outline</i></span>
-            <p><a href="#">This is a link</a></p>
+            <!-- <p><a href="#">This is a link</a></p> -->
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">KIDNEY<i class="material-icons right">close</i></span>
@@ -767,7 +826,7 @@
 
            <div class="card-content">
              <span class="card-title activator grey-text text-darken-4">PANCREAS<i class="material-icons right ">add_circle_outline</i></span>
-             <p><a href="#">This is a link</a></p>
+             <!-- <p><a href="#">This is a link</a></p> -->
            </div>
            <div class="card-reveal">
              <span class="card-title grey-text text-darken-4">PANCREAS<i class="material-icons right">close</i></span>
@@ -786,7 +845,7 @@
 
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">PANCREAS ISLET CELLS<i class="material-icons right ">add_circle_outline</i></span>
-              <p><a href="#">This is a link</a></p>
+              <!-- <p><a href="#">This is a link</a></p> -->
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">PANCREAS ISLET CELLS<i class="material-icons right">close</i></span>
@@ -805,7 +864,7 @@
 
              <div class="card-content">
                <span class="card-title activator grey-text text-darken-4">SMALL BOWEL<i class="material-icons right ">add_circle_outline</i></span>
-               <p><a href="#">This is a link</a></p>
+               <!-- <p><a href="#">This is a link</a></p> -->
              </div>
              <div class="card-reveal">
                <span class="card-title grey-text text-darken-4">SMALL BOWEL<i class="material-icons right">close</i></span>
@@ -824,7 +883,7 @@
 
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">STOMACH<i class="material-icons right ">add_circle_outline</i></span>
-                <p><a href="#">This is a link</a></p>
+                <!-- <p><a href="#">This is a link</a></p> -->
               </div>
               <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">STOMACH<i class="material-icons right">close</i></span>
@@ -846,7 +905,7 @@
 
                <div class="card-content">
                  <span class="card-title activator grey-text text-darken-4">CORNEAS<i class="material-icons right ">add_circle_outline</i></span>
-                 <p><a href="#">This is a link</a></p>
+                 <!-- <p><a href="#">This is a link</a></p> -->
                </div>
                <div class="card-reveal">
                  <span class="card-title grey-text text-darken-4">CORNEAS<i class="material-icons right">close</i></span>
@@ -874,18 +933,18 @@
 <h2>Heart</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form action="" method="POST" ecnctype="multipart/form-data">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -894,16 +953,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="heart">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood1" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -923,7 +999,7 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
@@ -931,23 +1007,24 @@
 </div>
 
 <!-- donation2 -->
+<!-- donation1 -->
 <div class="overlay" id="divTwo">
 <div class="wrapper">
-<h2>Lungs</h2><a class="close" href="#">&times;</a>
+<h2>LUNGS</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -956,16 +1033,34 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="lungs">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood2" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
+
   </div>
   <div class="row">
     <div class="col">
@@ -984,7 +1079,7 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
@@ -992,24 +1087,26 @@
 </div>
 
 
+
 <!-- donation3 -->
+<!-- donation1 -->
 <div class="overlay" id="divThree">
 <div class="wrapper">
-<h2>Liver</h2><a class="close" href="#">&times;</a>
+<h2>LIVER</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1018,16 +1115,34 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="liver">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood3" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
+
   </div>
   <div class="row">
     <div class="col">
@@ -1046,7 +1161,7 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
@@ -1054,23 +1169,24 @@
 </div>
 
 <!-- donation4 -->
+<!-- donation1 -->
 <div class="overlay" id="divFour">
 <div class="wrapper">
-<h2>Kidney</h2><a class="close" href="#">&times;</a>
+<h2>KIDNEY</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1079,16 +1195,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="kidney">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood4" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -1108,32 +1241,34 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
 </div>
 </div>
+
 
 
 <!-- donation5 -->
+<!-- donation1 -->
 <div class="overlay" id="divFive">
 <div class="wrapper">
-<h2>Pnacreas</h2><a class="close" href="#">&times;</a>
+<h2>PANCREAS</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1142,16 +1277,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="pancreas">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood5" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -1171,32 +1323,34 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
 </div>
 </div>
+
 
 
 <!-- donation6 -->
+<!-- donation1 -->
 <div class="overlay" id="divSix">
 <div class="wrapper">
-<h2>Pancreas islet</h2><a class="close" href="#">&times;</a>
+<h2>PANCREAS ISLET</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1205,16 +1359,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="pancreas islet cells">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood6" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -1234,32 +1405,32 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
 </div>
 </div>
 
-
 <!-- donation7 -->
+<!-- donation1 -->
 <div class="overlay" id="divSeven">
 <div class="wrapper">
-<h2>Small Bowel</h2><a class="close" href="#">&times;</a>
+<h2>SMALLBOWEL</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1268,16 +1439,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="small bowel">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood7" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -1297,7 +1485,7 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
@@ -1306,23 +1494,24 @@
 
 
 <!-- donation8 -->
+<!-- donation1 -->
 <div class="overlay" id="divEig">
 <div class="wrapper">
-<h2>Stomach</h2><a class="close" href="#">&times;</a>
+<h2>STOMACH</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1331,16 +1520,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="stomach">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood8" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
+    </div>
+
 
   </div>
   <div class="row">
@@ -1360,32 +1566,34 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
 </div>
 </div>
+
 
 
 <!-- donation9 -->
+<!-- donation1 -->
 <div class="overlay" id="divNine">
 <div class="wrapper">
-<h2>Corneas</h2><a class="close" href="#">&times;</a>
+<h2>CORNEAS</h2><a class="close" href="#">&times;</a>
 <div class="content">
 <div class="container">
-<form>
+<form method="POST">
 
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
+        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
         <label for="name">Name</label>
       </div>
     </div>
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
         <label for="email">Email</label>
       </div>
     </div>
@@ -1394,17 +1602,33 @@
   <div class="row">
     <div class="col">
       <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="" >
+        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="corneas">
         <label for="email">Organ</label>
       </div>
     </div>
     <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="" >
-        <label for="email">Blood group</label>
+      <div class="input-field col s12">
+         <select id="blood" name="bloodgroup">
+             <option value="Choose" selected  style="color:white">--select blood group--</option>
+             <option value="A"  style="color:white">A</option>
+             <option value="AB"  style="color:white">AB</option>
+             <option value="B"  style="color:white">B</option>
+             <option value="O"  style="color:white">O</option>
+
+         </select>
+  <label>Blood Group</label>
+
       </div>
+
     </div>
+
+  </div>
+  <div class="row">
+
+        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+
     </div>
+
 
   </div>
   <div class="row">
@@ -1424,13 +1648,12 @@
   </div>
 
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="appo">
 </form>
 </div>
 </div>
 </div>
 </div>
-
 
 
 
@@ -1476,10 +1699,23 @@
           });
         });
       });
+
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
       </script>
       <script type="text/javascript">
         M.FormSelect.init(document.querySelector('#status'));
-        M.FormSelect.init(document.querySelector('#status'));
+        M.FormSelect.init(document.querySelector('#blood1'));
+        M.FormSelect.init(document.querySelector('#blood2'));
+        M.FormSelect.init(document.querySelector('#blood3'));
+        M.FormSelect.init(document.querySelector('#blood4'));
+        M.FormSelect.init(document.querySelector('#blood5'));
+        M.FormSelect.init(document.querySelector('#blood6'));
+        M.FormSelect.init(document.querySelector('#blood7'));
+        M.FormSelect.init(document.querySelector('#blood8'));
+        M.FormSelect.init(document.querySelector('#blood'));
+
 
 M.Sidenav.init(document.querySelector('.sidenav'));
 $(".dropdown-trigger").dropdown();

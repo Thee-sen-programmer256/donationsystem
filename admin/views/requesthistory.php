@@ -109,6 +109,9 @@
                     <h4>Mark Roi</h4>
                     <small>Super admin</small>
                 </div>
+                <div>
+                    <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
+                </div>
             </div>
         </header>
         <!-- Header End -->

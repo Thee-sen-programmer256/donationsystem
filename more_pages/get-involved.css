@@ -182,14 +182,13 @@ html{
     text-decoration: none;
     color: #fff;
     font-weight: lighter;
-    background: blue;
     border-radius: 5px;
     padding: 6px;
   }
 
   p a:hover{
     color: #000;
-    background: #0071b5;
+
     cursor: pointer;
   }
   

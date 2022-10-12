@@ -1,15 +1,15 @@
 <?php
 
-session_start();
-if(!isset($_SESSION['email'])){
-header("Location: Home/login.php");
-}
-    include "../../config/connection.php"
+
+    include "../../config/connection.php";
+    session_start();
+    if(!isset($_SESSION['email'])){
+    header("Location: ../../Home/login.php");
+    }
 
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -628,12 +628,22 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 
 <body class="bg-light">
 
+  <?php
+  // include "../config/connection.php";
+      $sql_fetch="SELECT * FROM donor where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+
+
+      ?>
+
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
+    <!-- <li><a href="#!">one</a></li> -->
+    <!-- <li><a href="#!">two</a></li> -->
     <li class="divider"></li>
-    <li><a href="#!">logout</a></li>
+    <li><a href="../../Home/logout.php">logout</a></li>
   </ul>
   <div class="navbar-fixed">
     <nav>
@@ -644,9 +654,9 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 
         <a href="#!" class="brand-logo center " >
           <div class="chip " style="vertical-align:middle;">
-     <img src="../../images/_20200622_003355.jpg" alt="Contact Person">
+     <img src="../../images/<?php echo $rows['image']; ?>" alt="Contact Person">
 
-     <span style="font-size:16px;font-weight:bold;">big AN 256</span>
+     <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
     </div>
         </a>
         <ul class="right hide-on-med-and-down" >
@@ -654,12 +664,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
           <!-- <li><a href="sass.html" >Fundraise</a></li> -->
           <!-- <li><a href="badges.html">Schedule</a></li> -->
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Logout<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
       </div>
       <?php
       include "../../config/connection.php";
-      $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
+      $select="SELECT * FROM notifications WHERE status='Active' and client_type='Donor' or client_type='All'";
       $query=mysqli_query($connection,$select);
       $count=mysqli_num_rows($query);
 

@@ -1209,63 +1209,51 @@ html, body {
     <div class="accordion">
     <div class="accordion-item">
       <div class="accordion-item-header">
-        What is Web Development?
+      Are organ and tissue transplants experimental?
       </div>
       <div class="accordion-item-body">
         <div class="accordion-item-body-content">
-          Web Development broadly refers to the tasks associated with developing functional websites and applications for the Internet. The web development process includes web design, web content development, client-side/server-side scripting and network security configuration, among other tasks.
+        Medication and medical advances have resulted in transplant surgeries today that are very successful, in fact as high as 95 percent. The transplantation of vital organs has become routine surgical operation and is no longer experimental.
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <div class="accordion-item-header">
-        What is HTML?
+      How are organs and tissues for transplantation obtained?
       </div>
       <div class="accordion-item-body">
         <div class="accordion-item-body-content">
-          HTML, aka HyperText Markup Language, is the dominant markup language for creating websites and anything that can be viewed in a web browser.
+        Many organ and tissues are donated by individuals at the time of their death. Others are donated by living donors.
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <div class="accordion-item-header">
-        What are some basic technical skills of a Front-End developer?
+      Which organs and tissues can be donated after death?
       </div>
       <div class="accordion-item-body">
         <div class="accordion-item-body-content">
-          <ul style="padding-left: 1rem;">
-            <li>HTML, CSS, JavaScript</li>
-            <li>Frameworks (CSS and JavaScript frameworks)</li>
-            <li>Responsive Design</li>
-            <li>Version Control/Git</li>
-            <li>Testing/Debugging</li>
-            <li>Browser Developer Tools</li>
-            <li>Web Performance</li>
-            <li>SEO (Search Engine Optimization)</li>
-            <!-- <li>CSS Preprocessing</li> -->
-            <li>Command Line</li>
-            <li>CMS (Content Management System)</li>
-          </ul>
+        Kidneys, lungs, corneas, livers, pancreases, heart valves, bones, tendons, skin and bone marrow can all be transplanted. If desired, a donor can specify on a donor card which organs and tissues are to be donated.
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <div class="accordion-item-header">
-        What is HTTP?
+      Do I have to pay to be an organ and tissue donor after death?
       </div>
       <div class="accordion-item-body">
         <div class="accordion-item-body-content">
-          HTTP, aka HyperText Transfer Protocol, is the underlying protocol used by the World Wide Web and this protocol defines how messages are formatted and transmitted, and what actions Web servers and browsers should take in response to various commands.
+        Donors and their families do not pay for any expenses associated with organ and tissue donation.
         </div>
       </div>
     </div>
     <div class="accordion-item">
       <div class="accordion-item-header">
-        What is CORS?
+      Will being a declared organ donor (to donate after my death) affect the care I receive in a hospital?
       </div>
       <div class="accordion-item-body">
         <div class="accordion-item-body-content">
-          CORS, aka Cross-Origin Resource Sharing, is a mechanism that enables many resources (e.g. images, stylesheets, scripts, fonts) on a web page to be requested from another domain outside the domain from which the resource originated.
+        Organ and tissue donation is not even considered until all possible efforts to save a person's life have been exhausted.
         </div>
       </div>
     </div>

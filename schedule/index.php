@@ -805,7 +805,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         <!-- end of modal -->
 
 <?php
-$schedules = $connection->query("SELECT * FROM `schedule`");
+$schedules = $connection->query("SELECT * FROM `schedule` where client_type='Patient'");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));

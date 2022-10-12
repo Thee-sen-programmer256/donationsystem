@@ -1,4 +1,3 @@
-
 <?php
 
 include "../config/connection.php";
@@ -7,36 +6,15 @@ if (!isset($_SESSION['email'])) {
   // code...
 }
 
-// $con = mysqli_connect("localhost","root","","donation_procurement");
-
-if(isset($_POST['blood'])){
-
-
-  $name=$_POST['fname'];
-  $email=$_POST['email'];
-  $organ=$_POST['organ/tissue/blood'];
-  $blood=$_POST['bloodgroup'];
-  $appoint=$_POST['appointdate'];
-
-
-
-  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`) VALUES ('$name','$email','$organ','$blood','$appoint')";
-  $sql_query=mysqli_query($connection,$sql_insert);
-  if ($sql_query==TRUE) {
-    // echo "successful";
-    header("Location:./blooddon.php?success=Donation appointment has been added successfully");
-  }else{
-    echo mysqli_error($connection);
-  }
-}
  ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
-      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- <link rel="stylesheet" href="lib/owlcarousel/owl.carousel.min.css"> -->
@@ -45,15 +23,14 @@ if(isset($_POST['blood'])){
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <!-- <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css"> -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <!-- <link rel="stylesheet" type="text/css" href="css/styles.css"> -->
 <!-- <link rel="stylesheet" type="text/css" href="sstyles.css"> -->
   <!-- <link rel="stylesheet" href="main.css"> -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;900&display=swap" rel="stylesheet">
   <!-- <link rel="stylesheet" href="newsli.css"> -->
-  <link rel="stylesheet" href="accordition/accd.css">
-  <link rel="stylesheet" href="pop.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../accordition/accd.css">
   <script type="text/javascript"
 <!-- src="https://code.jquery.com/jquery-1.12.0.min.js"> -->
  </script>
@@ -63,15 +40,6 @@ if(isset($_POST['blood'])){
  </script>
 
  <style >
-
- .success {
-   background: #D4EDDA;
-   color: #40754C;
-   padding: 10px;
-   width: 50%;
-   border-radius: 5px;
-   margin: 20px auto;
- }
    a{
      text-decoration: none;
    }
@@ -83,6 +51,12 @@ if(isset($_POST['blood'])){
    }
    img{
      height:250px
+   }
+
+
+   a.new:hover button{
+     background: #ff7d7d;
+     color: #fff;
    }
    ul.select-dropdown,
   ul.dropdown-content {
@@ -625,7 +599,6 @@ if(isset($_POST['blood'])){
   }
 
 
-
  </style>
 
   </head>
@@ -641,6 +614,7 @@ if(isset($_POST['blood'])){
 
         ?>
 
+
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
   <!-- <li><a href="#!">one</a></li> -->
@@ -650,29 +624,60 @@ if(isset($_POST['blood'])){
 </ul>
 <div class="navbar-fixed">
   <nav>
+
+<!-- notif -->
+<ul class="dots " id="notifications" style="position: absolute;margin-left:">
+<li>
+ <a href="#" >
+   <span class="material-icons  dropdown-trigger" data-target='dropdown1'>notifications_active<mark class=""></mark></span>
+ </a>
+</li>
+</ul>
+
+<ul id='dropdown1' class='dropdown-content left'  data-constrainWidth="false" style="width: 300px !important;overflow-y:scroll;">
+
+<li><a href="#!"  data-constrainWidth="false"><strong style="font-weight:bold"></a></li>
+ <!-- <li class="divider" tabindex="-4"></li> -->
+ <!-- <hr class="solid"> -->
+
+
+</ul>
+
+
+
+
+<!-- notif -->
+
+
+
+
+
+
     <div class="nav-wrapper blue">
       <a class="brand-logo left">
   <a href="" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="fas fa-bars" style="color:white"></i></a>
        &nbsp;  </a>
 
+
+
       <a href="#!" class="brand-logo center " >
         <div class="chip " style="vertical-align:middle;">
-   <img src="../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+   <img src="../images/<?php echo $rows['image']; ?>" style="width:40px; height:40px;" alt="Contact Person">
 
    <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
   </div>
       </a>
       <ul class="right hide-on-med-and-down" >
         <li><a href="patients.php" >Patients</a></li>
-        <!-- <li><a href="sass.html" >Fundraise</a></li> -->
+        <li><a class="modal-trigger" href="#terms" >Quick Info</a></li>
         <li><a href="scheduleD/">Schedule</a></li>
         <!-- Dropdown Trigger -->
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Logout<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
     <?php
     include "../config/connection.php";
-    $select="SELECT * FROM notifications WHERE active='1' and client_type='donors'";
+    $select="SELECT * FROM notifications WHERE status='Active' and client_type='Donor' or client_type='All'";
     $query=mysqli_query($connection,$select);
     $count=mysqli_num_rows($query);
 
@@ -697,11 +702,17 @@ if(isset($_POST['blood'])){
        <!-- <li class="divider" tabindex="-4"></li> -->
        <!-- <hr class="solid"> -->
    <?php }
-  } else{?>
+ } else{?>
      <li><a href="#!" data-constrainWidth="false">You have no notifications yet!</a> </li>
-  <?php } ?>
+<?php } ?>
 
    </ul>
+
+
+
+
+
+    <!-- notif -->
 
   </nav>
 
@@ -717,416 +728,323 @@ if(isset($_POST['blood'])){
 <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
 </div></li>
 <!-- <li><a href="patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li> -->
-<li><a href="Home.php"><i class="material-icons">account_balance</i>Home</a></li>
+<!-- <li><a href="stories/viewstory.php"><i class="material-icons">account_balance</i>Home</a></li> -->
 <li><a href="organ.php"><i class="material-icons">handyman</i>Donate Organ</a></li>
-<!-- <li><a href="blood.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li> -->
+<li><a href="blooddon.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li>
 <li><a href="tissue.php"><i class="material-icons">ac_unit</i>Donate Tissue</a></li>
 <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
 </ul>
 
-<p style="font-weight:bold;font-size:14pt;margin-left:1%">Organs You Can Donate</p>
 
-<?php if (isset($_GET['success'])) { ?>
-<p class="success center  "><?php echo $_GET['success']; ?><a href="./blooddon.php" style="margin-left:10%">&times;</a></p>
-<?php } ?>
+<div class="right" >
+  <p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>
+</div>
 
-<!-- start of crds -->
-<div class="container" style="width:100%;">
-  <div class="row">
+<?php
 
+
+    if(isset($_SESSION['donorId']))
+    {
+        ?> <div>
+            <div style="width:300px; margin-top:5px; margin-left: 5px; background-color:green; color: white; text-align: center; border-radius:12px;" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Your Welcome !</strong><?php echo $rows['fname']; ?><?= $_SESSION['donorId']; ?>
+                <a href="./Home.php"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button></a>
+            </div>
+    </div>
+        <?php
+        unset($_SESSION['donorId']);
+    }
+
+?>
+
+<section class="">
+<p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
+
+
+    <div class="container" style="width:100%;">
+      <div class="row">
+
+              <!-- start of card -->
+              <div class="col 18 m3 s12">
+                <div class="card z-depth-5" style="height:150px">
+
+                  <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Donations made<i class="material-icons right">add_circle_outline</i></span>
+                    <p><a href="#">This is a link</a></p>
+                  </div>
+                  <div class="card-reveal">
+                  <?php
+                                     $cdresult =" SELECT * FROM donationappointment where email='".$_SESSION['email']."' " ;
+                                    if($cddisplay=mysqli_query($connection, $cdresult)) {
+                                     $cdrow=mysqli_num_rows($cddisplay);
+                                    }
+                                 ?>
+                    <span class="card-title grey-text text-darken-4">Donations Made<i class="material-icons right">close</i></span>
+                    <p><?php echo $cdrow;  ?></p>
+                  </div>
+                </div>
+
+              </div>
+            <!-- end of card -->
+            <!-- start of card -->
+            <div class="col 18 m3 s12">
+              <div class="card z-depth-5" style="height:150px">
+
+                <div class="card-content">
+                  <span class="card-title activator grey-text text-darken-4">Pending Donations<i class="material-icons right">compare_arrows</i></span>
+                  <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                <?php
+                                     $dresult =" SELECT * FROM donationappointment where email='".$_SESSION['email']."' and status = 'Pending' " ;
+                                    if($ddisplay=mysqli_query($connection, $dresult)) {
+                                     $drow=mysqli_num_rows($ddisplay);
+                                    }
+                                 ?>
+                  <span class="card-title grey-text text-darken-4">Pending Donations<i class="material-icons right">close</i></span>
+                  <p><?php echo $drow;  ?></p>
+                </div>
+              </div>
+
+            </div>
+          <!-- end of card -->
           <!-- start of card -->
           <div class="col 18 m3 s12">
             <div class="card z-depth-5" style="height:150px">
 
               <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">BLOOD<i class="material-icons right">add_circle_outline</i></span>
-                <!-- <p><a href="#">This is a link</a></p> -->
+                <span class="card-title activator grey-text text-darken-4">Approved Donations<i class="material-icons right">check_circle</i></span>
+                <p><a href="#">This is a link</a></p>
               </div>
               <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">BLOOD<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+              <?php
+                                     $result =" SELECT * FROM donationappointment where email='".$_SESSION['email']."'and status='Approved' " ;
+                                    if($display=mysqli_query($connection, $result)) {
+                                     $row=mysqli_num_rows($display);
+                                    }
+                                 ?>
+                <span class="card-title grey-text text-darken-4">Approved Donation<i class="material-icons right">close</i></span>
+                <p><?php echo $row;  ?></p>
               </div>
-              <div class="card-action center box">
-                <a href="#divOne" >DONATE</a>
+            </div>
+
+          </div>
+          <!-- start of card -->
+          <div class="col 18 m3 s12">
+            <div class="card z-depth-5" style="height:134px">
+
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">Rejected Donations<i class="material-icons right ">block</i></span>
+                <p><a href="#">This is a link</a></p>
               </div>
-
+              <div class="card-reveal">
+              <?php
+                                     $result1 =" SELECT * FROM donationappointment where email='".$_SESSION['email']."' and status ='Rejected' " ;
+                                    if($display1=mysqli_query($connection, $result1)) {
+                                     $row1=mysqli_num_rows($display1);
+                                    }
+                                 ?>
+                <span class="card-title grey-text text-darken-4">Rejected Donations<i class="material-icons right">close</i></span>
+                <p><?php echo $row1;  ?></p>
+              </div>
             </div>
 
           </div>
+           <!-- end of card -->
 
+      </div>
+    </div>
+  </section>
+<!-- cards rnd -->
 
-        <!-- end of card -->
-        <!-- start of card -->
-        <div class="col 18 m3 s12">
-          <div class="card z-depth-5" style="height:150px">
+<p class="center" style="font-weight:bold;font-size:15pt;margin-left:1%;background-color:#99CCCC;padding:5px;width:300px;color:white;border-radius:30px;margin-left:40%" >Contribute to our Fundraise</p>
+<!-- for fundraise -->
 
-            <div class="card-content">
-              <span class="card-title activator grey-text text-darken-4">BONE MARROW<i class="material-icons right">add_circle_outline</i></span>
-              <!-- <p><a href="#">This is a link</a></p> -->
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">BONE MARROW<i class="material-icons right">close</i></span>
-              <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-            <div class="card-action center box">
-              <a href="#divTwo">DONATE</a>
-            </div>
+<section>
+  <ul class="slider">
+    <li>
+      <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
+              <div class="card-panel grey lighten-5 z-depth-1">
+                <div class="row valign-wrapper">
+                  <div class="col s2">
+                    <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
+                  </div>
+                  <div class="col s10">
+
+                      <span class="black-text" style="margin-left:-7%">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                          This is a square image. Add the "circle" class to it to make it appear circular.
+                            This is a square image. Add the "circle" class to it to make it appear circular.
+                              This is a square image. Add the "circle" class to it to make it appear circular.
+                                This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
           </div>
 
+
+                  </div>
+                  <div class="row" style="margin-top:-6%">
+                    <table>
+                      <tr>
+                        <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                              <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                  <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+
+
+                        <td>    <div class="card-action right-align" style="margin-right:75%;">
+                            <a href="../stories/d-story.php" class="btn green">Fundraise</a>
+                          </div></td>
+                        <td>
+
+
+
+                      </tr>
+                    </table>
+                  </div>
+    </li>
+
+    <li>
+      <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
+              <div class="card-panel grey lighten-5 z-depth-1">
+                <div class="row valign-wrapper">
+                  <div class="col s2">
+                    <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
+                  </div>
+                  <div class="col s10">
+
+                      <span class="black-text" style="margin-left:-7%">
+                        This is a square image. Add the "circle" class to it to make it appear circular.
+                          This is a square image. Add the "circle" class to it to make it appear circular.
+                            This is a square image. Add the "circle" class to it to make it appear circular.
+                              This is a square image. Add the "circle" class to it to make it appear circular.
+                                This is a square image. Add the "circle" class to it to make it appear circular.
+                      </span>
+          </div>
+
+
+                  </div>
+                  <div class="row" style="margin-top:-6%">
+                    <table>
+                      <tr>
+                        <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                              <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                  <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+
+
+
+                        <td>    <div class="card-action right-align" style="margin-right:75%;">
+                            <a href="" class="btn green">Fundraise</a>
+                          </div></td>
+                        <td>
+
+                      </tr>
+                    </table>
+                  </div>
+    </li>
+  </ul>
+
+</section>
+<!-- end of fundraise -->
+
+<!-- section for the accordition -->
+
+
+<section  style="margin-top:-6%">
+  <div class="">
+    <h4>FAQs</h4>
+  </div>
+
+  <div style="margin-left:-6%;margin-top:-6%">
+
+
+    <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-item-header">
+      Are organ and tissue transplants experimental?
+      </div>
+      <div class="accordion-item-body">
+        <div class="accordion-item-body-content">
+        Medication and medical advances have resulted in transplant surgeries today that are very successful, in fact as high as 95 percent. The transplantation of vital organs has become routine surgical operation and is no longer experimental.
         </div>
-      <!-- end of card -->
-      <!-- start of card -->
-      <div class="col 18 m3 s12">
-        <div class="card z-depth-5" style="height:150px">
-
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">CORD BLOOD STEM CELLS<i class="material-icons right">add_circle_outline</i></span>
-            <!-- <p><a href="#">This is a link</a></p> -->
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">CORD BLOOD STEM CELLS<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-          <div class="card-action center box">
-            <a href="#divThree">DONATE</a>
-          </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-item-header">
+      How are organs and tissues for transplantation obtained?
+      </div>
+      <div class="accordion-item-body">
+        <div class="accordion-item-body-content">
+        Many organ and tissues are donated by individuals at the time of their death. Others are donated by living donors.
         </div>
-
       </div>
-      <!-- start of card -->
-      <div class="col 18 m3 s12">
-        <div class="card z-depth-5" style="height:150px">
-
-          <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">PERIPHERAL BLOOD STEM CELLS<i class="material-icons right ">add_circle_outline</i></span>
-            <!-- <p><a href="#">This is a link</a></p> -->
-          </div>
-          <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">PERIPHERAL BLOOD STEM CELLS<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-          </div>
-          <div class="card-action center box">
-            <a href="#divFour">DONATE</a>
-          </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-item-header">
+      Which organs and tissues can be donated after death?
+      </div>
+      <div class="accordion-item-body">
+        <div class="accordion-item-body-content">
+        Kidneys, lungs, corneas, livers, pancreases, heart valves, bones, tendons, skin and bone marrow can all be transplanted. If desired, a donor can specify on a donor card which organs and tissues are to be donated.
         </div>
-
       </div>
-       <!-- end of card -->
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-item-header">
+      Do I have to pay to be an organ and tissue donor after death?
+      </div>
+      <div class="accordion-item-body">
+        <div class="accordion-item-body-content">
+        Donors and their families do not pay for any expenses associated with organ and tissue donation.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <div class="accordion-item-header">
+      Will being a declared organ donor (to donate after my death) affect the care I receive in a hospital?
+      </div>
+      <div class="accordion-item-body">
+        <div class="accordion-item-body-content">
+        Organ and tissue donation is not even considered until all possible efforts to save a person's life have been exhausted.
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+</section>
+<!-- end section for the accordition -->
 
-  </div>
 
 
-</div>
 
-<!-- end f cards -->
-
-
-<!-- donation1 -->
-<div class="overlay" id="divOne">
-<div class="wrapper">
-<h2>Blood</h2><a class="close" href="#">&times;</a>
-<div class="content">
+<!-- modals -->
 <div class="container">
-<form method="POST">
+    <!-- <h2>Modals</h2> -->
 
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
-        <label for="name">Name</label>
+    <!-- <a class="btn orange modal-trigger" href="#terms">Help Info</a> -->
+
+    <div id="terms" class="modal">
+      <div class="modal-content">
+        <h4>Welcome Donor</h4>
+        <p>To donate <br>   &nbsp;   &nbsp;   &nbsp; an organ<i class="material-icons">handyman</i> <br>
+                  &nbsp;  &nbsp;   &nbsp;        blood<i class="material-icons">bloodtype</i><br>
+                          &nbsp;   &nbsp;   &nbsp;  tissue<i class="material-icons">ac_unit</i><br>
+          Click the <a class="small btn-floating pulse blue"><i class="material-icons">menu</i></a> inorder to access the donation  pages</p>
       </div>
-    </div>
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
-        <label for="email">Email</label>
-      </div>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="Blood">
-        <label for="email">Organ</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col s12">
-         <select id="blood1" name="bloodgroup">
-             <option value="Choose" selected  style="color:white">--select blood group--</option>
-             <option value="A"  style="color:white">A</option>
-             <option value="AB"  style="color:white">AB</option>
-             <option value="B"  style="color:white">B</option>
-             <option value="O"  style="color:white">O</option>
-
-         </select>
-  <label>Blood Group</label>
-
-      </div>
-
-    </div>
-
-  </div>
-  <div class="row">
-
-        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
-
-    </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <p>
-           <label>
-             <input type="checkbox" />
-             <span>By clicking checkbox, you consent to donating your organ out
-             of your personal decision and free will</span>
-           </label>
-         </p>
-         <p>
-
-      </div>
-    </div>
-  </div>
-
-
-<input type="submit" value="Submit" name="blood">
-</form>
-</div>
-</div>
-</div>
-</div>
-
-<!-- donation2 -->
-<div class="overlay" id="divTwo">
-<div class="wrapper">
-<h2>Bone marrow</h2><a class="close" href="#">&times;</a>
-<div class="content">
-<div class="container">
-<form method="POST">
-
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
-        <label for="name">Name</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
-        <label for="email">Email</label>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close btn blue"><span style="color:white">okay</span></a>
       </div>
     </div>
 
   </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="Bone marrow">
-        <label for="email">Organ</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col s12">
-         <select id="blood2" name="bloodgroup">
-             <option value="Choose" selected  style="color:white">--select blood group--</option>
-             <option value="A"  style="color:white">A</option>
-             <option value="AB"  style="color:white">AB</option>
-             <option value="B"  style="color:white">B</option>
-             <option value="O"  style="color:white">O</option>
-
-         </select>
-  <label>Blood Group</label>
-
-      </div>
-
-    </div>
-  </div>
-  <div class="row">
-
-        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
-
-    </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <p>
-           <label>
-             <input type="checkbox" />
-             <span>By clicking checkbox, you consent to donating your organ out
-             of your personal decision and free will</span>
-           </label>
-         </p>
-         <p>
-
-      </div>
-    </div>
-  </div>
-
-
-<input type="submit" value="Submit" name="blood">
-</form>
-</div>
-</div>
-</div>
-</div>
-
-
-<!-- donation3 -->
-<div class="overlay" id="divThree">
-<div class="wrapper">
-<h2>Cord Blood stem cells </h2><a class="close" href="#">&times;</a>
-<div class="content">
-<div class="container">
-<form method="POST">
-
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
-        <label for="name">Name</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
-        <label for="email">Email</label>
-      </div>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="blood/tissue/blood" value="Cord Blood stems cells">
-        <label for="email">Organ</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col s12">
-         <select id="blood3" name="bloodgroup">
-             <option value="Choose" selected  style="color:white">--select blood group--</option>
-             <option value="A"  style="color:white">A</option>
-             <option value="AB"  style="color:white">AB</option>
-             <option value="B"  style="color:white">B</option>
-             <option value="O"  style="color:white">O</option>
-
-         </select>
-  <label>Blood Group</label>
-
-      </div>
-
-    </div>
-  </div>
-  <div class="row">
-
-        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
-
-    </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <p>
-           <label>
-             <input type="checkbox" />
-             <span>By clicking checkbox, you consent to donating your organ out
-             of your personal decision and free will</span>
-           </label>
-         </p>
-         <p>
-
-      </div>
-    </div>
-  </div>
-
-
-<input type="submit" value="Submit" name="blood">
-</form>
-</div>
-</div>
-</div>
-</div>
-
-<!-- donation4 -->
-<div class="overlay" id="divFour">
-<div class="wrapper">
-<h2>Peripheral Blood stem cells</h2><a class="close" href="#">&times;</a>
-<div class="content">
-<div class="container">
-<form method="POST">
-
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="fname" value="<?php echo $rows['fname']; ?>">
-        <label for="name">Name</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="email" name="email" value="<?php echo $rows['email']; ?>">
-        <label for="email">Email</label>
-      </div>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <input class="fon" id="name" type="text" name="organ/tissue/blood" value="Peripheral Blood stem cells" >
-        <label for="email">Organ</label>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-field col s12">
-         <select id="blood4" name="bloodgroup">
-             <option value="Choose" selected  style="color:white">--select blood group--</option>
-             <option value="A"  style="color:white">A</option>
-             <option value="AB"  style="color:white">AB</option>
-             <option value="B"  style="color:white">B</option>
-             <option value="O"  style="color:white">O</option>
-
-         </select>
-  <label>Blood Group</label>
-
-      </div>
-
-    </div>
-
-  </div>
-  <div class="row">
-
-        <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
-
-    </div>
-  <div class="row">
-    <div class="col">
-      <div class="input-field col  s12">
-        <p>
-           <label>
-             <input type="checkbox" />
-             <span>By clicking checkbox, you consent to donating your organ out
-             of your personal decision and free will</span>
-           </label>
-         </p>
-         <p>
-
-      </div>
-    </div>
-  </div>
-
-
-<input type="submit" value="Submit" name="blood">
-</form>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
+    <!-- end of modal -->
 
 
 
@@ -1155,34 +1073,31 @@ if(isset($_POST['blood'])){
 
 
 
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $('.slider').slick();
+    </script>
+      <script src="../accordition/accd.js">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-      <script >
-      $(document).ready(function() {
-        $("#notify").on("click", function() {
-          $.ajax({
-            url: "../readNotify.php",
-            success: function(res) {
-              console.log(res);
-            }
-          });
-        });
-      });
-      M.FormSelect.init(document.querySelector('#blood1'));
-      M.FormSelect.init(document.querySelector('#blood2'));
-      M.FormSelect.init(document.querySelector('#blood3'));
-      M.FormSelect.init(document.querySelector('#blood4'));
 
-      $(document).ready(function(){
-        $('.datepicker').datepicker();
-      });
-      </script>
+<script >
+$(document).ready(function() {
+  $("#notify").on("click", function() {
+    $.ajax({
+      url: "../readNotify.php",
+      success: function(res) {
+        console.log(res);
+      }
+    });
+  });
+});
+</script>
       <script type="text/javascript">
-        M.FormSelect.init(document.querySelector('#status'));
-        M.FormSelect.init(document.querySelector('#status'));
 
 M.Sidenav.init(document.querySelector('.sidenav'));
 $(".dropdown-trigger").dropdown();
@@ -1195,6 +1110,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 $(document).ready(function(){
 $('.tooltipped').tooltip();
+});
+$(document).ready(function(){
+  $('.modal').modal();
 });
 
       </script>
