@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2022 at 07:58 PM
+-- Generation Time: Oct 12, 2022 at 05:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -83,6 +83,30 @@ INSERT INTO `donation` (`donationId`, `fname`, `lname`, `contact`, `amount`, `di
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `donationappointment`
+--
+
+CREATE TABLE `donationappointment` (
+  `id` int(40) NOT NULL,
+  `fname` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `organ/tissue/blood` varchar(45) NOT NULL,
+  `bloodgroup` varchar(45) NOT NULL,
+  `appointdate` date NOT NULL,
+  `status` varchar(11) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `donationappointment`
+--
+
+INSERT INTO `donationappointment` (`id`, `fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`, `status`, `created`) VALUES
+(1, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00', 'Pending', '2022-10-12 01:07:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `donor`
 --
 
@@ -106,12 +130,14 @@ CREATE TABLE `donor` (
 
 INSERT INTO `donor` (`donorId`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
 (1, 'Mark', 'mukasa.fred@gmail.com', '2022-09-27 13:52:00', '0789755664', 'B', 'chadian', 'avatar.jpg', 'Male', '2022-09-28 17:41:49', '1234'),
-(2, 'Mukwaaya', 'Ku@gmail.com', '2022-09-28 15:21:14', '078656466', 'AB', 'Ugandan', '', 'Male', '2022-09-28 17:41:49', '7654556'),
-(3, 'Enock', 'En@gmail.com ', '2022-09-28 20:19:41', '07536567980', 'O', 'Ugandan', '', 'Male', '2022-09-28 17:41:49', '674wtedyf'),
-(4, 'Mark', 'mark@gmail.com', '2022-09-05 20:42:03', '079543567', 'A', 'Ugandan', '', '', '2022-09-28 17:43:10', 'kjjfhcvj'),
-(5, 'mike Mugera', 'mm@gmail.com', '2012-09-12 23:55:43', '074325656323', 'B', 'Ugandan', '', '', '2022-09-29 20:57:07', 'wfgeg343444'),
-(6, 'Muyere Edgar', 'mug@mail.com', '1997-10-14 11:13:59', '0745675786', 'AB', 'Ugandan', '', '', '2022-10-01 08:15:25', '86i7fru6v67ju'),
-(7, 'Georgia Babirye', 'barb@gmail.com', '1982-10-01 10:18:05', '0776548765', 'O', 'Ugandan', '', 'Female', '2022-10-01 08:19:45', '.ilyktcyjfvgkub');
+(2, 'Mukwaaya', 'Ku@gmail.com', '2022-09-28 15:21:14', '078656466', 'AB', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:54:06', '7654556'),
+(3, 'Enock', 'En@gmail.com ', '2022-09-28 20:19:41', '07536567980', 'O', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:54:00', '674wtedyf'),
+(4, 'Mark', 'mark@gmail.com', '2022-09-05 20:42:03', '079543567', 'A', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:56', 'kjjfhcvj'),
+(5, 'mike Mugera', 'mm@gmail.com', '2012-09-12 23:55:43', '074325656323', 'B', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:53', 'wfgeg343444'),
+(6, 'Muyere Edgar', 'mug@mail.com', '1997-10-14 11:13:59', '0745675786', 'AB', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:49', '86i7fru6v67ju'),
+(7, 'Georgia Babirye', 'barb@gmail.com', '1982-10-01 10:18:05', '0776548765', 'O', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Female', '2022-10-11 16:53:46', '.ilyktcyjfvgkub'),
+(8, ' muhumuza Mark', 'mak@gmail.com', '1994-10-29 00:08:00', '0789755664', 'AB', 'ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:53:37', '12345'),
+(9, 'Okello Brian', 'okellobrian@gmail.com', '2022-09-29 19:11:00', '0789755664', 'A', 'bahraini', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-10 16:12:20', 'password');
 
 -- --------------------------------------------------------
 
@@ -204,7 +230,8 @@ CREATE TABLE `patient` (
 INSERT INTO `patient` (`pid`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `bloodgroupstatus`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
 (1, 'Mutaasa Kafeera', 'muka@gmail.com', '2022-09-25 11:33:08', '0789654544', 'A', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:46:41', '12345'),
 (2, 'Edgar', 'edgar@mail.com', '2000-09-28 20:01:41', '0787535676', 'AB', 'Pending', 'Kenyan', '', 'Male', '2022-10-08 16:33:30', 'liuytucdecu6'),
-(3, 'Bosco Banda', 'bos@gmail.com', '1980-09-27 23:57:24', '0784235645', 'B', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:33:49', '2456te');
+(3, 'Bosco Banda', 'bos@gmail.com', '1980-09-27 23:57:24', '0784235645', 'B', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:33:49', '2456te'),
+(4, 'Bosco Mutyaaba', 'bosco1@gmail.com', '2022-09-30 21:37:00', '0755060662', 'A', '', 'bahamian', 'anime-wallpapers-anime-nanatsu-no-taizai-meliodas.jpg', 'male', '2022-10-10 16:38:07', '12345');
 
 -- --------------------------------------------------------
 
@@ -229,7 +256,8 @@ CREATE TABLE `request` (
 INSERT INTO `request` (`requestId`, `fname`, `email`, `organ`, `bloodgroup`, `status`, `created`) VALUES
 (1, 'Roi', 'bos@gmail.com', 'Heart', 'A', 'Pending', '2022-10-05 21:08:16'),
 (2, 'Mark', 'bos@gmail.com', 'Heart', 'private', 'Pending', '2022-10-05 21:10:07'),
-(3, 'Bosco', 'bos@gmail.com', 'Kidney', 'private', 'Approved', '2022-10-05 21:33:27');
+(3, 'Bosco', 'bos@gmail.com', 'Kidney', 'private', 'Approved', '2022-10-05 21:33:27'),
+(4, 'Mutaasa Kafeera', 'muka@gmail.com', 'Heart', 'O', 'Pending', '2022-10-09 20:52:19');
 
 -- --------------------------------------------------------
 
@@ -241,6 +269,7 @@ CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
   `she_description` varchar(255) NOT NULL,
+  `client_type` varchar(45) NOT NULL,
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -249,13 +278,13 @@ CREATE TABLE `schedule` (
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `title`, `she_description`, `start_datetime`, `end_datetime`) VALUES
-(1, 'Introduction', 'dsgvsbdkhg kjvbn l gyuvtfryfghj hniouug', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
-(6, 'Party', 'Community', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
-(3, 'Zoom', 'To know what patients want etc.', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
-(4, 'Zoom meeting', 'To know what patients want etc next week', '2022-09-09 16:16:00', '2022-09-09 16:17:00'),
-(5, 'Feast', 'Big meal', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
-(7, 'hcvjbknl', 'vbklj. ', '2022-10-19 22:48:00', '2022-12-01 22:48:00');
+INSERT INTO `schedule` (`id`, `title`, `she_description`, `client_type`, `start_datetime`, `end_datetime`) VALUES
+(1, 'Introduction', 'dsgvsbdkhg kjvbn l gyuvtfryfghj hniouug', 'Patient', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
+(6, 'Party', 'Community', 'Donor', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
+(3, 'Zoom', 'To know what patients want etc.', 'Donor', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
+(4, 'Zoom meeting', 'To know what patients want etc next week', 'Patient', '2022-09-09 16:16:00', '2022-09-09 16:17:00'),
+(5, 'Feast', 'Big meal', 'Patient', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
+(7, 'hcvjbknl', 'vbklj. ', 'Donor', '2022-10-19 22:48:00', '2022-12-01 22:48:00');
 
 -- --------------------------------------------------------
 
@@ -268,16 +297,21 @@ CREATE TABLE `story` (
   `title` varchar(45) NOT NULL,
   `status` varchar(20) NOT NULL,
   `body` longtext NOT NULL,
-  `storyimage` text NOT NULL
+  `storyimage` text NOT NULL,
+  `spid` int(11) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `story`
 --
 
-INSERT INTO `story` (`id`, `title`, `status`, `body`, `storyimage`) VALUES
-(1, 'My Life', 'public', 'I dont Want', 'dp.JPG'),
-(2, 'My story', 'public', '<p>klicduyviboyun;il/bk.v kcuxeyxxy dcv kb.ivuyckrexswghjgkb..b,kcukx6r5ey cjvku,ytjhrdg</p>\r\n', '../images/Screenshot (7).png');
+INSERT INTO `story` (`id`, `title`, `status`, `body`, `storyimage`, `spid`, `created`) VALUES
+(1, 'My Life', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\n</p>', '../images/dp.JPG', 1, '2022-10-10 16:24:08'),
+(2, 'My story', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\n</p>\r\n', '../images/Screenshot (7).png', 2, '2022-10-10 16:24:25'),
+(3, 'nstrdh', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>\r\n', '../images/dp.JPG', 9, '2022-10-10 16:29:25'),
+(4, 'Ikjhgyatucduvf', 'public', '<p>mlvyr ytexcuytfuygoj;lk.njbkhv cu5d4r6f t7guyhi,mkhnbjgfdxzseaqewextrcyivuobj nl;fi</p>\r\n', '../images/anime-4k-image-download-hd-wallpaper-preview.jpg', 0, '2022-10-10 16:38:52'),
+(5, 'jkj tfugyihunjok', 'public', '<p>e&nbsp; rytvuyoi 7hv uyioyutfcruytfc etcutuyoiuhltiyguhli;iljmk.</p>\r\n', '../images/anime-4k-image-download-hd-wallpaper-preview.jpg', 4, '2022-10-10 17:05:17');
 
 --
 -- Indexes for dumped tables
@@ -300,6 +334,12 @@ ALTER TABLE `bloodgroup`
 --
 ALTER TABLE `donation`
   ADD PRIMARY KEY (`donationId`);
+
+--
+-- Indexes for table `donationappointment`
+--
+ALTER TABLE `donationappointment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `donor`
@@ -372,10 +412,16 @@ ALTER TABLE `donation`
   MODIFY `donationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `donationappointment`
+--
+ALTER TABLE `donationappointment`
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -399,13 +445,13 @@ ALTER TABLE `organ`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `schedule`
@@ -417,7 +463,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `story`
 --
 ALTER TABLE `story`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
