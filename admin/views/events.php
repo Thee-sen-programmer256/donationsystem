@@ -84,6 +84,9 @@
                 <li>
                     <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
+                <li>
+                    <a href="fundraise.php"><span class="las la-book"></span><span>Fundraise</span></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -137,6 +140,7 @@
                             <th>ID</th>
                             <th>Event</th>
                             <th>Description</th>
+                            <th>client</th>
                             <th>Start Date</th>
                             <th>End date</th>
                             <th>Action</th>
@@ -159,6 +163,7 @@
                             <td><?php echo $row['id'];  ?></td>
                             <td><?php echo $row['title'];  ?></td>
                              <td><?php echo $row['she_description'];  ?></td>
+                             <td><?php echo $row['client_type'];  ?></td>
                              <td><?php echo $row['start_datetime'];  ?></td>
                              <td><?php echo $row['end_datetime'];  ?></td>
                             <td>

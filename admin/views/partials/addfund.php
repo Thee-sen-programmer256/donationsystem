@@ -1,4 +1,53 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
 
+    if(!$con){
+        die("Could not connect: ". mysqli_connect_error());
+    }else{
+       echo "successful connected";
+    }
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    if (isset($_POST['submit'])){
+        $filetmp=$_FILES["fimage"]["tmp_name"];
+        $filename=$_FILES["fimage"]["name"];
+        $filetype=$_FILES["fimage"]["type"];
+        $target_dir="pimages/";
+        $img_url=$target_dir.basename($_FILES["fimage"]["name"]);
+
+        if(move_uploaded_file($filetmp, $img_url)==TRUE){
+          echo "successful";
+
+        }else{
+          echo "Not successful";
+        }
+      }
+    $notifications_name= $_POST["fundraise_name"];
+    $message= $_POST["description"]; 
+    $client_type= $_POST["amount"];
+    $status= $_POST["status"];
+
+$sql = "INSERT INTO fundraise (fundraise_name,description,amount,fimage, status)VALUE('$notifications_name','$message','$client_type','$img_url','$status')";
+//echo $sql;
+// excecuting the query
+if(mysqli_query($con,$sql)){
+
+    ?>
+
+    <script type="text/javascript">
+        alert("Fundraise Successfully Added");
+        window.location= "../fundraise.php";
+    </script>
+    <?php
+    }else{
+    echo mysqli_error($con);
+    }
+
+    }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +81,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:   center
+            justify-content:  center;
         }
         a{
           text-decoration: none;
@@ -66,19 +115,22 @@
                     <a href="../organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="../organstock"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
-                    <a href="../events.php" class="active"><span class="las la-calendar"></span><span>Events</span></a>
+                    <a href="../events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
                     <a href="../notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
+                </li>
+                <li>
+                    <a href="../fundraise.php" class="active"><span class="las la-book"></span><span>Fundraise</span></a>
                 </li>
             </ul>
         </div>
@@ -92,9 +144,9 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Add Events
+              Add Fundraise
             </h2>
-           
+
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">
@@ -114,9 +166,9 @@
 
 
 
-    <a href="../events.php">
+    <a href="../fundraise.php">
         <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-           Event
+           Fundraise
         </button>
     </a>
     <div class="row m-t-30">
@@ -132,38 +184,37 @@
                       <div class=>
                           <div class="cardt rounded-0 shadow">
                               <div class="card-header bg-gradient  text-light" style="background-color:#0071b5;">
-                                  <h5 class="card-title">Event Form</h5>
+                                  <h5 class="card-title">Fundraise Form</h5>
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
-                                          <input type="hidden" name="id" value="">
-                                          <div class="form-group mb-2">
-                                              <label for="title" class="control-label">Title</label>
-                                              <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
-                                          </div>
+                                      <form action="" method="post" id="schedule-form" enctype="multipart/form-data">
+                                          <input type="hidden" name="f_id" value="">
+
+                                            <div class="form-group mb-2">
+                                          <label for="">Fundraise Title</label> <br>
+                                          <input type="text" name="fundraise_name">
+                                        </div>
+
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Description</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required></textarea>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
+                                          </div>
+
+                                          <div class="form-group mb-2">
+                                              <label for="description" class="control-label">Amount</label>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="amount" id="description" required></textarea>
                                           </div>
                                           <div class="form-group mb-2">
-                                              <label for="title" class="control-label">Client</label>
-                                              <select name="client_type" id="" class="form-control form-control-sm rounded-0">
-                                                <option value="" style="color:grey">--select--</option>
-                                                <option value="Donor">Donor</option>
-                                                <option value="Patient">Patient</option>
-                                              </select>
+                                              <label for="description" class="control-label">Image</label>
+                                              <input type="file" name="fimage">
                                           </div>
-                                          <div class="form-group mb-2">
-                                              <label for="start_datetime" class="control-label">Start</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
-                                          </div>
-                                          <div class="form-group mb-2">
-                                              <label for="end_datetime" class="control-label">End</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
-                                          </div>
+                                          
+                                          <input type="hidden" name="status" value="Active">
+
                                           <div class="card-footer">
                                               <div class="text-center">
+
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>

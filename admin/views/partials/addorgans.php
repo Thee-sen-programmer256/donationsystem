@@ -68,7 +68,7 @@ if(mysqli_query($con,$sql)){
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center;
+            justify-content:  center;
             align-content: center;
         }
         a{

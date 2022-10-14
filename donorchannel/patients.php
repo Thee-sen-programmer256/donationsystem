@@ -31,7 +31,7 @@ if (!isset($_SESSION['email'])) {
   <!-- <link rel="stylesheet" href="newsli.css"> -->
   <link rel="stylesheet" href="accordition/accd.css">
   <script type="text/javascript"
-<!-- src="https://code.jquery.com/jquery-1.12.0.min.js"> -->
+  src="https://code.jquery.com/jquery-1.12.0.min.js"> 
  </script>
  <!-- Compiled and minified JavaScript -->
  <script src=
@@ -53,12 +53,12 @@ if (!isset($_SESSION['email'])) {
    }
    ul.select-dropdown,
   ul.dropdown-content {
-    width: 300px !important;
+    width: 300px !important;}
 
     li > span {
       white-space: nowrap;
     }
-  }
+  
    ul.select-dropdown,ul.dropdown-content{
     overflow-x: hidden;
     overflow-y: scroll;

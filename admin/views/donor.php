@@ -85,6 +85,9 @@
                 <li>
                     <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
+                <li>
+                    <a href="fundraise.php"><span class="las la-book"></span><span>Fundraise</span></a>
+                </li>
             </ul>
         </div>
     </div>

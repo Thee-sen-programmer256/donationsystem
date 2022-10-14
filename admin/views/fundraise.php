@@ -1,11 +1,10 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM patient " ;
+    $result =" SELECT * FROM fundraise" ;
     $display=mysqli_query($con, $result);
-    
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../style.css">
 <!--
      <link href="admin-assets/css/font-face.css" rel="stylesheet" media="all">
@@ -23,9 +21,9 @@
     <link href="admin-assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <link href="admin-assets/css/theme.css" rel="stylesheet" media="all">
-    
+
 -->
-<title>Patients</title>
+<title>Fundraise</title>
 
     <style>
         table{
@@ -61,7 +59,7 @@
                     <a href="../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
-                    <a href="patients.php"  class="active"><span class="las la-users"></span><span>Patients</span></a>
+                    <a href="patients.php" ><span class="las la-users"></span><span>Patients</span></a>
                 </li>
                 <li>
                     <a href="donor.php"><span class="las la-user"></span><span>Donors</span></a>
@@ -76,16 +74,16 @@
                     <a href="organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="donations.php"><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
-                    <a href="notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
+                    <a href="notifications.php"><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
                 <li>
-                    <a href="fundraise.php"><span class="las la-book"></span><span>Fundraise</span></a>
+                    <a href=""  class="active"><span class="las la-book"></span><span>Fundraise</span></a>
                 </li>
             </ul>
         </div>
@@ -99,7 +97,7 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Patients
+              Fundraise
             </h2>
            <!-- Search Bar -->
             <div class="search-wrapper">
@@ -122,13 +120,13 @@
 <section>
         <main>
 
-        <div id ="searchresult" style="position:absolute; z-index: index 100;"></div>
+        <div id ="searchresult" style="position:absolute;"></div>
 
 
-    <a href="">
-        <!-- <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-            Add Patient
-        </button> -->
+    <a href="partials/addfund.php">
+        <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
+            Add Fundraise
+        </button>
     </a>
     <div class="row m-t-30">
         <div class="col-md-12">
@@ -139,59 +137,64 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Email</th>
-                            <th>DOB</th>
-                            <th>Blood group</th>
-                            <th>Blood group status</th>
-                            <th>Nationality</th>
-                            <th>Image</th>
-                            <th>Gender</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            
+                            <th>Image</th>  
+                             <th>Status</th>                   
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                <!-- Fetch data from patient table -->
-            
+
+                     <!-- Fetch data from notify table -->
+
                 <?php
                 while ( $row=mysqli_fetch_assoc($display)) {
 
                     ?>
-                        <tr>
-                            <td><?php echo $row['pid'];  ?></td>
-                             <td><?php echo $row['fname'];  ?></td>
-                             <td><?php echo $row['email'];  ?></td>
-                             <td><?php echo $row['dob'];  ?></td>
-                             <td><?php echo $row['bloodgroup'];  ?></td>
-                             <td><?php echo $row['bloodgroupstatus'];  ?></td>
-                             <td><?php echo $row['nationality'];  ?></td>
-                             <td><?php echo $row['image'];  ?></td>
-                            <td><?php echo $row['gender'];  ?></td>
+                        <tr style ="text-align:center;">
+                            <td><?php echo $row['f_id'];  ?></td>
+                            <td><?php echo $row['fundraise_name'];  ?></td>
+
+                             <td><?php echo $row['description'];  ?></td>
+                            
+                             <td><?php echo $row['amount'];  ?></td>
+                             
+
+                             <td><img src="./partials/<?php echo $row['fimage']; ?>" alt="" style="height:70px;width:70px"></td>
+                                <td><?php echo $row['status'];  ?></td>
+
 
                             <td>
-                                <a href="partials/delpatient.php?pd=<?php echo $row['pid'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
-                                &nbsp;
+
         <!-- //  checking for status -->
 
-                                <a href="partials/bloodverify.php?a=<?php echo $row['pid'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Verify</button></a>
+                                <a href="partials/deactivate-fund.php?a=<?php echo $row['f_id'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Deactivate</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->
 
-
-
-                                
+                                <a href="partials/editfund.php?a=<?php echo $row['f_id'];?>"><button type="button" class="btn btn-success" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; width: 75px">Edit</button></a>
+                                 <a href="partials/delfund.php?pd=<?php echo $row['f_id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white; margin-left:7px;">Delete</button></a>
+                                &nbsp;
                             </td>
                         </tr>
-                    <?php  }?>
+                    <?php   }?>
                     </tbody>
                 </table>
             </div>
             <!-- END DATA TABLE-->
         </div>
     </div>
-
         </main>
     </section>
+
+
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#live_search').keyup(function(){
@@ -202,7 +205,7 @@
 
                 if(input != ''){
                     $.ajax({
-                        url:"live_searches/patient-search.php",
+                        url:"live_searches/notification-search.php",
                         method:"GET",
                         data:{input:input},
 
@@ -216,8 +219,5 @@
             });
         });
 </script>
-
-
-    </div>
 </body>
 </html>

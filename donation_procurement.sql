@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2022 at 05:06 PM
+-- Generation Time: Oct 14, 2022 at 04:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -102,7 +102,8 @@ CREATE TABLE `donationappointment` (
 --
 
 INSERT INTO `donationappointment` (`id`, `fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`, `status`, `created`) VALUES
-(1, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00', 'Pending', '2022-10-12 01:07:21');
+(1, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00', 'Pending', '2022-10-12 01:07:21'),
+(2, 'Okello Brian', 'okellobrian@gmail.com', 'Heart valves', 'Choose', '0000-00-00', '', '2022-10-12 16:41:37');
 
 -- --------------------------------------------------------
 
@@ -156,6 +157,30 @@ CREATE TABLE `events` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fundraise`
+--
+
+CREATE TABLE `fundraise` (
+  `f_id` int(11) NOT NULL,
+  `fundraise_name` varchar(255) NOT NULL,
+  `description` longtext NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `fimage` text NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fundraise`
+--
+
+INSERT INTO `fundraise` (`f_id`, `fundraise_name`, `description`, `amount`, `fimage`, `status`) VALUES
+(3, 'madam', 'It is a long established fact that a reader will be . ', 'jbweoubweuobrv', 'pimages/Screenshot (10).png', 'Active'),
+(4, 'ibfueuibewjww', 'iohiiew', 'kebfitthgyctuoolkhgjknb', 'pimages/Screenshot (10).png', 'Active'),
+(5, '$gvh', '$meshjhsage', '$client_type', '$img_url', '$status');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
@@ -173,7 +198,8 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `client_type`, `status`) VALUES
 (1, 'Greetings', 'Hello, How are you', 'Patient', 'Active'),
-(2, 'Meeting', 'Hello we has a zoom meeting at 10am', 'Donor', 'Active');
+(2, 'Meeting', 'Hello we has a zoom meeting at 10am', 'Donor', 'Active'),
+(3, 'me', 'now', 'patients', 'Inactive');
 
 -- --------------------------------------------------------
 
@@ -257,7 +283,8 @@ INSERT INTO `request` (`requestId`, `fname`, `email`, `organ`, `bloodgroup`, `st
 (1, 'Roi', 'bos@gmail.com', 'Heart', 'A', 'Pending', '2022-10-05 21:08:16'),
 (2, 'Mark', 'bos@gmail.com', 'Heart', 'private', 'Pending', '2022-10-05 21:10:07'),
 (3, 'Bosco', 'bos@gmail.com', 'Kidney', 'private', 'Approved', '2022-10-05 21:33:27'),
-(4, 'Mutaasa Kafeera', 'muka@gmail.com', 'Heart', 'O', 'Pending', '2022-10-09 20:52:19');
+(4, 'Mutaasa Kafeera', 'muka@gmail.com', 'Heart', 'O', 'Pending', '2022-10-09 20:52:19'),
+(5, 'Mutaasa Kafeera', 'muka@gmail.com', 'Kidney', 'AB', 'Pending', '2022-10-13 14:57:07');
 
 -- --------------------------------------------------------
 
@@ -280,11 +307,12 @@ CREATE TABLE `schedule` (
 
 INSERT INTO `schedule` (`id`, `title`, `she_description`, `client_type`, `start_datetime`, `end_datetime`) VALUES
 (1, 'Introduction', 'dsgvsbdkhg kjvbn l gyuvtfryfghj hniouug', 'Patient', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
-(6, 'Party', 'Community', 'Donor', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
+(6, 'Party', 'Community', 'Patient', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
 (3, 'Zoom', 'To know what patients want etc.', 'Donor', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
 (4, 'Zoom meeting', 'To know what patients want etc next week', 'Patient', '2022-09-09 16:16:00', '2022-09-09 16:17:00'),
 (5, 'Feast', 'Big meal', 'Patient', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
-(7, 'hcvjbknl', 'vbklj. ', 'Donor', '2022-10-19 22:48:00', '2022-12-01 22:48:00');
+(7, 'hcvjbknl', 'vbklj. ', 'Donor', '2022-10-19 22:48:00', '2022-12-01 22:48:00'),
+(8, 'uyufsguio', 'lukytfgi;/l.,kyjmhng', 'Patient', '2022-10-22 00:13:00', '2022-10-12 20:10:00');
 
 -- --------------------------------------------------------
 
@@ -354,6 +382,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`eventId`);
 
 --
+-- Indexes for table `fundraise`
+--
+ALTER TABLE `fundraise`
+  ADD PRIMARY KEY (`f_id`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -415,7 +449,7 @@ ALTER TABLE `donation`
 -- AUTO_INCREMENT for table `donationappointment`
 --
 ALTER TABLE `donationappointment`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `donor`
@@ -430,10 +464,16 @@ ALTER TABLE `events`
   MODIFY `eventId` int(255) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `fundraise`
+--
+ALTER TABLE `fundraise`
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `organ`
@@ -451,13 +491,13 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `story`

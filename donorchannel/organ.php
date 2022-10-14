@@ -59,7 +59,7 @@ if(isset($_POST['appo'])){
   <link rel="stylesheet" href="accordition/accd.css">
   <link rel="stylesheet" href="pop.css">
   <script type="text/javascript"
-<!-- src="https://code.jquery.com/jquery-1.12.0.min.js"> -->
+ src="https://code.jquery.com/jquery-1.12.0.min.js"> 
  </script>
  <!-- Compiled and minified JavaScript -->
  <script src=
@@ -89,12 +89,12 @@ if(isset($_POST['appo'])){
    }
    ul.select-dropdown,
   ul.dropdown-content {
-    width: 300px !important;
+    width: 300px !important;}
 
     li > span {
       white-space: nowrap;
     }
-  }
+  
    ul.select-dropdown,ul.dropdown-content{
     overflow-x: hidden;
     overflow-y: scroll;
@@ -714,10 +714,10 @@ if(isset($_POST['appo'])){
 <ul id="slide-out" class="sidenav">
 <li><div class="user-view">
 <div class="background">
-<img src="Home/images/background1.jpg">
+<img src="../Home/images/background1.jpg">
 </div>
 <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
-<a href="#user"><img class="circle" src="../images/cute"></a>
+<a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
 <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
 <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
 </div></li>
@@ -726,7 +726,7 @@ if(isset($_POST['appo'])){
 <!-- <li><a href="Fundraise/index.php"><i class="material-icons">handyman</i>Donate Organ</a></li> -->
 <li><a href="blooddon.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li>
 <li><a href="tissue.php"><i class="material-icons">ac_unit</i>Donate Tissue</a></li>
-<li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+<!-- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li> -->
 </ul>
 
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Organs You Can Donate</p>

@@ -862,21 +862,25 @@ if (!isset($_SESSION['email'])) {
 
 <section>
   <ul class="slider">
+  <?php
+      $sel="SELECT * FROM fundraise where status='Active'";
+      $query=mysqli_query($connection,$sel);
+      $add=mysqli_num_rows($query);
+      if ($add > 0) {
+        foreach ($query as $item) {
+       ?>
     <li>
       <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
               <div class="card-panel grey lighten-5 z-depth-1">
                 <div class="row valign-wrapper">
                   <div class="col s2">
-                    <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
+                    <img src="../admin/views/partials/<?php echo $item['fimage']; ?>" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
                   </div>
                   <div class="col s10">
 
                       <span class="black-text" style="margin-left:-7%">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                          This is a square image. Add the "circle" class to it to make it appear circular.
-                            This is a square image. Add the "circle" class to it to make it appear circular.
-                              This is a square image. Add the "circle" class to it to make it appear circular.
-                                This is a square image. Add the "circle" class to it to make it appear circular.
+                      <strong  ><em style="margin-left:7% ;font-weight:bold;text-size:70px"><?php echo $item['fundraise_name'];?></em ></strong><br><?php echo $item['description'];?><br><br><br>
+                        
                       </span>
           </div>
 
@@ -906,49 +910,9 @@ if (!isset($_SESSION['email'])) {
                     </table>
                   </div>
     </li>
+    <?php }}?>
 
-    <li>
-      <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
-              <div class="card-panel grey lighten-5 z-depth-1">
-                <div class="row valign-wrapper">
-                  <div class="col s2">
-                    <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
-                  </div>
-                  <div class="col s10">
-
-                      <span class="black-text" style="margin-left:-7%">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                          This is a square image. Add the "circle" class to it to make it appear circular.
-                            This is a square image. Add the "circle" class to it to make it appear circular.
-                              This is a square image. Add the "circle" class to it to make it appear circular.
-                                This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>
-          </div>
-
-
-                  </div>
-                  <div class="row" style="margin-top:-6%">
-                    <table>
-                      <tr>
-                        <td>&nbsp;</td>
-                          <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                              <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                  <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-
-
-
-                        <td>    <div class="card-action right-align" style="margin-right:75%;">
-                            <a href="" class="btn green">Fundraise</a>
-                          </div></td>
-                        <td>
-
-                      </tr>
-                    </table>
-                  </div>
-    </li>
+    
   </ul>
 
 </section>
@@ -957,7 +921,7 @@ if (!isset($_SESSION['email'])) {
 <!-- section for the accordition -->
 
 
-<section  style="margin-top:-6%">
+<section  style="margin-top:-1%">
   <div class="">
     <h4>FAQs</h4>
   </div>

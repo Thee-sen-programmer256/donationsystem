@@ -1,3 +1,13 @@
+<?php
+    $con = mysqli_connect("localhost","root","","donation_procurement");
+
+    $f_id= $_GET['a'];
+        $result =" SELECT * FROM fundraise where f_id = $f_id " ;
+        $display=mysqli_query($con, $result);
+        
+    
+?>
+
 
 
 <!DOCTYPE html>
@@ -32,7 +42,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:   center
+            justify-content:  center;
         }
         a{
           text-decoration: none;
@@ -66,19 +76,22 @@
                     <a href="../organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="../organstock"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
-                    <a href="../events.php" class="active"><span class="las la-calendar"></span><span>Events</span></a>
+                    <a href="../events.php" ><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
                     <a href="../notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
+                </li>
+                <li>
+                    <a href="../fundraise.php" class="active"><span class="las la-book"></span><span>Fundraise</span></a>
                 </li>
             </ul>
         </div>
@@ -92,9 +105,9 @@
                 <label for="nav-toggle">
                     <span class="las la-bars"></span>
                 </label>
-              Add Events
+              Add Fundraise
             </h2>
-           
+
             <!-- Admin Pic & Names -->
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">
@@ -114,9 +127,9 @@
 
 
 
-    <a href="../events.php">
+    <a href="../fundraise.php">
         <button type="button" style="padding: 13px; color: white;background-color:#0071b5;border: 0;border-radius: 10px;margin-bottom: 30px;font-size: 20px">
-           Event
+           Fundraise
         </button>
     </a>
     <div class="row m-t-30">
@@ -132,42 +145,66 @@
                       <div class=>
                           <div class="cardt rounded-0 shadow">
                               <div class="card-header bg-gradient  text-light" style="background-color:#0071b5;">
-                                  <h5 class="card-title">Event Form</h5>
+                                  <h5 class="card-title">Fundraise Form</h5>
                               </div>
                               <div class="card-body">
                                   <div class="container-fluid">
-                                      <form action="save_schedule.php" method="post" id="schedule-form">
-                                          <input type="hidden" name="id" value="">
-                                          <div class="form-group mb-2">
-                                              <label for="title" class="control-label">Title</label>
-                                              <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
-                                          </div>
+                                      <form action="" method="post" id="schedule-form" enctype="multipart/form-data">
+                                      <?php
+                                            $row=mysqli_fetch_assoc($display);
+                                        ?>
+                                          <input type="hidden" name="f_id" value="<?php echo $row['f_id'];?>">
+
+                                            <div class="form-group mb-2">
+                                          <label for="">Fundraise Title</label> <br>
+                                          <input type="text" name="fundraise_name" value="<?php echo $row['fundraise_name'];?>">
+                                        </div>
+
                                           <div class="form-group mb-2">
                                               <label for="description" class="control-label">Description</label>
-                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required></textarea>
+                                              <textarea rows="8" class="form-control form-control-sm rounded-0" name="description" id="description" value="" required><?php echo $row['description']; ?></textarea>
                                           </div>
+
                                           <div class="form-group mb-2">
-                                              <label for="title" class="control-label">Client</label>
-                                              <select name="client_type" id="" class="form-control form-control-sm rounded-0">
-                                                <option value="" style="color:grey">--select--</option>
-                                                <option value="Donor">Donor</option>
-                                                <option value="Patient">Patient</option>
-                                              </select>
+                                              <label for="description" class="control-label">Amount</label>
+                                              <textarea rows="3" class="form-control form-control-sm rounded-0" name="amount" id="description" value="" required><?php echo $row['amount'];?></textarea>
                                           </div>
-                                          <div class="form-group mb-2">
-                                              <label for="start_datetime" class="control-label">Start</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
-                                          </div>
-                                          <div class="form-group mb-2">
-                                              <label for="end_datetime" class="control-label">End</label>
-                                              <input type="datetime-local" class="form-control form-control-sm rounded-0" name="end_datetime" id="end_datetime" required>
-                                          </div>
+                                          
+                                          
+                                          <input type="hidden" name="status" value="Active">
+
                                           <div class="card-footer">
                                               <div class="text-center">
+
                                                   <button class="btn btn-primary btn-sm rounded-0" type="submit" name="submit" form="schedule-form"><i class="fa fa-save"></i> Save</button>
                                                   <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancel</button>
                                               </div>
                                           </div>
+                                          <?php
+                                        if(isset($_POST['submit'])){ 
+                                            //click on submit button then update data
+                                            //get values
+                                             //change data using notification ID
+                                            $notifications_name=$_POST['fundraise_name'];
+                                            $message=$_POST['description'];
+                                            $amount=$_POST['amount'];
+                    
+                    
+                                            $con=mysqli_connect("localhost","root","","donation_procurement");
+                                            $change ="UPDATE fundraise SET fundraise_name='$notifications_name', description='$message',amount='$amount' WHERE f_id= $f_id " ;
+                                            $update=mysqli_query($con,$change);
+                    
+                                            if($update == TRUE){
+                                                // header("location:../notifications.php"); 
+                                                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../fundraise.php">';    
+                                                exit;
+                                            }else {
+                                                echo "Failed";
+                                            }
+                                           
+                                       }
+
+                                ?>
                                       </form>
                                   </div>
                               </div>

@@ -40,7 +40,7 @@
         td{
             color: black;
             background-color: white;
-            justify-content:  -content: center
+            justify-content:  center
         }
         a{
           text-decoration: none;
@@ -165,6 +165,14 @@
                                               <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required><?php echo $row['she_description']; ?></textarea>
                                           </div>
                                           <div class="form-group mb-2">
+                                              <label for="title" class="control-label">Client</label>
+                                              <select name="client_type" id="" class="form-control form-control-sm rounded-0" required>
+                                                <option value="<?php echo $row['client_type'];  ?>" style="color:grey"><?php echo $row['client_type'];  ?></option>
+                                                <option value="Donor">Donor</option>
+                                                <option value="Patient">Patient</option>
+                                              </select>
+                                          </div>
+                                          <div class="form-group mb-2">
                                               <label for="start_datetime" class="control-label">Start</label>
                                               <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" value="<?php echo $row['start_datetime'];  ?>" required>
                                           </div>
@@ -189,12 +197,13 @@
                                         
                                              $title=$_POST['title'];
                                              $she_description=$_POST['she_description'];
+                                             $client_type=$_POST['client_type'];
                                              $start_datetime=$_POST['start_datetime'];
                                              $end_datetime=$_POST['end_datetime'];
                     
                     
                                             $con=mysqli_connect("localhost","root","","donation_procurement");
-                                            $change = "UPDATE `schedule` set `title` = '{$title}', `she_description` = '{$she_description}', `start_datetime` = '{$start_datetime}', `end_datetime` = '{$end_datetime}' where `id` = $id" ;
+                                            $change = "UPDATE `schedule` set `title` = '{$title}',`client_type` = '{$client_type}', `she_description` = '{$she_description}', `start_datetime` = '{$start_datetime}', `end_datetime` = '{$end_datetime}' where `id` = $id" ;
                                             $update=mysqli_query($con,$change);
                     
                                             if($update == TRUE){

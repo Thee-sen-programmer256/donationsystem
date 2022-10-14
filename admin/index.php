@@ -100,6 +100,9 @@ if(!isset($_SESSION['email'])){
                 <li>
                     <a href="./views/notifications.php"><span class="las la-bell"></span><span>Notifications</span></a>
                 </li>
+                <li>
+                    <a href="./views/fundraise.php"><span class="las la-book"></span><span>Fundraise</span></a>
+                </li>
             </ul>
         </div>
     </div>
