@@ -140,7 +140,7 @@
                             <th>ID</th>
                             <th>Event</th>
                             <th>Description</th>
-                            <th>client</th>
+                            
                             <th>Start Date</th>
                             <th>End date</th>
                             <th>Action</th>
@@ -163,7 +163,7 @@
                             <td><?php echo $row['id'];  ?></td>
                             <td><?php echo $row['title'];  ?></td>
                              <td><?php echo $row['she_description'];  ?></td>
-                             <td><?php echo $row['client_type'];  ?></td>
+                           
                              <td><?php echo $row['start_datetime'];  ?></td>
                              <td><?php echo $row['end_datetime'];  ?></td>
                             <td>

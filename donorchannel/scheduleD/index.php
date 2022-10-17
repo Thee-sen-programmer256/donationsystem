@@ -84,12 +84,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         }
         ul.select-dropdown,
        ul.dropdown-content {
-         width: 300px !important;
+         width: 300px !important;}
 
          li > span {
            white-space: nowrap;
          }
-       }
+       
         ul.select-dropdown,ul.dropdown-content{
          overflow-x: hidden;
          overflow-y: scroll;
@@ -833,7 +833,7 @@ if(isset($connection)) $connection->close();
  $(document).ready(function() {
    $("#notifications").on("click", function() {
      $.ajax({
-       url: "../readNotify.php",
+       url: "../updatenotify.php",
        success: function(res) {
          console.log(res);
        }

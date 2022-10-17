@@ -160,9 +160,9 @@
                              <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
-                             <td><?php echo $row['image'];  ?></td>
+                             <td><img src="../../Home/images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
                             <td><?php echo $row['gender'];  ?></td>
-
+                            
                             <td>
                                 <a href="partials/deldonor.php?pd=<?php echo $row['donorId'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Delete</button></a>
                                 &nbsp;

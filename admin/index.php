@@ -297,8 +297,9 @@ if(!isset($_SESSION['email'])){
                                             <!-- Name & Contacts -->
                                 <div class="patient">
                                     <div class="info">
-                                            <img src="<?php echo $prow['image'];  ?>" width="48px" height="40px" alt="">
+                                            <img src="../Home/images/<?php echo $prow['image'];  ?>" width="48px" height="40px" alt="">
                                         <div>
+                                           
                                             <h4><?php echo $prow['fname'];  ?></h4>
                                             <small><?php echo $prow['email'];  ?></small>
                                         </div>

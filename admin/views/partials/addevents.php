@@ -66,19 +66,22 @@
                     <a href="../organrequests.php"><span class="las la-sync"></span><span>Organ Requests</span></a>
                 </li>
                 <li>
-                    <a href=""><span class="las la-history"></span><span>Request History</span></a>
+                    <a href="../requesthistory.php"><span class="las la-history"></span><span>Request History</span></a>
                 </li>
                 <li>
-                    <a href="../organstock"><span class="lar la-heart"></span><span>Organ Stock</span></a>
+                    <a href="../organstock.php"><span class="lar la-heart"></span><span>Organ Stock</span></a>
                 </li>
                 <li>
-                    <a href="" ><span class="las la-coins"></span><span>Donations</span></a>
+                    <a href="../donations.php" ><span class="las la-coins"></span><span>Donations</span></a>
                 </li>
                 <li>
                     <a href="../events.php" class="active"><span class="las la-calendar"></span><span>Events</span></a>
                 </li>
                 <li>
                     <a href="../notifications.php" ><span class="las la-bell"></span><span>Notifications</span></a>
+                </li>
+                <li>
+                    <a href="../fundraise.php"><span class="las la-book"></span><span>Fundraise</span></a>
                 </li>
             </ul>
         </div>
@@ -147,13 +150,7 @@
                                               <textarea rows="3" class="form-control form-control-sm rounded-0" name="she_description" id="description" required></textarea>
                                           </div>
                                           <div class="form-group mb-2">
-                                              <label for="title" class="control-label">Client</label>
-                                              <select name="client_type" id="" class="form-control form-control-sm rounded-0">
-                                                <option value="" style="color:grey">--select--</option>
-                                                <option value="Donor">Donor</option>
-                                                <option value="Patient">Patient</option>
-                                              </select>
-                                          </div>
+                                       
                                           <div class="form-group mb-2">
                                               <label for="start_datetime" class="control-label">Start</label>
                                               <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>

@@ -14,11 +14,11 @@ if(!isset($_SESSION['email'])){
     if(isset($_POST['tell'])){
 
       if (isset($_POST['tell'])){
-        $filetmp=$_FILES["imagestory"]["tmp_name"];
-        $filename=$_FILES["imagestory"]["name"];
-        $filetype=$_FILES["imagestory"]["type"];
+        $filetmp=$_FILES["storyimage"]["tmp_name"];
+        $filename=$_FILES["storyimage"]["name"];
+        $filetype=$_FILES["storyimage"]["type"];
         $target_dir="../images/";
-        $img_url=$target_dir.basename($_FILES["imagestory"]["name"]);
+        $img_url=$target_dir.basename($_FILES["storyimage"]["name"]);
 
         if(move_uploaded_file($filetmp, $img_url)==TRUE){
           echo "successful";
@@ -98,12 +98,12 @@ position: fixed;
  }
  ul.select-dropdown,
 ul.dropdown-content {
-  width: 300px !important;
+  width: 300px !important;}
 
   li > span {
     white-space: nowrap;
   }
-}
+
  ul.select-dropdown,ul.dropdown-content{
   overflow-x: hidden;
   overflow-y: scroll;
@@ -817,6 +817,7 @@ code {
 <!-- end of floating button -->
 
 <script>
+
  $(document).ready(function() {
    $("#notifications").on("click", function() {
      $.ajax({
@@ -828,7 +829,7 @@ code {
    });
  });
 
-//  CKEDITOR.replace('story', {
+ CKEDITOR.replace('story', {
 //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
 // });
 CKEDITOR.replace( 'story' );
@@ -872,7 +873,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function(){
   $('.modal').modal();
 });
-    </script>
+ </script>
   </body>
   <!-- Swiper JS -->
   <script src="jsl/swiper-bundle.min.js"></script>

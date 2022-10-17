@@ -773,7 +773,7 @@ if (!isset($_SESSION['email'])) {
       $(document).ready(function() {
         $("#notify").on("click", function() {
           $.ajax({
-            url: "../readNotify.php",
+            url: "updatenotify.php",
             success: function(res) {
               console.log(res);
             }

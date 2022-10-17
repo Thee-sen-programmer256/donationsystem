@@ -186,9 +186,9 @@ if(mysqli_query($con,$sql)){
                                           <div class="form-group mb-2">
                                         <label for="">client Type</label> <br>
                                       <select class="" name="client_type">
-                                        <option value="all">All</option>
-                                        <option value="patients">Patients</option>
-                                        <option value="donors">Donors</option>
+                                        <option value="All">All</option>
+                                        <option value="Patient">Patient</option>
+                                        <option value="Donor">Donor</option>
                                       </select>
                                       </div>
                                           <input type="hidden" name="status" value="Active">

@@ -2,7 +2,7 @@
 
 include("config/connection.php");
 
-$sql = "UPDATE notifications SET status='Inactive' where client_type='Patient'";
+$sql = "UPDATE notifications SET status='Inactive' where client_type='Donor'";
 $res = mysqli_query($connection, $sql);
 if ($res) {
   echo "Success";

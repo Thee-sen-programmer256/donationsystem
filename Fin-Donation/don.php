@@ -1,10 +1,10 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    session_start();
-    if(!isset($_SESSION['email'])){
-       header("Location: Home/login.php");
-    }
+    // session_start();
+    // if(!isset($_SESSION['email'])){
+    //    header("Location: Home/login.php");
+    // }
 
     if(!$con){
         die("Could not connect: ". mysqli_connect_error());
@@ -362,7 +362,7 @@ if(mysqli_query($con,$sql)){
         </nav>
   
         <div class="icons">
-            <label for="" style="color: #000;"><a class="login" href="../Home/login.html" style="text-decoration: none;color:#000;">Login</a></label>
+            <label for="" style="color: #000;"><a class="login" href="../Home/login.php" style="text-decoration: none;color:#000;">Login</a></label>
             <div id="menubar" class="fas fa-bars"></div>
             <input type="checkbox" id="show">
             <label for="show" style="color: rgb(3, 3, 4);">Sign-up</label>

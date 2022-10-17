@@ -20,7 +20,7 @@ if(isset($_POST['blood'])){
 
 
 
-  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`) VALUES ('$name','$email','$organ','$blood','$appoint')";
+  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`,`withdraw_notice`) VALUES ('$name','$email','$organ','$blood','$appoint','ongoing')";
   $sql_query=mysqli_query($connection,$sql_insert);
   if ($sql_query==TRUE) {
     // echo "successful";
@@ -29,6 +29,25 @@ if(isset($_POST['blood'])){
     echo mysqli_error($connection);
   }
 }
+
+
+// if(isset($_POST['blooddel'])){
+  
+//   $email="SELECT email FROM donor where email='".$_SESSION['email']."'";
+//   $sql_query=mysqli_query($connection, $email);
+//   $email=$_GET['email'];
+//   if($sql_query==True){
+ 
+//   $sql_insert="INSERT INTO `donationappointment` (`withdraw_notice`) VALUE ('WITHDRAWN') WHERE email='okellobrian@gmail.com'";
+//   $sqgl_query=mysqli_query($connection,$sql_insert);
+//   if ($sqgl_query==TRUE) {
+//     // echo "successful";
+//     // header("Location:./blooddon.php?success=Donation appointment has been deleted successfully");
+//   }else{
+//     echo mysqli_error($connection);
+//   }
+// }
+// }
  ?>
 
 <!DOCTYPE html>
@@ -853,7 +872,7 @@ if(isset($_POST['blood'])){
     </div>
     <div class="col">
       <div class="input-field col s12">
-         <select id="blood1" name="bloodgroup">
+         <select id="bloodX" name="bloodgroup">
              <option value="Choose" selected  style="color:white">--select blood group--</option>
              <option value="A"  style="color:white">A</option>
              <option value="AB"  style="color:white">AB</option>
@@ -871,6 +890,7 @@ if(isset($_POST['blood'])){
   <div class="row">
 
         <input type="text" class="datepicker" name="appointdate" placeholder="Set Favourable Appointment Date">
+        <input type="hidden" name="withdraw_notice" value="ongoing">
 
     </div>
   <div class="row">
@@ -889,8 +909,37 @@ if(isset($_POST['blood'])){
     </div>
   </div>
 
+<table>
+  <tr>
+  <td></td>
+  <td><input type="submit" value="Submit" name="blood"></td>
+  <td></td>
+  <?php 
+  // include "../config/connection.php";
+  $email="SELECT email FROM donor where email='".$_SESSION['email']."'";
+  $sql_query=mysqli_query($connection, $email);
+  if($sql_query==True){
+  $selectt="SELECT `organ/tissue/blood`,email FROM donationappointment where `organ/tissue/blood`='blood' and withdraw_notice='ongoing' and email='".$_SESSION['email']."'";
+  $sql=mysqli_query($connection,$selectt);
+  $add=mysqli_num_rows($sql);
+  if($add>0){ if(isset($_POST['blooddel'])){
+   // $sql_insert="INSERT INTO `donationappointment` (`withdraw_notice`) VALUES ('WITHDRAWN') WHERE `organ/tissue/blood`='blood'  ";
+    $sql_insert = "UPDATE `donationappointment` set `withdraw_notice` = 'WITHDRAWN' where `organ/tissue/blood`='blood' and `email` = '".$_SESSION['email']."'" ;
+    $sqgl_query=mysqli_query($connection,$sql_insert);
+    if ($sqgl_query==TRUE) {
+      // echo "successful";
+      // header("Location:./blooddon.php?success=Donation appointment has been deleted successfully");
+    }else{
+      echo mysqli_error($connection);
+    }
+  }?>
+  <td><input type="submit" value="Withdraw" name="blooddel"></td>
+  <?php }} ?>
+  </tr>
+  
 
-<input type="submit" value="Submit" name="blood">
+</table>
+
 </form>
 </div>
 </div>
@@ -965,7 +1014,37 @@ if(isset($_POST['blood'])){
   </div>
 
 
-<input type="submit" value="Submit" name="blood">
+  <table>
+  <tr>
+  <td></td>
+  <td><input type="submit" value="Submit" name="blood"></td>
+  <td></td>
+  <?php 
+  // include "../config/connection.php";
+  $email="SELECT email FROM donor where email='".$_SESSION['email']."'";
+  $sql_query=mysqli_query($connection, $email);
+  if($sql_query==True){
+  $selectt="SELECT `organ/tissue/blood`,email FROM donationappointment where `organ/tissue/blood`='Bone marrow'and withdraw_notice='ongoing' and email='".$_SESSION['email']."'";
+  $sql=mysqli_query($connection,$selectt);
+  $add=mysqli_num_rows($sql);
+  if($add>0){ if(isset($_POST['blooddel'])){
+   // $sql_insert="INSERT INTO `donationappointment` (`withdraw_notice`) VALUES ('WITHDRAWN') WHERE `organ/tissue/blood`='blood'  ";
+    $sql_insert = "UPDATE `donationappointment` set `withdraw_notice` = 'WITHDRAWN' where `organ/tissue/blood`='Bone marrow' and `email` = '".$_SESSION['email']."'" ;
+    $sqgl_query=mysqli_query($connection,$sql_insert);
+    if ($sqgl_query==TRUE) {
+      // echo "successful";
+      // header("Location:./blooddon.php?success=Donation appointment has been deleted successfully");
+    }else{
+      echo mysqli_error($connection);
+    }
+  }?>
+  <td><input type="submit" value="Withdraw" name="blooddel"></td>
+  <?php }} ?>
+  </tr>
+  
+
+</table>
+
 </form>
 </div>
 </div>
@@ -1041,7 +1120,36 @@ if(isset($_POST['blood'])){
   </div>
 
 
-<input type="submit" value="Submit" name="blood">
+  <table>
+  <tr>
+  <td></td>
+  <td><input type="submit" value="Submit" name="blood"></td>
+  <td></td>
+  <?php 
+  // include "../config/connection.php";
+  $email="SELECT email FROM donor where email='".$_SESSION['email']."'";
+  $sql_query=mysqli_query($connection, $email);
+  if($sql_query==True){
+  $selectt="SELECT `organ/tissue/blood`,email FROM donationappointment where `organ/tissue/blood`='Cord Blood stems cells' and withdraw_notice='ongoing' and email='".$_SESSION['email']."' ";
+  $sql=mysqli_query($connection,$selectt);
+  $add=mysqli_num_rows($sql);
+  if($add>0){ if(isset($_POST['blooddel'])){
+   // $sql_insert="INSERT INTO `donationappointment` (`withdraw_notice`) VALUES ('WITHDRAWN') WHERE `organ/tissue/blood`='blood'  ";
+    $sql_insert = "UPDATE `donationappointment` set `withdraw_notice` = 'WITHDRAWN' where `organ/tissue/blood`='Cord Blood stems cells' and `email` = '".$_SESSION['email']."'" ;
+    $sqgl_query=mysqli_query($connection,$sql_insert);
+    if ($sqgl_query==TRUE) {
+      // echo "successful";
+      // header("Location:./blooddon.php?success=Donation appointment has been deleted successfully");
+    }else{
+      echo mysqli_error($connection);
+    }
+  }?>
+  <td><input type="submit" value="Withdraw" name="blooddel"></td>
+  <?php }} ?>
+  </tr>
+  
+
+</table>
 </form>
 </div>
 </div>
@@ -1117,7 +1225,36 @@ if(isset($_POST['blood'])){
   </div>
 
 
-<input type="submit" value="Submit" name="blood">
+  <table>
+  <tr>
+  <td></td>
+  <td><input type="submit" value="Submit" name="blood"></td>
+  <td></td>
+  <?php 
+  // include "../config/connection.php";
+  $email="SELECT email FROM donor where email='".$_SESSION['email']."'";
+  $sql_query=mysqli_query($connection, $email);
+  if($sql_query==True){
+  $selectt="SELECT `organ/tissue/blood`,email FROM donationappointment where `organ/tissue/blood`='Peripheral Blood stem cells' and withdraw_notice='ongoing' and email='".$_SESSION['email']."'";
+  $sql=mysqli_query($connection,$selectt);
+  $add=mysqli_num_rows($sql);
+  if($add>0){ if(isset($_POST['blooddel'])){
+   // $sql_insert="INSERT INTO `donationappointment` (`withdraw_notice`) VALUES ('WITHDRAWN') WHERE `organ/tissue/blood`='blood'  ";
+    $sql_insert = "UPDATE `donationappointment` set `withdraw_notice` = 'WITHDRAWN' where `organ/tissue/blood`='Peripheral Blood stem cells' and `email` = '".$_SESSION['email']."'" ;
+    $sqgl_query=mysqli_query($connection,$sql_insert);
+    if ($sqgl_query==TRUE) {
+      // echo "successful";
+      // header("Location:./blooddon.php?success=Donation appointment has been deleted successfully");
+    }else{
+      echo mysqli_error($connection);
+    }
+  }?>
+  <td><input type="submit" value="Withdraw" name="blooddel"></td>
+  <?php }} ?>
+  </tr>
+  
+
+</table>
 </form>
 </div>
 </div>
@@ -1164,14 +1301,14 @@ if(isset($_POST['blood'])){
       $(document).ready(function() {
         $("#notify").on("click", function() {
           $.ajax({
-            url: "../readNotify.php",
+            url: "updatenotify.php",
             success: function(res) {
               console.log(res);
             }
           });
         });
       });
-      M.FormSelect.init(document.querySelector('#blood1'));
+      M.FormSelect.init(document.querySelector('#bloodX'));
       M.FormSelect.init(document.querySelector('#blood2'));
       M.FormSelect.init(document.querySelector('#blood3'));
       M.FormSelect.init(document.querySelector('#blood4'));
@@ -1181,7 +1318,7 @@ if(isset($_POST['blood'])){
       });
       </script>
       <script type="text/javascript">
-        M.FormSelect.init(document.querySelector('#status'));
+        M.FormSelect.init(document.querySelector('#bloodX'));
         M.FormSelect.init(document.querySelector('#status'));
 
 M.Sidenav.init(document.querySelector('.sidenav'));

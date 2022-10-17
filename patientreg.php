@@ -99,8 +99,8 @@ include "config/connection.php";
 
 
 
-       $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`)
-       VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$file_name','$gender','$pass')";
+       $pat = "INSERT INTO patient( `fname`, `email`, `dob`, `contact`, `bloodgroup`,`bloodgroupstatus`, `nationality`, `image`, `gender`, `password`)
+       VALUES('$fname','$email','$dob','$contact','$bloodgroup','Pending','$nation','$file_name','$gender','$pass')";
        $input = mysqli_query($connection, $pat);
       }
        if ($input) {

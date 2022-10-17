@@ -74,12 +74,12 @@ position: fixed;
  }
  ul.select-dropdown,
 ul.dropdown-content {
-  width: 300px !important;
+  width: 300px !important;}
 
   li > span {
     white-space: nowrap;
   }
-}
+
  ul.select-dropdown,ul.dropdown-content{
   overflow-x: hidden;
   overflow-y: scroll;
@@ -913,8 +913,13 @@ html, body {
 &nbsp;
 
 <div class="right" style="margin-left:-5%">
-  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">not verified</span></p>  </strong>
+<?php if($rows['bloodgroupstatus']=='Pending'){?>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">Not verified</span></p>  </strong>
 </div>
+<?php }else{?>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;width:200px;margin-left:84%">blood Group: <span style="color:green">Verified</span></p>  </strong>
+
+<?php } ?>
 <p style="font-weight:bold;font-size:14pt;margin-left:1%">Your Activity</p>
 
 <div class="container" style="width:100%;">
@@ -1025,12 +1030,12 @@ html, body {
 
     <!-- end of slider -->
     <!-- modals -->
-    <div class="container" style="height:1000vh;overflow">
+    <div class="container" style="height:1000vh;">
         <!-- <h2>Modals</h2> -->
         <!-- <a class="btn orange modal-trigger" href="#terms">Help Info</a> -->
         <div id="terms" class="modal modal-fixed-footer"  >
           <h4>Hey User</h4>
-          <p style="font-style:Times New Roman" style="text-size:5px">Here is a little guide for through the system</p>
+          <p style="font-style: Times New Roman" style="text-size:5px">Here is a little guide for through the system</p>
           <p style="text-size:5px">1. On this page (the index page),First is the navbar where you will get to see tripple bars <a class="small btn-floating pulse blue"><i class="material-icons">menu</i></a> and this will help you navigate to and fro pages like the sotories page where
             you will be able to view all your stories as well as those of other patients,
             the next on the list is the fundraise page where you will be able to view all the fundraising events and how much has been raised.
