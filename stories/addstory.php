@@ -720,7 +720,7 @@ code {
  <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
    <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
   <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+ 
  </ul>
   </div>
 
@@ -830,8 +830,8 @@ code {
  });
 
  CKEDITOR.replace('story', {
-//     plugins: 'wysiwygarea, toolbar, basicstyles, link'
-// });
+    plugins: 'wysiwygarea, toolbar, basicstyles, link'
+});
 CKEDITOR.replace( 'story' );
 
 var textarea = document.body.appendChild( document.createElement( 'textarea' ) );
@@ -849,9 +849,9 @@ CKEDITOR.replace( textarea );
       $('.dropdown-trigger').dropdown();
   </script>
     <script src="sliscript.js"></script>
-    <script type="text/javascript">
+    <script>
     M.Sidenav.init(document.querySelector('.sidenav'));
-      M.FormSelect.init(document.querySelector('#status'))
+      M.FormSelect.init(document.querySelector('#status'));
    document.addEventListener('DOMContentLoaded', function() {
  var elems = document.querySelectorAll('.carousel');
  var instances = M.Carousel.init(elems, options);

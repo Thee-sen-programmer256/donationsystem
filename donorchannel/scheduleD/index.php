@@ -706,10 +706,10 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <ul id="slide-out" class="sidenav">
   <li><div class="user-view">
   <div class="background">
-  <img src="Home/images/background1.jpg">
+  <img src="../../Home/images/background1.jpg">
   </div>
   <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
-  <a href="#user"><img class="circle" src="../images/cute"></a>
+  <a href="#user"><img class="circle" src="../../images/<?php echo $rows['image']; ?>"></a>
   <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
   <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
   </div></li>

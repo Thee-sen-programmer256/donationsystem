@@ -1,12 +1,33 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $pid = $_GET['pd'];
-       
+    session_start();
+    if(!isset($_SESSION['email'])){
+       header("Location: ../Home/login.php");
+    }
+
+   
+
+
+    // Assigning input data into a variable then inserting it into the database
+if(isset($_POST["submit"])){
+    $fname= $_POST["fname"];
+    $lname= $_POST["lname"];
+    $contact= $_POST["contact"];
+    $fundraise_name= $_POST["fundraise_name"];
+    $amount= $_POST["amount"];
+    $display= $_POST["display"];
+    $email= $_POST["email"];
+    $status=$_POST["statuss"];
+
+$sql = "INSERT INTO donation(fname,lname,contact,fundraise_name,amount,display,email,statuss)VALUE('$fname','$lname','$contact','$fundraise_name','$amount','$display','$email','$status')";
+//echo $sql;
+// excecuting the query
+mysqli_query($con,$sql);
+
+}
     
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +63,8 @@
             font-weight: 500;
             font-size: 1.3em;
         }
-        .inputBox input{
+        .inputBox input,
+        .inputBox select{
             padding: 10px;
             font-size: 1.2rem;
             outline: none;
@@ -67,45 +89,92 @@
     </style>
 </head>
 <body>
-    
-<div class="details">
+    <div>
+        <h2 style="color: blue; font-size:38px;padding:2.5rem; text-align:center; ">FUNDRAISE</h2>
+    </div>
+
+    <div class="details">
         <h2 id="main-h2">Your details</h2>
         <form action="" method="post">
             <div class="inputBox">
                 <span>First Name</span>
-                <input type="text" placeholder="John" name="fname">
+                <input type="text" placeholder="John" name="fname" required>
             </div>
             <div class="inputBox">
                 <span>Last Name</span>
-                <input type="text" placeholder="Doe" name="lname">
+                <input type="text" placeholder="Doe" name="lname" required>
             </div>
             <div class="inputBox">
                 <span>Phone Number</span>
-                <input type="text" placeholder="+256.." name="contact">
+                <input type="text" placeholder="+256.." name="contact" required>
+            </div>
+            <div class="inputBox">
+                <span>Choose who to fundraise for</span>
+                <select name="fundraise_name" id="" required>
+                    <option value="" style="color: grey;">--select--</option>
+                <?php
+                include "../config/connection.php";
+        $sel="SELECT fundraise_name from fundraise";
+        $query=mysqli_query($connection,$sel);
+        $add=mysqli_num_rows($query);
+        if ($add > 0) {
+          foreach ($query as $item) {
+         ?>
+         
+           
+            <option value="<?php echo $item['fundraise_name']; ?>"><?php echo $item['fundraise_name']; ?></option>
+        
+         <?php } } ?>
+         </select>
             </div>
             <div class="inputBox">
                 <span>Confirm Amount</span>
-                <input type="text" name="amount">
+                <input type="text" name="amount" required>
             </div>
         
 
             <label for="">Show my name on the supporters tab</label> 
-            <select id="" style="background: #79c9fb;" name="display">
+            <select id="" style="background: #79c9fb;" name="display" required>
                 <option value="yes">YES</option>
                 <option value="no">NO</option>
             </select>  
             <div class="inputBox">
                 <span>Email*</span>
-                <input type="email" placeholder="johndoe@email.com" name="email">
+                <input type="email" placeholder="johndoe@email.com" name="email" required>
             </div>
             <input type="hidden" name="statuss" value="Pending">
+            <div id="fund" class="olycash-pay olycash--window" style="width:100% !important;" data-ignorefrequency="Y" data-id="1344FC3_205463"> 
+                    <!-- Update the field value to add payment details. Full list of fields or help: https://olycash.com/plugin --> 
+                    <input type="hidden" id="olycash__category" name="olycash__category" value="156"/>
+                    <input type="hidden" id="olycash__total" name="olycash__total" value="0.01"/>
+                    <input type="hidden" id="olycash__currency" name="olycash__currency" value="USD"/>
+                    <input type="hidden" id="olycash__third_party_fee_paid_by" name="olycash__third_party_fee_paid_by" value="payee"/>
+                </div> 
                 
                     <div class="inputBox">
-                        <input type="submit" value="submit" name="submit">
+                        <a href="#fund"><input type="submit" value="submit" name="submit" ></a>
                     </div>
         
         </form>
     </div>
+
+
+                
+                <noscript>
+                    You need JavaScript enabled to with OlyCash.
+    
+                </noscript>
+                
+                <!-- Load OlyCash JavaScript SDK --> 
+                <script>(function(d, s, id) {var js, ojs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); 
+                    js.id = id;js.src = "https://share.olycash.com/en-us/sdk.js";
+                    ojs.parentNode.insertBefore(js, ojs);
+                    }(document, 'script', 'olycash-js-sdk'));
+                </script>
+    
+
     
 </body>
 </html>

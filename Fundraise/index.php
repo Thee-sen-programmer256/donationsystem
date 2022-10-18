@@ -39,12 +39,12 @@ position: fixed;
  }
  ul.select-dropdown,
 ul.dropdown-content {
-  width: 300px !important;
+  width: 300px !important;}
 
   li > span {
     white-space: nowrap;
   }
-}
+
  ul.select-dropdown,ul.dropdown-content{
   overflow-x: hidden;
   overflow-y: scroll;
@@ -666,9 +666,9 @@ code {
  </div></li>
  <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li><a href="../stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
-   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></l
+   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
  <li><a href="../Home/logout.php"><i class="material-icons">logout</i>Logout</a></li>
- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+ 
  </ul>
   </div>
 
@@ -676,20 +676,24 @@ code {
     <!-- add story -->
     <h3>Fundraise</h3>
 <section>
+<?php
+      $sel="SELECT * FROM fundraise where status='Active'";
+      $query=mysqli_query($connection,$sel);
+      $add=mysqli_num_rows($query);
+      if ($add > 0) {
+        foreach ($query as $item) {
+       ?>
+  <div class="row">
   <div class=" s12 m8 offset-m2 l6 offset-l3" style="margin-left:15px;width:1200px">
           <div class="card-panel grey lighten-5 z-depth-1">
             <div class="row valign-wrapper">
               <div class="col s2">
-                <img src="../simages/card3.jpg" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
+                <img src="../admin/views/partials/<?php echo $item['fimage']; ?>" alt="" class="responsive-img" style="border-radius:15px;height:150px"> <!-- notice the "circle" class -->
               </div>
               <div class="col s10">
 
                   <span class="black-text" style="margin-left:-7%">
-                    This is a square image. Add the "circle" class to it to make it appear circular.
-                      This is a square image. Add the "circle" class to it to make it appear circular.
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                          This is a square image. Add the "circle" class to it to make it appear circular.
-                            This is a square image. Add the "circle" class to it to make it appear circular.
+                  <strong  ><em style="margin-left:7% ;font-weight:bold;text-size:70px"><?php echo $item['fundraise_name'];?></em ></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Amount needed:<?php echo $item['amount'];?></span><br><?php echo $item['description'];?><br><br><br>
                   </span>
       </div>
 
@@ -698,32 +702,37 @@ code {
               <div class="row" style="margin-top:-6%">
                 <table>
                   <tr>
-                    <td>
-                      <div class="card-action left-align" style="margin-left:75%">
-                      <a href="" class="btn blue">Read More</a>
-                    </div>
-                    </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
 
                     <td></td>
                     <td>
                       <div class="card-action right-align" style="margin-right:75%;">
-                      <a href="../Fin-Donation/don.php" class="btn green">Fundraise</a>
+                      <a href="../donorchannel/d-patient.php" class="btn green">Fundraise</a>
                     </div>
                     </td>
                   </tr>
                 </table>
               </div>
-              <!-- floating button2 -->
-              <div class="fixed-action-btn" style="bottom:59%">
-              <a  class="btn-floating btn-small blue" href="stories/addstory.php">
-              <i class="large material-icons" style="height:13px">chevron_right</i>
-              </a>
+             
 
-              </div>
-              <!-- end of floating button -->
+
+
+              
+            </div>
             </div>
             </div>
 
+
+            <?php }} ?>
 </section>
 
 

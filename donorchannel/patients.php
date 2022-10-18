@@ -674,10 +674,10 @@ if (!isset($_SESSION['email'])) {
 <ul id="slide-out" class="sidenav">
 <li><div class="user-view">
 <div class="background">
-<img src="Home/images/background1.jpg">
+<img src="../Home/images/background1.jpg">
 </div>
 <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
-<a href="#user"><img class="circle" src="../images/cute"></a>
+<a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
 <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
 <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
 </div></li>
@@ -686,7 +686,7 @@ if (!isset($_SESSION['email'])) {
 <li><a href="organ.php"><i class="material-icons">handyman</i>Donate Organ</a></li>
 <li><a href="blooddon.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li>
 <li><a href="tissue.php"><i class="material-icons">ac_unit</i>Donate Tissue</a></li>
-<li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+<!-- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li> -->
 </ul>
 
 
@@ -700,7 +700,7 @@ if (!isset($_SESSION['email'])) {
     <div class="container" style="width:100%">
       <div class="row">
         <?php
-        $sel="SELECT p.fname,s.body,s.storyimage FROM patient p join story s on p.pid=s.spid";
+        $sel="SELECT s.title,s.body,s.storyimage FROM patient p join story s on p.pid=s.spid";
         $query=mysqli_query($connection,$sel);
         $add=mysqli_num_rows($query);
         if ($add > 0) {
@@ -711,11 +711,11 @@ if (!isset($_SESSION['email'])) {
           <div class="card sticky-action">
             <div class="card-image">
               <img src="../images/<?php echo $item['storyimage']; ?>" alt="">
-              <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:15px;vertical-align:middle;padding-top:0px"><?php echo $item['fname']; ?></span>
+              <span class="card-title" style="font-weight:70px;background:black;padding:4px;margin:9px;border-radius:15px;vertical-align:middle;padding-top:0px"><?php echo $item['title']; ?></span>
               <a href="#" class="btn red btn-floating halfway-fab tooltipped  activator" data-position="right" data-tooltip="view story"><i class="material-icons">assignment</i></a>
             </div>
             <div class="card-content">
-              <p>Hey there! I need a liver</p>
+              <p>Hey there! Please save me</p>
             </div>
 
             <div class="card-reveal">
@@ -725,7 +725,7 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="card-action">
-              <a href="d-patient.php?pd=<?php echo $add['pid'];?>">DONATE</a>
+              <a href="../stories/d-story.php">DONATE</a>
             </div>
           </div>
         </div>

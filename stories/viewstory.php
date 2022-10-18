@@ -42,12 +42,12 @@ a.new:hover button{
 }
 ul.select-dropdown,
 ul.dropdown-content {
- width: 300px !important;
+ width: 300px !important;}
 
  li > span {
    white-space: nowrap;
  }
-}
+
 ul.select-dropdown,ul.dropdown-content{
  overflow-x: hidden;
  overflow-y: scroll;
@@ -975,7 +975,7 @@ else{
    $(document).ready(function(){
      $('.modal').modal();
    });
-
+</script>
    <script src="sliscript.js"></script>
    <script type="text/javascript">
    M.Sidenav.init(document.querySelector('.sidenav'));

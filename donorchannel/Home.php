@@ -720,10 +720,10 @@ if (!isset($_SESSION['email'])) {
 <ul id="slide-out" class="sidenav">
 <li><div class="user-view">
 <div class="background">
-<img src="Home/images/background1.jpg">
+<img src="../Home/images/background1.jpg">
 </div>
 <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
-<a href="#user"><img class="circle" src="../images/cute"></a>
+<a href="#user"><img class="circle" src="../images/<?php echo $rows['image']; ?>"></a>
 <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
 <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
 </div></li>
@@ -736,8 +736,15 @@ if (!isset($_SESSION['email'])) {
 </ul>
 
 
-<div class="right" >
-  <p style="background:black;padding:5px;color:white;border-radius:5px">blood Group: <span style="color:red">not verified</span></p>
+
+<div class="right" style="margin-left:-5%">
+<?php if($rows['bloodgroupstatus']=='Pending'){?>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;">blood Group: <span style="color:red">Not verified</span></p>  </strong>
+
+<?php }else{?>
+  <strong><p style="background:black;padding:5px;color:white;border-radius:5px;width:200px;margin-left:10%">blood Group: <span style="color:green">Verified</span></p>  </strong>
+
+<?php } ?>
 </div>
 
 <?php
@@ -770,7 +777,7 @@ if (!isset($_SESSION['email'])) {
 
                   <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">Donations made<i class="material-icons right">add_circle_outline</i></span>
-                    <p><a href="#">This is a link</a></p>
+                    <p><a href="#">Click</a></p>
                   </div>
                   <div class="card-reveal">
                   <?php
@@ -792,7 +799,7 @@ if (!isset($_SESSION['email'])) {
 
                 <div class="card-content">
                   <span class="card-title activator grey-text text-darken-4">Pending Donations<i class="material-icons right">compare_arrows</i></span>
-                  <p><a href="#">This is a link</a></p>
+                  <p><a href="#">Click</a></p>
                 </div>
                 <div class="card-reveal">
                 <?php
@@ -814,7 +821,7 @@ if (!isset($_SESSION['email'])) {
 
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Approved Donations<i class="material-icons right">check_circle</i></span>
-                <p><a href="#">This is a link</a></p>
+                <p><a href="#">Click</a></p>
               </div>
               <div class="card-reveal">
               <?php
@@ -835,7 +842,7 @@ if (!isset($_SESSION['email'])) {
 
               <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">Rejected Donations<i class="material-icons right ">block</i></span>
-                <p><a href="#">This is a link</a></p>
+                <p><a href="#">Click</a></p>
               </div>
               <div class="card-reveal">
               <?php
@@ -879,7 +886,7 @@ if (!isset($_SESSION['email'])) {
                   <div class="col s10">
 
                       <span class="black-text" style="margin-left:-7%">
-                      <strong  ><em style="margin-left:7% ;font-weight:bold;text-size:70px"><?php echo $item['fundraise_name'];?></em ></strong><br><?php echo $item['description'];?><br><br><br>
+                      <strong  ><em style="margin-left:7% ;font-weight:bold;text-size:70px"><?php echo $item['fundraise_name'];?></em ></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Amount needed:<?php echo $item['amount'];?></span><br><?php echo $item['description'];?><br><br><br>
                         
                       </span>
           </div>
@@ -900,7 +907,7 @@ if (!isset($_SESSION['email'])) {
 
 
                         <td>    <div class="card-action right-align" style="margin-right:75%;">
-                            <a href="../stories/d-story.php" class="btn green">Fundraise</a>
+                            <a href="d-patient.php" class="btn green">Fundraise</a>
                           </div></td>
                         <td>
 

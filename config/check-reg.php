@@ -79,8 +79,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 
 
-           $sql2 = "INSERT INTO donor(`fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `password`)
-           VALUES('$fname','$email','$dob','$contact','$bloodgroup','$nation','$file_name','$gender','$pass')";
+           $sql2 = "INSERT INTO donor(`fname`, `email`, `dob`, `contact`, `bloodgroup`,`bloodgroupstatus`, `nationality`, `image`, `gender`, `password`)
+           VALUES('$fname','$email','$dob','$contact','$bloodgroup','Pending','$nation','$file_name','$gender','$pass')";
            $result2 = mysqli_query($connection, $sql2);
 			}
            if ($result2) {

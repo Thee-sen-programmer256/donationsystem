@@ -83,12 +83,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         }
         ul.select-dropdown,
        ul.dropdown-content {
-         width: 300px !important;
+         width: 300px !important;}
 
          li > span {
            white-space: nowrap;
          }
-       }
+       
         ul.select-dropdown,ul.dropdown-content{
          overflow-x: hidden;
          overflow-y: scroll;
@@ -705,7 +705,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
   <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>
-  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+  <!-- <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li> -->
   </ul>
   </div>
 
@@ -805,7 +805,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         <!-- end of modal -->
 
 <?php
-$schedules = $connection->query("SELECT * FROM `schedule` where client_type='Patient'");
+$schedules = $connection->query("SELECT * FROM `schedule`");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['start_datetime']));
