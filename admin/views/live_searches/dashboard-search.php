@@ -40,7 +40,7 @@ if(isset($_GET['input'])){
                             <td><?php echo $row['bloodgroup'];  ?></td>
                             <td><?php echo $row['bloodgroupstatus'];  ?></td>
                             <td><?php echo $row['nationality'];  ?></td>
-                            <td><img src="../../images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
+                            <td><img src="../images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
                             <td><?php echo $row['gender'];  ?></td>
                         </tr>
                     <?php } ?>

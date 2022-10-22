@@ -127,7 +127,7 @@ if(!isset($_SESSION['email'])){
                 <img src="images.jpg" width="40px" height="40px" alt="">
                 <div>
                     <h4><?php echo $rows['username']; ?></h4>
-                    <small>Super admin</small>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
@@ -239,7 +239,7 @@ if(!isset($_SESSION['email'])){
                             <div class="card-body">
                                 <div class="table responsive">
                                 <?php
-                                $rresult =" SELECT * FROM request " ;
+                                $rresult =" SELECT * FROM request order by requestId DESC" ;
                                if($rdisplay=mysqli_query($con, $rresult)) {
                                 $rrow=mysqli_num_rows($rdisplay);
                                }
@@ -290,14 +290,14 @@ if(!isset($_SESSION['email'])){
 
                                 <!-- Fetch data from the database -->
                                 <?php
-                                $presult =" SELECT * FROM patient LIMIT 5 " ;
+                                $presult =" SELECT * FROM patient order by pid DESC LIMIT 5 " ;
                                 $pdisplay=mysqli_query($con, $presult);
                                             while ( $prow=mysqli_fetch_assoc($pdisplay)) {
                                                 ?>
                                             <!-- Name & Contacts -->
                                 <div class="patient">
                                     <div class="info">
-                                            <img src="../Home/images/<?php echo $prow['image'];  ?>" width="48px" height="40px" alt="">
+                                            <img src="../images/<?php echo $prow['image'];  ?>" width="48px" height="40px" alt="">
                                         <div>
                                            
                                             <h4><?php echo $prow['fname'];  ?></h4>
@@ -445,7 +445,7 @@ if(!isset($_SESSION['email'])){
         DATE(`request`.`created`) AS `rdates`,
         COUNT(`request`.`requestId`) AS `rcounts`
         FROM `request`
-        WHERE `request`.`created` BETWEEN '2022-09-01 00:00:00' AND '2022-11-31 23:59:59'
+        WHERE `request`.`created` BETWEEN '2022-08-01 00:00:00' AND '2022-11-31 23:59:59'
         GROUP BY `rdates`
         ORDER BY `rdates`" ;
         $rdisplay=mysqli_query($connection, $resultr);
@@ -468,7 +468,7 @@ if(!isset($_SESSION['email'])){
             const data4 = {
                 labels: labels4,
                 datasets: [{
-                label: 'Number of Requests made on a daily basis',
+                label: 'Number of Organ Requests made on a daily basis',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: <?php echo json_encode($rcounts) ?>,
@@ -491,6 +491,61 @@ if(!isset($_SESSION['email'])){
     </div>
 
 
+    <div class="line5" style="width: 70%; margin-left: 3rem;">
+            <?php 
+
+        $connection = mysqli_connect("localhost","root","","donation_procurement");
+
+        $resultd =" SELECT
+        DATE(`donationappointment`.`created`) AS `ddates`,
+        COUNT(`donationappointment`.`id`) AS `dcounts`
+        FROM `donationappointment`
+        WHERE `donationappointment`.`created` BETWEEN '2022-09-01 00:00:00' AND '2022-11-31 23:59:59'
+        GROUP BY `ddates`
+        ORDER BY `ddates`" ;
+        $displayd=mysqli_query($connection, $resultd);
+
+        foreach($displayd As $ddataSet){
+            $ddates[] = $ddataSet['ddates'];
+            $dcounts[] = $ddataSet['dcounts'];
+
+        }
+
+
+        ?>
+            <div>
+                <canvas id="myChart5" style="height: 240px;"></canvas>
+            </div>
+
+                <script>
+            const labels5 = <?php echo json_encode($ddates) ?>;
+
+            const data5 = {
+                labels: labels5,
+                datasets: [{
+                label: 'Number of Donation Appointments made on a daily basis',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: <?php echo json_encode($dcounts) ?>,
+                }]
+            };      
+        
+            const config5 = {
+                type: 'bar',
+                data: data5,
+                options: {}
+            };
+            </script>
+            
+            <script>
+            const myChart5 = new Chart(
+                document.getElementById('myChart5'),
+                config5
+            );
+            </script>
+    </div>
+
+
     </div>
 
 
@@ -508,7 +563,7 @@ if(!isset($_SESSION['email'])){
 
                 if(input != ''){
                     $.ajax({
-                        url:"views/live_searches/patient-search.php",
+                        url:"views/live_searches/dashboard-search.php",
                         method:"GET",
                         data:{input:input},
 

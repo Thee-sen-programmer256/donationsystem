@@ -20,7 +20,7 @@ if(isset($_POST['appo'])){
 
 
 
-  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`,`withdraw_notice`) VALUES ('$name','$email','$organ','$blood','$appoint','ongoing')";
+  $sql_insert="INSERT INTO `donationappointment`(`fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`,`status`,`withdraw_notice`) VALUES ('$name','$email','$organ','$blood','$appoint','Pending','ongoing')";
   $sql_query=mysqli_query($connection,$sql_insert);
   if ($sql_query==TRUE) {
     // echo "successful";

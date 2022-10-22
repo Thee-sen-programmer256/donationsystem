@@ -701,7 +701,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
   </div></li>
   <li><a href="../patientint.php"><i class="material-icons">dashboard</i>Dashboard</a></li>
-  <li><a href="viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
+  <li><a href="../stories/viewstory.php"><i class="material-icons">star_border</i>Stories</a></li>
   <li><a href="../Fundraise/index.php"><i class="material-icons">money</i>Fundraise</a></li>
   <li><a href="../schedule/index.php"><i class="material-icons">content_paste</i>Calendar</a></li>
   <li><a href="#!"><i class="material-icons">logout</i>Logout</a></li>

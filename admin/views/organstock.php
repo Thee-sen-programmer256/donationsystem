@@ -1,10 +1,10 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM organ" ;
+    $result =" SELECT * FROM organ order by organId desc" ;
     $display=mysqli_query($con, $result);
 
-    $result2 =" SELECT * FROM donationappointment" ;
+    $result2 =" SELECT * FROM donationappointment order by id desc " ;
     $display2=mysqli_query($con, $result2);
 
 
@@ -96,6 +96,16 @@
     <!-- Sidebar End -->
 
     <div class="main-content">
+    <?php 
+       session_start();
+      include "../../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      //<?php echo $rows['username']; ?>
+      
+      ?>
         <!-- Header Start -->
         <header>
             <h2>
@@ -113,8 +123,8 @@
             <div class="user-wrapper">
                 <img src="../images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
-                    <small>Super admin</small>
+                    <h4><?php echo $rows['username']; ?></h4>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
@@ -205,6 +215,7 @@
                             <th>Blood Group</th>
                             <th>Appointment</th>
                             <th>Status</th>
+                            <th>Withdraw Notice</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -224,9 +235,12 @@
                              <td><?php echo $row['bloodgroup'];  ?></td>
                              <td><?php echo $row['appointdate'];  ?></td>
                              <td><?php echo $row['status'];  ?></td>
+                             <td><?php echo $row['withdraw_notice'];  ?></td>
                             <td>
                                 
         <!-- //  checking for status -->
+                                <a href="partials/reject-donationrequest.php?a=<?php echo $row['id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: red;border: 0;border-radius: 5px;color: white">Reject</button></a>
+                                &nbsp;
                                 
                                 <a href="partials/approve-donationrequest.php?pd=<?php echo $row['id'];?>"><button type="button" class="btn btn-danger" style="padding: 10px;font-size: 15px;background-color: green;border: 0;border-radius: 5px;color: white; margin-left: 5px;">Approve</button></a>
                                 &nbsp;

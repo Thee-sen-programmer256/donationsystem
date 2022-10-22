@@ -103,7 +103,7 @@ if(mysqli_query($con,$sql)){
         <div class="sidebar-menu">
             <ul>
                 <li>
-                    <a href="../../index.html" ><span class="las la-igloo"></span><span>Dashboard</span></a>
+                    <a href="../../index.php" ><span class="las la-igloo"></span><span>Dashboard</span></a>
                 </li>
                 <li>
                     <a href="../patients.php" ><span class="las la-users"></span><span>Patients</span></a>
@@ -138,6 +138,16 @@ if(mysqli_query($con,$sql)){
     <!-- Sidebar End -->
 
     <div class="main-content">
+    <?php 
+       session_start();
+      include "../../../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      //<?php echo $rows['username']; ?>
+      
+      ?>
         <!-- Header Start -->
         <header>
             <h2>
@@ -151,8 +161,8 @@ if(mysqli_query($con,$sql)){
             <div class="user-wrapper">
                 <img src="../../images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
-                    <small>Super admin</small>
+                    <h4><?php echo $rows['username']; ?></h4>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>

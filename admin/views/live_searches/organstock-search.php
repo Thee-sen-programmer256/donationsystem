@@ -12,7 +12,7 @@ if(isset($_GET['input'])){
 
     if(mysqli_num_rows($result)>0){?>
 
-        <table border="1" class="table table-bordered table-striped mt-4" style="background-color: black; text-alignment:center; width: 100%; border-color:black;">
+        <table border="1" class="table table-bordered table-striped mt-4" style="background-color: black; text-align:center; width: 100%; border-color:black;">
             <thead>
                 <tr style="background-color: black; color:white;">
                 <th>ID</th>

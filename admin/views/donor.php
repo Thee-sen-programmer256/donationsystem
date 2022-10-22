@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM donor " ;
+    $result =" SELECT * FROM donor order by donorId desc" ;
     $display=mysqli_query($con, $result);
     
 ?>
@@ -94,6 +94,16 @@
     <!-- Sidebar End -->
 
     <div class="main-content">
+    <?php 
+       session_start();
+      include "../../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
         <!-- Header Start -->
         <header>
             <h2>
@@ -111,8 +121,8 @@
             <div class="user-wrapper">
                 <img src="../images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
-                    <small>Super admin</small>
+                    <h4><?php echo $rows['username']; ?></h4>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
@@ -142,6 +152,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Blood group</th>
+                            <th>Blood group status</th>
                             <th>Image</th>
                             <th>Gender</th>
                             <th>Action</th>
@@ -160,7 +171,8 @@
                              <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['email'];  ?></td>
                              <td><?php echo $row['bloodgroup'];  ?></td>
-                             <td><img src="../../Home/images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
+                             <td><?php echo $row['bloodgroupstatus'];  ?></td>
+                             <td><img src="../../images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
                             <td><?php echo $row['gender'];  ?></td>
                             
                             <td>
@@ -168,7 +180,7 @@
                                 &nbsp;
         <!-- //  checking for status -->
 
-                                <a href=""><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Active</button></a>
+                                <a href="partials/d-bloodverify.php?a=<?php echo $row['donorId'];?>"><button type="button" class="btn btn-primary" style="padding: 10px;font-size: 15px;background-color:rgb(0,78,150);border: 0;border-radius: 5px;color: white">Verify</button></a>
                              &nbsp;
                                 <!-- <a href=""><button type="button" class="btn btn-warning" style="padding: 10px;font-size: 15px;background-color: rgb(204,128,27);border: 0;border-radius: 5px;color: white">De-active</button></a>
                                   &nbsp; -->

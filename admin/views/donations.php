@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM donation " ;
+    $result =" SELECT * FROM donation order by donationId desc " ;
     $display=mysqli_query($con, $result);
 
     
@@ -96,6 +96,16 @@
     <!-- Sidebar End -->
 
     <div class="main-content">
+    <?php 
+       session_start();
+      include "../../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      //<?php echo $rows['username']; ?>
+      
+      ?>
         <!-- Header Start -->
         <header>
             <h2>
@@ -114,8 +124,8 @@
             <div class="user-wrapper">
                 <img src="../images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
-                    <small>Super admin</small>
+                    <h4><?php echo $rows['username']; ?></h4>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
@@ -144,6 +154,7 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Contact</th>
+                            <th>Fundraise Name</th>
                             <th>Amount</th>
                             <th>Display</th>
                             <th>Email</th>
@@ -165,6 +176,7 @@
                              <td><?php echo $row['fname'];  ?></td>
                              <td><?php echo $row['lname'];  ?></td>
                              <td><?php echo $row['contact'];  ?></td>
+                             <td><?php echo $row['fundraise_name'];  ?></td>
                              <td><?php echo $row['amount'];  ?></td>
                             <td><?php echo $row['display'];  ?></td>
                             <td><?php echo $row['email'];  ?></td>

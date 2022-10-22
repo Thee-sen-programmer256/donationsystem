@@ -1,7 +1,7 @@
 <?php
     $con = mysqli_connect("localhost","root","","donation_procurement");
 
-    $result =" SELECT * FROM patient " ;
+    $result =" SELECT * FROM patient order by pid desc " ;
     $display=mysqli_query($con, $result);
     
 ?>
@@ -93,6 +93,16 @@
     <!-- Sidebar End -->
 
     <div class="main-content">
+    <?php 
+       session_start();
+      include "../../config/connection.php";
+      $sql_fetch="SELECT * FROM admin where email='".$_SESSION['email']."'";
+      $sql_query=mysqli_query($connection, $sql_fetch);
+      $rows=mysqli_fetch_assoc($sql_query);
+      // $patient=mysqli_num_rows($sql_query);
+      
+      
+      ?>
         <!-- Header Start -->
         <header>
             <h2>
@@ -110,8 +120,8 @@
             <div class="user-wrapper">
                 <img src="../images.jpg" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Mark Roi</h4>
-                    <small>Super admin</small>
+                    <h4><?php echo $rows['username']; ?></h4>
+                    <small><?php echo $rows['email']; ?></small>
                 </div>
                 <div>
                     <a href="../../Home/logout.php"><small style="color: red;">LOGOUT</small></a>
@@ -164,7 +174,7 @@
                              <td><?php echo $row['bloodgroup'];  ?></td>
                              <td><?php echo $row['bloodgroupstatus'];  ?></td>
                              <td><?php echo $row['nationality'];  ?></td>
-                             <td><?php echo $row['image'];  ?></td>
+                             <td><img src="../../images/<?php echo $row['image'];  ?>" style="width:40px; height:40px; border-radius:8px;" alt=""></td>
                             <td><?php echo $row['gender'];  ?></td>
 
                             <td>

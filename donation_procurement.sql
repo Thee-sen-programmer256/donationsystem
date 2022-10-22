@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2022 at 04:37 PM
+-- Generation Time: Oct 22, 2022 at 03:43 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,7 +40,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 (1, 'markRoi', 'kalemamark46@gmail.com', '12345'),
-(2, 'markRoi', 'kalemamark46@gmail.com', '12345');
+(2, 'markRoi', 'kalemamark46@gmail.com', '12345'),
+(3, 'Admin', 'admin@gmail.com', '12345');
 
 -- --------------------------------------------------------
 
@@ -64,6 +65,7 @@ CREATE TABLE `donation` (
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
+  `fundraise_name` mediumtext NOT NULL,
   `amount` varchar(255) NOT NULL,
   `display` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -74,11 +76,18 @@ CREATE TABLE `donation` (
 -- Dumping data for table `donation`
 --
 
-INSERT INTO `donation` (`donationId`, `fname`, `lname`, `contact`, `amount`, `display`, `email`, `statuss`) VALUES
-(1, 'Mark', 'Roi', '0786342567 ', '2000', 'no', 'wastehub77@gmail.com', 'confirmed'),
-(2, 'Oscar', 'Daniels', '0786342567', '3000', 'yes', 'wastehub77@gmail.com', 'confirmed'),
-(3, 'Bosco', 'Muo', '0755060662', '1000', 'no', 'mukasa.fred@gmail.com', 'confirmed'),
-(4, 'Micheal', 'Kacheele', '0786342567 ', '400', 'yes', 'agnes.ap@gmail.com', 'confirmed');
+INSERT INTO `donation` (`donationId`, `fname`, `lname`, `contact`, `fundraise_name`, `amount`, `display`, `email`, `statuss`) VALUES
+(1, 'Mark', 'Roi', '0786342567 ', '', '2000', 'no', 'wastehub77@gmail.com', 'confirmed'),
+(2, 'Oscar', 'Daniels', '0786342567', '', '3000', 'yes', 'wastehub77@gmail.com', 'confirmed'),
+(3, 'Bosco', 'Muo', '0755060662', '', '1000', 'no', 'mukasa.fred@gmail.com', 'confirmed'),
+(4, 'Micheal', 'Kacheele', '0786342567 ', '', '400', 'yes', 'agnes.ap@gmail.com', 'confirmed'),
+(5, 'Benny', 'Kacheele', '0786342567', '', '2000', 'yes', 'kacheele@gmail.com', 'Pending'),
+(6, 'Brian', 'Kenny', '0798678987', '', '3000', 'yes', 'kennyb@gmail.com', 'Pending'),
+(7, 'Bosco', 'Kiyo', '0786342567 ', 'Support Jane for her Heart transplant', '20000', 'no', 'mak@gmail.com', 'Pending'),
+(8, 'Oscar', 'KOY', '0786342567', 'Save Keith with a new Kidney', '400', 'yes', 'okellobrian@gmail.com', 'Pending'),
+(9, 'Mark', 'Roi', '0755060662', 'Support Jane for her Heart transplant', '400', 'yes', 'super@silverfleet.com', 'confirmed'),
+(10, 'Mark', 'Roi', '0755060662', 'Support Jane for her Heart transplant', '400', 'yes', 'super@silverfleet.com', 'Pending'),
+(11, 'Mark', 'Roi', '0755060662', 'Support Jane for her Heart transplant', '400', 'yes', 'super@silverfleet.com', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -92,8 +101,9 @@ CREATE TABLE `donationappointment` (
   `email` varchar(45) NOT NULL,
   `organ/tissue/blood` varchar(45) NOT NULL,
   `bloodgroup` varchar(45) NOT NULL,
-  `appointdate` date NOT NULL,
+  `appointdate` text NOT NULL,
   `status` varchar(11) NOT NULL,
+  `withdraw_notice` varchar(255) DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -101,9 +111,21 @@ CREATE TABLE `donationappointment` (
 -- Dumping data for table `donationappointment`
 --
 
-INSERT INTO `donationappointment` (`id`, `fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`, `status`, `created`) VALUES
-(1, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00', 'Pending', '2022-10-12 01:07:21'),
-(2, 'Okello Brian', 'okellobrian@gmail.com', 'Heart valves', 'Choose', '0000-00-00', '', '2022-10-12 16:41:37');
+INSERT INTO `donationappointment` (`id`, `fname`, `email`, `organ/tissue/blood`, `bloodgroup`, `appointdate`, `status`, `withdraw_notice`, `created`) VALUES
+(1, 'Okello Brian', 'okellobrian@gmail.com', 'heart', 'AB', '0000-00-00 00:00:00', 'Approved', 'ongoing', '2022-10-21 23:33:20'),
+(2, 'Tumukunde Oscar', 'oscar@gmail.com', 'Bone marrow', 'O', '0000-00-00 00:00:00', 'Rejected', 'ongoing', '2022-10-21 23:33:28'),
+(3, 'Tumukunde Oscar', 'oscar@gmail.com', 'kidney', 'O', '0000-00-00 00:00:00', 'Pending', 'ongoing', '2022-10-21 23:33:34'),
+(4, 'Okello Brian', 'okellobrian@gmail.com', 'Bone marrow', 'A', '0000-00-00 00:00:00', 'Rejected', 'WITHDRAWN', '2022-10-21 23:37:53'),
+(5, 'Okello Brian', 'okellobrian@gmail.com', 'Blood', 'AB', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:06'),
+(6, '', '', '', '', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:18'),
+(7, 'Okello Brian', 'okellobrian@gmail.com', 'Blood', 'Choose', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:23'),
+(8, 'Okello Brian', 'okellobrian@gmail.com', 'Blood', 'AB', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:28'),
+(9, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:34'),
+(10, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'A', '0000-00-00 00:00:00', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:40'),
+(11, 'Okello Brian', 'okellobrian@gmail.com', 'lungs', 'AB', 'Oct 31, 2022', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:46'),
+(12, 'Okello Brian', 'okellobrian@gmail.com', 'Middle Ear', 'A', 'Oct 31, 2022', 'Pending', 'WITHDRAWN', '2022-10-21 23:32:59'),
+(13, 'Jessica Adong', 'adong@gmail.com', 'pancreas', 'AB', 'Dec 03, 2022', 'Pending', 'ongoing', '2022-10-21 23:29:11'),
+(14, 'Jessica Adong', 'adong@gmail.com', 'small bowel', 'AB', 'Feb 25, 2023', 'Pending', 'ongoing', '2022-10-21 23:34:23');
 
 -- --------------------------------------------------------
 
@@ -118,6 +140,7 @@ CREATE TABLE `donor` (
   `dob` datetime NOT NULL,
   `contact` varchar(200) NOT NULL,
   `bloodgroup` varchar(200) NOT NULL,
+  `bloodgroupstatus` varchar(45) NOT NULL,
   `nationality` varchar(255) NOT NULL,
   `image` text NOT NULL,
   `gender` enum('Male','Female') NOT NULL,
@@ -129,16 +152,10 @@ CREATE TABLE `donor` (
 -- Dumping data for table `donor`
 --
 
-INSERT INTO `donor` (`donorId`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
-(1, 'Mark', 'mukasa.fred@gmail.com', '2022-09-27 13:52:00', '0789755664', 'B', 'chadian', 'avatar.jpg', 'Male', '2022-09-28 17:41:49', '1234'),
-(2, 'Mukwaaya', 'Ku@gmail.com', '2022-09-28 15:21:14', '078656466', 'AB', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:54:06', '7654556'),
-(3, 'Enock', 'En@gmail.com ', '2022-09-28 20:19:41', '07536567980', 'O', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:54:00', '674wtedyf'),
-(4, 'Mark', 'mark@gmail.com', '2022-09-05 20:42:03', '079543567', 'A', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:56', 'kjjfhcvj'),
-(5, 'mike Mugera', 'mm@gmail.com', '2012-09-12 23:55:43', '074325656323', 'B', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:53', 'wfgeg343444'),
-(6, 'Muyere Edgar', 'mug@mail.com', '1997-10-14 11:13:59', '0745675786', 'AB', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', '', '2022-10-11 16:53:49', '86i7fru6v67ju'),
-(7, 'Georgia Babirye', 'barb@gmail.com', '1982-10-01 10:18:05', '0776548765', 'O', 'Ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Female', '2022-10-11 16:53:46', '.ilyktcyjfvgkub'),
-(8, ' muhumuza Mark', 'mak@gmail.com', '1994-10-29 00:08:00', '0789755664', 'AB', 'ugandan', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-11 16:53:37', '12345'),
-(9, 'Okello Brian', 'okellobrian@gmail.com', '2022-09-29 19:11:00', '0789755664', 'A', 'bahraini', '0295690b06d598ca4af51229b07610b8.png', 'Male', '2022-10-10 16:12:20', 'password');
+INSERT INTO `donor` (`donorId`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `bloodgroupstatus`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
+(1, 'Okello Brian', 'okellobrian@gmail.com', '1989-02-16 12:21:00', '0786342567', 'AB', 'Pending', 'ugandan', '256750050168.jpg', 'Male', '2022-10-18 19:02:00', '12345'),
+(2, 'Tumukunde Oscar', 'oscar@gmail.com', '1998-07-16 12:39:00', '0755060662', 'O', 'Verified', 'ugandan', 'Female.jpg', 'Male', '2022-10-21 22:38:04', '12345'),
+(3, 'Jessica Adong', 'adong@gmail.com', '1991-10-22 02:22:00', '0755060662', 'AB', 'Pending', 'ugandan', 'f-donor-1.jpg', 'Female', '2022-10-21 23:23:07', '12345');
 
 -- --------------------------------------------------------
 
@@ -148,7 +165,7 @@ INSERT INTO `donor` (`donorId`, `fname`, `email`, `dob`, `contact`, `bloodgroup`
 
 CREATE TABLE `events` (
   `eventId` int(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` mediumtext NOT NULL,
   `ev_description` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL
@@ -174,9 +191,8 @@ CREATE TABLE `fundraise` (
 --
 
 INSERT INTO `fundraise` (`f_id`, `fundraise_name`, `description`, `amount`, `fimage`, `status`) VALUES
-(3, 'madam', 'It is a long established fact that a reader will be . ', 'jbweoubweuobrv', 'pimages/Screenshot (10).png', 'Active'),
-(4, 'ibfueuibewjww', 'iohiiew', 'kebfitthgyctuoolkhgjknb', 'pimages/Screenshot (10).png', 'Active'),
-(5, '$gvh', '$meshjhsage', '$client_type', '$img_url', '$status');
+(1, 'Support Jane for her Heart transplant', '\"I learnt it the hard way that one is never too young to have a heart attack .I suffered a severe chest pain while on job in Bangalore. The symptoms included radiating pain in the arm and jaw. I threw up after a while and the pain eased. So, I dismissed it as an acute acidity attack. Later, I had chest pain on and off, but it never struck me that it could be a heart attack; I am only 46\"', 'SHS: 230,000,000', 'pimages/FUND2.jpg', 'Active'),
+(2, 'Save Keith with a new Kidney', '\"I have been looking at my baby since three months after he was born. Waking up everyday to see him with all these tubes all over his body, yes he cant talk but am his mother and i know and feel that my son is in great pain but am helpless i just want to be a happy mum again just to see my kid grow up like anyother normal child\"....Keiths mom', 'SHS:100,000,000', 'pimages/FUND3.jpg', 'Active');
 
 -- --------------------------------------------------------
 
@@ -197,9 +213,10 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`n_id`, `notifications_name`, `message`, `client_type`, `status`) VALUES
-(1, 'Greetings', 'Hello, How are you', 'Patient', 'Active'),
-(2, 'Meeting', 'Hello we has a zoom meeting at 10am', 'Donor', 'Active'),
-(3, 'me', 'now', 'patients', 'Inactive');
+(1, 'Fundraising Meeting', 'We have a fundraising meeting on monday at 12:00pm.\r\nPlease endeaver to attend.', 'Donor', 'Active'),
+(2, 'Meeting', 'Friday meeting about Organ donation awareness', 'All', 'Active'),
+(3, 'Check-ups', 'You have been advised to come for a blood group checkup', 'Patient', 'Inactive'),
+(4, 'Good night', 'Have some rest after a long day', 'Patient', 'Inactive');
 
 -- --------------------------------------------------------
 
@@ -226,7 +243,7 @@ INSERT INTO `organ` (`organId`, `organname`, `bloodgroup`, `donor`, `date_added`
 (3, 'Eyes', 'AB', 'Nakasaga Juliet', '2022-09-09 22:26:00', 'Unavailable'),
 (4, 'Kidney', 'O+', 'Okello Brian', '2022-09-13 12:27:00', 'Unavailable'),
 (5, 'Heart', 'AB', 'Senyonjo Rhonie', '2022-09-17 03:59:00', 'Available'),
-(6, 'Lungs', 'B', 'Muyeru Enock', '2022-09-27 20:43:45', 'Available');
+(6, 'Lungs', 'B', 'Muyeru Enock', '2022-09-27 20:43:45', 'Unavailable');
 
 -- --------------------------------------------------------
 
@@ -254,10 +271,10 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`pid`, `fname`, `email`, `dob`, `contact`, `bloodgroup`, `bloodgroupstatus`, `nationality`, `image`, `gender`, `created`, `password`) VALUES
-(1, 'Mutaasa Kafeera', 'muka@gmail.com', '2022-09-25 11:33:08', '0789654544', 'A', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:46:41', '12345'),
-(2, 'Edgar', 'edgar@mail.com', '2000-09-28 20:01:41', '0787535676', 'AB', 'Pending', 'Kenyan', '', 'Male', '2022-10-08 16:33:30', 'liuytucdecu6'),
-(3, 'Bosco Banda', 'bos@gmail.com', '1980-09-27 23:57:24', '0784235645', 'B', 'Pending', 'Ugandan', '', 'Male', '2022-10-08 16:33:49', '2456te'),
-(4, 'Bosco Mutyaaba', 'bosco1@gmail.com', '2022-09-30 21:37:00', '0755060662', 'A', '', 'bahamian', 'anime-wallpapers-anime-nanatsu-no-taizai-meliodas.jpg', 'male', '2022-10-10 16:38:07', '12345');
+(1, 'Mukasa Fred', 'muka@gmail.com', '1992-05-31 11:55:00', '0755060662', 'AB', 'Pending', 'ugandan', 'AfricanMen-1-696x696.jpg', 'male', '2022-10-18 19:07:33', '12345'),
+(2, 'Nankya Joan', 'joan@gmail.com', '1995-06-23 12:09:00', '0755060662', 'B', 'Verified', 'ugandan', 'AfricanMen-1-696x696.jpg', 'female', '2022-10-21 22:31:30', '12345'),
+(3, 'Nantume Maureen', 'maureen@gmail.com', '1976-02-22 01:52:00', '0786342567', 'O', 'Pending', 'ugandan', 'female-p1.jpg', 'female', '2022-10-21 22:53:17', '12345'),
+(4, 'Sembera Tom', 'tom@gmail.com', '1980-04-22 02:13:00', '0786342567 ', 'AB', 'Pending', 'ugandan', 'male-p1.jpg', 'male', '2022-10-21 23:14:49', '12345');
 
 -- --------------------------------------------------------
 
@@ -280,11 +297,9 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`requestId`, `fname`, `email`, `organ`, `bloodgroup`, `status`, `created`) VALUES
-(1, 'Roi', 'bos@gmail.com', 'Heart', 'A', 'Pending', '2022-10-05 21:08:16'),
-(2, 'Mark', 'bos@gmail.com', 'Heart', 'private', 'Pending', '2022-10-05 21:10:07'),
-(3, 'Bosco', 'bos@gmail.com', 'Kidney', 'private', 'Approved', '2022-10-05 21:33:27'),
-(4, 'Mutaasa Kafeera', 'muka@gmail.com', 'Heart', 'O', 'Pending', '2022-10-09 20:52:19'),
-(5, 'Mutaasa Kafeera', 'muka@gmail.com', 'Kidney', 'AB', 'Pending', '2022-10-13 14:57:07');
+(1, 'Mukasa Fred', 'muka@gmail.com', 'Heart', 'AB', 'Approved', '2022-10-22 12:12:01'),
+(2, 'Nantume Maureen', 'maureen@gmail.com', 'Lungs', 'O', 'Pending', '2022-10-21 22:53:51'),
+(3, 'Sembera Tom', 'tom@gmail.com', 'Pancreas', 'AB', 'Pending', '2022-10-21 23:16:52');
 
 -- --------------------------------------------------------
 
@@ -294,25 +309,19 @@ INSERT INTO `request` (`requestId`, `fname`, `email`, `organ`, `bloodgroup`, `st
 
 CREATE TABLE `schedule` (
   `id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `she_description` varchar(255) NOT NULL,
-  `client_type` varchar(45) NOT NULL,
+  `title` longtext NOT NULL,
+  `she_description` mediumtext NOT NULL,
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `title`, `she_description`, `client_type`, `start_datetime`, `end_datetime`) VALUES
-(1, 'Introduction', 'dsgvsbdkhg kjvbn l gyuvtfryfghj hniouug', 'Patient', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
-(6, 'Party', 'Community', 'Patient', '2022-10-08 22:47:00', '2022-10-09 22:47:00'),
-(3, 'Zoom', 'To know what patients want etc.', 'Donor', '2022-09-09 16:16:00', '2022-09-22 16:16:00'),
-(4, 'Zoom meeting', 'To know what patients want etc next week', 'Patient', '2022-09-09 16:16:00', '2022-09-09 16:17:00'),
-(5, 'Feast', 'Big meal', 'Patient', '2022-09-20 22:20:00', '2022-09-21 22:20:00'),
-(7, 'hcvjbknl', 'vbklj. ', 'Donor', '2022-10-19 22:48:00', '2022-12-01 22:48:00'),
-(8, 'uyufsguio', 'lukytfgi;/l.,kyjmhng', 'Patient', '2022-10-22 00:13:00', '2022-10-12 20:10:00');
+INSERT INTO `schedule` (`id`, `title`, `she_description`, `start_datetime`, `end_datetime`) VALUES
+(1, 'National Volunteer Blood Donor Month', 'National Volunteer Blood Donor Month highlights the importance of donating blood to give life. It encourages new people to sign up and honors past and present donors.', '2022-10-14 16:45:00', '2022-10-28 16:45:00'),
+(2, 'The Rose Parade and Donate Life Float', 'Each year on New years Day, The Donate Life is a part of the Rose Parade. It honors the millions of people touched by organ , eye  and tissue donation, including living donors, donor families , transplant recipients and transplant candidates', '2022-10-16 18:13:00', '2022-10-28 18:13:00');
 
 -- --------------------------------------------------------
 
@@ -335,11 +344,10 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`id`, `title`, `status`, `body`, `storyimage`, `spid`, `created`) VALUES
-(1, 'My Life', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\n</p>', '../images/dp.JPG', 1, '2022-10-10 16:24:08'),
-(2, 'My story', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\r\n\r\n</p>\r\n', '../images/Screenshot (7).png', 2, '2022-10-10 16:24:25'),
-(3, 'nstrdh', 'public', '<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of &quot;de Finibus Bonorum et Malorum&quot; (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, &quot;Lorem ipsum dolor sit amet..&quot;, comes from a line in section 1.10.32.</p>\r\n', '../images/dp.JPG', 9, '2022-10-10 16:29:25'),
-(4, 'Ikjhgyatucduvf', 'public', '<p>mlvyr ytexcuytfuygoj;lk.njbkhv cu5d4r6f t7guyhi,mkhnbjgfdxzseaqewextrcyivuobj nl;fi</p>\r\n', '../images/anime-4k-image-download-hd-wallpaper-preview.jpg', 0, '2022-10-10 16:38:52'),
-(5, 'jkj tfugyihunjok', 'public', '<p>e&nbsp; rytvuyoi 7hv uyioyutfcruytfc etcutuyoiuhltiyguhli;iljmk.</p>\r\n', '../images/anime-4k-image-download-hd-wallpaper-preview.jpg', 4, '2022-10-10 17:05:17');
+(1, 'Mukasa Fred', 'public', '<p>Tucked neatly inside a wooden box were 40 handwritten notes. Andy Voge carefully thought about each one, sharing details of a memory and a special song the 33-year-old had experienced with his wife, Rachel. Andy wrote out as many as he could with the intent they would provide Rachel hope and inspiration during the lengthy, life-saving multi-organ transplant he underwent at Cleveland Clinic on September 10, 2021.</p>\r\n', '../images/male1.webp', 1, '2022-10-16 09:07:38'),
+(2, 'Nankya Olivia', 'public', '<p>My husband is a fire fighter, and I worked as an emergency responder for years,&rdquo; said Carnahan. &ldquo;We are salty to begin with, and we deal with a lot of difficult situations on a regular basis. We tend to find humor is the only thing that helps ease the burden. At some point you have to look at yourself and realize, &lsquo;This is pathetic, you are too young to just give up...get your head out of your rear end and do something.</p>\r\n', '../images/female1.webp', 2, '2022-10-16 09:20:51'),
+(4, 'Maureen Nantume', 'public', '<p>Maureen Nantume was involved in a road traffic accident whilst on a cycling holiday, suffering injuries to her face, jaw and legs. After making a good initial recovery and expecting to be back at work within three months - three years later she is still having treatment having experienced two further emergency admissions to hospital due to acute cellulitis and sepsis.</p>\r\n', '../images/female-p1.jpg', 3, '2022-10-21 22:59:31'),
+(5, 'Tom Sembera', 'public', '<p>In 2007 when Tom Sembera was diagnosed with non-Hodgkin lymphoma his family were stunned by the news.</p>\r\n\r\n<p>This powerful film is based on the testimony of Lisa, Tom&rsquo;s wife who gives a moving account of the events that led to Paul&rsquo;s death and explores the effects on their family.</p>\r\n', '../images/male-p1.jpg', 4, '2022-10-21 23:17:34');
 
 --
 -- Indexes for dumped tables
@@ -431,7 +439,7 @@ ALTER TABLE `story`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bloodgroup`
@@ -443,19 +451,19 @@ ALTER TABLE `bloodgroup`
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `donationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `donationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `donationappointment`
 --
 ALTER TABLE `donationappointment`
-  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `donorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -467,13 +475,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `fundraise`
 --
 ALTER TABLE `fundraise`
-  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `organ`
@@ -491,13 +499,13 @@ ALTER TABLE `patient`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `requestId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `story`
