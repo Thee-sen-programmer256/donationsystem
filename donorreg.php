@@ -75,6 +75,7 @@ include "config/check-reg.php";
             <option value="B">B</option>
             <option value="AB">AB</option>
             <option value="O">0</option>
+            <option value="O"  style="color:white">I dont know</option>
 
 
             </select>

@@ -67,7 +67,7 @@ if(!isset($_SESSION['email'])){
     <!-- Sidebar start -->
     <div class="sidebar">
         <div class="sidebar-brand">
-            <h2><span class="las la-hand-holding-heart"><span>OrgDonor</span> </span></h2>
+            <h2><span class="las la-hand-holding-heart"><span>Organ Donation</span> </span></h2>
         </div>
 
 

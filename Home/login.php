@@ -62,7 +62,7 @@ include "../config/check-login.php";
                 <input type="submit" name="Login" value="Login">
         </div>
     </form>
-    <div class="link">Not yet  signed up? <a href="#">Signup now</a></div>
+  
 </section>
     </div>
 </body>

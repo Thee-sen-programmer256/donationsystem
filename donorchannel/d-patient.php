@@ -143,13 +143,45 @@ mysqli_query($con,$sql);
                 <input type="email" placeholder="johndoe@email.com" name="email" required>
             </div>
             <input type="hidden" name="statuss" value="Pending">
-            <div id="fund" class="olycash-pay olycash--window" style="width:100% !important;" data-ignorefrequency="Y" data-id="1344FC3_205463"> 
+            <div class="donation-container">
+        <h2 id="main-h2">Send your Donation</h2>
+        <table class="olycash-amount-entry-form" style="border-collapse: collapse !important;border:0px !important; min-width:100px !important;max-width:250px !important;margin-bottom:10px;background:none !important;">
+            <tr style="background:none !important;">
+                <td style="background:none !important;border:0px !important;font-weight:bold;font-family: Arial, sans-serif; font-size: 17px;padding:0px;margin:0px;white-space:nowrap;width:1%;">Amount: </td>
+                <td style="background:none !important;border:0px !important;padding:0px;margin:0px;">
+                    <select id="olycash__tempcurrency_1662486187" name="olycash__tempcurrency_1662486187" class="__olycash-temp-currency-field" style="width:85px !important;min-height:42px !important;height:42px !important;padding:10px 5px 10px 5px !important;border: 1px solid #B2B2B2 !important; background-color: #FFFFFF !important;font-family: Arial, sans-serif !important; font-size: 17px !important;">
+                    </select>
+                </td>
+                <td style="background:none !important;border:0px;padding:0px;margin:0px;">
+                    <input type="text" id="olycash__temptotal_1662486187" name="olycash__temptotal_1662486187" style="width:100px !important;min-height:42px !important;height:42px !important;padding:10px !important;border: 1px solid #B2B2B2 !important; background-color: #FFFFFF !important;font-family: Arial, sans-serif !important; font-size: 17px !important;" class="__olycash-temp-amount-field" placeholder="0.00" maxlength="12">
+                </td>
+            </tr>
+        </table><!-- END OPTIONAL -->
+    
+                <!-- Your share code -->
+                <div class="olycash-pay olycash--window" style="width:100% !important;" data-ignorefrequency="Y" data-id="1344FC3_205463"> 
                     <!-- Update the field value to add payment details. Full list of fields or help: https://olycash.com/plugin --> 
                     <input type="hidden" id="olycash__category" name="olycash__category" value="156"/>
                     <input type="hidden" id="olycash__total" name="olycash__total" value="0.01"/>
                     <input type="hidden" id="olycash__currency" name="olycash__currency" value="USD"/>
                     <input type="hidden" id="olycash__third_party_fee_paid_by" name="olycash__third_party_fee_paid_by" value="payee"/>
                 </div> 
+                
+                <noscript>
+                    You need JavaScript enabled to with OlyCash.
+    
+                </noscript>
+                
+                <!-- Load OlyCash JavaScript SDK --> 
+                <script>(function(d, s, id) {var js, ojs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); 
+                    js.id = id;js.src = "https://share.olycash.com/en-us/sdk.js";
+                    ojs.parentNode.insertBefore(js, ojs);
+                    }(document, 'script', 'olycash-js-sdk'));
+                </script>
+    </div>
+
                 
                     <div class="inputBox">
                         <a href="#fund"><input type="submit" value="submit" name="submit" ></a>

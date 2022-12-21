@@ -72,6 +72,11 @@ position: fixed;
    background: #ff7d7d;
    color: #fff;
  }
+
+ a.met:hover button{
+  background: black;
+   color: #fff;
+ }
  ul.select-dropdown,
 ul.dropdown-content {
   width: 300px !important;}
@@ -895,8 +900,13 @@ html, body {
                        <p class="product-short-description price" style="font-size:12pt"></p>
                        <span class="price" style="font-size:12pt">bloodgroup:&nbsp;&nbsp;</span><span class="price" style="font-size:12pt"><?php echo $item['bloodgroup']; ?></span>
                     </div>
-                    <a class="new" href="#request"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
-                 </div>
+                    <?php if ($item['statuss']=='Unavailable') {
+               ?>
+                    <a class="met modal-trigger" href="#unavail"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Awaiting donation</button></a>
+                    <?php }else{ ?>
+                      <a class="new" href="#request"><button class="card" style="border-radius: 50px;padding-top:3%;padding-bottom:3%;width:250px;margin-top:15%;margin-left:25%;padding-left:27px;">Request</button></a>
+                      <?php } ?>
+                  </div>
              </div>
          </div>
        <?php }} ?>
@@ -1068,6 +1078,22 @@ html, body {
         </div>
       </div> -->
         <!-- end of modal -->
+
+         <!-- modals -->
+    <div class="container" style="max-height: 30px;">
+       
+        <div id="unavail" class="modal modal-fixed-footer"   style="height:30px;">
+          <h6>Hey User</h6>
+          <p style="font-style: Times New Roman" style="text-size:20px">You are trying to request for an organ thats not available</p>
+         
+    <!-- <div class="modal-content maroon">
+    </div> -->
+    <div class="modal-footer" style="margin-bottom:-5%">
+      <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Okay</a>
+    </div>
+  </div> 
+
+
     <!-- floating button1 -->
     <div class="fixed-action-btn" style="bottom:23%">
     <a  class="btn-floating btn-large blue tooltipped" href="#top" data-position="left" data-tooltip="Back to top">
@@ -1181,6 +1207,7 @@ html, body {
                  <option value="AB"  style="color:white">AB</option>
                  <option value="B"  style="color:white">B</option>
                  <option value="O"  style="color:white">O</option>
+                 <option value="O"  style="color:white">I dont know</option>
 
              </select>
       <label>Blood Group</label>

@@ -718,7 +718,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <li><a href="../organ.php"><i class="material-icons">handyman</i>Donate Organ</a></li>
   <li><a href="../blooddon.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li>
   <li><a href="../tissue.php"><i class="material-icons">ac_unit</i>Donate Tissue</a></li>
-  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
+  
   </ul>
 
   <!--the navbar-->

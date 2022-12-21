@@ -382,7 +382,42 @@ if(mysqli_query($con,$sql)){
 
     <div class="donation-container">
         <h2 id="main-h2">Send your Donation</h2>
-        <table class="olycash-amount-entry-form" style="border-collapse: collapse !important;border:0px !important; min-width:100px !important;max-width:250px !important;margin-bottom:10px;background:none !important;">
+        
+    </div>
+
+    <div class="details">
+        <h2 id="main-h2">Your details</h2>
+        <form action="" method="post">
+            <div class="inputBox">
+                <span>First Name</span>
+                <input type="text" placeholder="John" name="fname">
+            </div>
+            <div class="inputBox">
+                <span>Last Name</span>
+                <input type="text" placeholder="Doe" name="lname">
+            </div>
+            <div class="inputBox">
+                <span>Phone Number</span>
+                <input type="text" placeholder="+256.." name="contact">
+            </div>
+            <div class="inputBox">
+                <span>Confirm Amount</span>
+                <input type="text" name="amount">
+            </div>
+        
+
+            <label for="">Show my name on the supporters tab</label> 
+            <select id="" style="background: #79c9fb;" name="display">
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+            </select>  
+            <div class="inputBox">
+                <span>Email*</span>
+                <input type="email" placeholder="johndoe@email.com" name="email">
+            </div>
+            <input type="hidden" name="statuss" value="Pending">
+
+            <table class="olycash-amount-entry-form" style="border-collapse: collapse !important;border:0px !important; min-width:100px !important;max-width:250px !important;margin-bottom:10px;background:none !important;">
             <tr style="background:none !important;">
                 <td style="background:none !important;border:0px !important;font-weight:bold;font-family: Arial, sans-serif; font-size: 17px;padding:0px;margin:0px;white-space:nowrap;width:1%;">Amount: </td>
                 <td style="background:none !important;border:0px !important;padding:0px;margin:0px;">
@@ -417,39 +452,6 @@ if(mysqli_query($con,$sql)){
                     ojs.parentNode.insertBefore(js, ojs);
                     }(document, 'script', 'olycash-js-sdk'));
                 </script>
-    </div>
-
-    <div class="details">
-        <h2 id="main-h2">Your details</h2>
-        <form action="" method="post">
-            <div class="inputBox">
-                <span>First Name</span>
-                <input type="text" placeholder="John" name="fname">
-            </div>
-            <div class="inputBox">
-                <span>Last Name</span>
-                <input type="text" placeholder="Doe" name="lname">
-            </div>
-            <div class="inputBox">
-                <span>Phone Number</span>
-                <input type="text" placeholder="+256.." name="contact">
-            </div>
-            <div class="inputBox">
-                <span>Confirm Amount</span>
-                <input type="text" name="amount">
-            </div>
-        
-
-            <label for="">Show my name on the supporters tab</label> 
-            <select id="" style="background: #79c9fb;" name="display">
-                <option value="yes">YES</option>
-                <option value="no">NO</option>
-            </select>  
-            <div class="inputBox">
-                <span>Email*</span>
-                <input type="email" placeholder="johndoe@email.com" name="email">
-            </div>
-            <input type="hidden" name="statuss" value="Pending">
                 
                     <div class="inputBox">
                         <input type="submit" value="submit" name="submit">
@@ -501,7 +503,7 @@ if(mysqli_query($con,$sql)){
                 <a href="../more_pages/how-organ-donation-works.html">How Donation Works</a>
                 <a href="../more_pages/living-donation.html">Who Can Donate</a>
                 <a href="../more_pages/get_involved.html">Get Involved</a>
-                <a href="../Fin-Donation/don.php">Fundraise</a>
+                <a href="../Fin-Donation/don.php">Donate Funds</a>
             </div>
     
             <div class="inner-footer">
@@ -517,9 +519,9 @@ if(mysqli_query($con,$sql)){
                 <h2>Info</h2>
                 <a href="../more_pages/terms-and-conditions.html">Terms and Conditions</a>
                 <a href="../more_pages/privacy-policy.html">Privacy Policy</a>
-                <a href="#">Notice of Privacy Practices</a>
-                <a href="#">Notice of Nondiscrimination</a>
                 <a href="#">Back to Top</a>
+            <a href="#" style="color: #DFE4E0;">Notice of Privacy Practices</a>
+            <a href="#" style="color: #DFE4E0;">Notice of Nondiscrimination</a>
             </div>
         </div>
     </div>

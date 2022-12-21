@@ -169,7 +169,7 @@ include "config/connection.php";
     <div class="title">Patient_Registration</div>
     <div class="content">
       <form action="#" method="post" enctype="multipart/form-data">
-        <div class="" style="">
+        <div class="" >
           <?php if (isset($_GET['error'])) { ?>
               <p class="error"><?php echo $_GET['error']; ?></p>
             <?php } ?>
