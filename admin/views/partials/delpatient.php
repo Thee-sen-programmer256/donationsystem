@@ -6,7 +6,7 @@ $result =" DELETE FROM patient WHERE pid= '$pid'" ;
 $display=mysqli_query($con, $result);
 
 if($display){
-    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../patient.php">';    
+    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../patients.php">';    
     exit;
 }else{
     echo "<font color='red'>Failed to delete frm Database";

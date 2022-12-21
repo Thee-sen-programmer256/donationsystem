@@ -7,7 +7,7 @@ $display=mysqli_query($con, $result);
 
 if($display){
     echo '<script>alert("Successfully Deleted")</script>';
-    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../donation.php">';    
+    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=../donations.php">';    
     exit;
 }else{
     echo "<font color='red'>Failed to delete frm Database";
