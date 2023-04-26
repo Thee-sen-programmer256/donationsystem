@@ -1,11 +1,12 @@
+
+
 <?php
 
-
-    include "../../config/connection.php";
-    session_start();
-    if(!isset($_SESSION['email'])){
-    header("Location: ../../Home/login.php");
-    }
+session_start();
+if(!isset($_SESSION['email'])){
+header("Location: Home/login.php");
+}
+    include "../../config/connection.php"
 
 
 
@@ -84,12 +85,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
         }
         ul.select-dropdown,
        ul.dropdown-content {
-         width: 300px !important;}
+         width: 300px !important;
 
          li > span {
            white-space: nowrap;
          }
-       
+       }
         ul.select-dropdown,ul.dropdown-content{
          overflow-x: hidden;
          overflow-y: scroll;
@@ -628,22 +629,12 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 
 <body class="bg-light">
 
-  <?php
-  // include "../config/connection.php";
-      $sql_fetch="SELECT * FROM donor where email='".$_SESSION['email']."'";
-      $sql_query=mysqli_query($connection, $sql_fetch);
-      $rows=mysqli_fetch_assoc($sql_query);
-      // $patient=mysqli_num_rows($sql_query);
-
-
-      ?>
-
   <!-- Dropdown Structure -->
   <ul id="dropdown1" class="dropdown-content">
-    <!-- <li><a href="#!">one</a></li> -->
-    <!-- <li><a href="#!">two</a></li> -->
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
     <li class="divider"></li>
-    <li><a href="../../Home/logout.php">logout</a></li>
+    <li><a href="#!">logout</a></li>
   </ul>
   <div class="navbar-fixed">
     <nav>
@@ -654,9 +645,9 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
 
         <a href="#!" class="brand-logo center " >
           <div class="chip " style="vertical-align:middle;">
-     <img src="../../images/<?php echo $rows['image']; ?>" alt="Contact Person">
+     <img src="../../images/_20200622_003355.jpg" alt="Contact Person">
 
-     <span style="font-size:16px;font-weight:bold;"><?php echo $rows['fname']; ?></span>
+     <span style="font-size:16px;font-weight:bold;">big AN 256</span>
     </div>
         </a>
         <ul class="right hide-on-med-and-down" >
@@ -664,7 +655,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
           <!-- <li><a href="sass.html" >Fundraise</a></li> -->
           <!-- <li><a href="badges.html">Schedule</a></li> -->
           <!-- Dropdown Trigger -->
-          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Logout<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
       </div>
       <?php
@@ -706,10 +697,10 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <ul id="slide-out" class="sidenav">
   <li><div class="user-view">
   <div class="background">
-  <img src="../../Home/images/background1.jpg">
+  <img src="Home/images/background1.jpg">
   </div>
   <!-- <a href="#user"><img class="circle" src="images/images.png"></a> -->
-  <a href="#user"><img class="circle" src="../../images/<?php echo $rows['image']; ?>"></a>
+  <a href="#user"><img class="circle" src="../images/cute"></a>
   <a href="#name" style="text-decoration:none"><span class="white-text name" ><?php echo $rows['fname']; ?></span></a>
   <a href="#email" style="text-decoration:none"><span class="white-text email"><?php echo $rows['email']; ?></span></a>
   </div></li>
@@ -718,7 +709,7 @@ src="https://code.jquery.com/jquery-1.12.0.min.js">
   <li><a href="../organ.php"><i class="material-icons">handyman</i>Donate Organ</a></li>
   <li><a href="../blooddon.php"><i class="material-icons">bloodtype</i>Donate Blood</a></li>
   <li><a href="../tissue.php"><i class="material-icons">ac_unit</i>Donate Tissue</a></li>
-  
+  <li>  <a class="btn blue modal-trigger" href="#terms">Help Info</a></li>
   </ul>
 
   <!--the navbar-->
@@ -833,7 +824,7 @@ if(isset($connection)) $connection->close();
  $(document).ready(function() {
    $("#notifications").on("click", function() {
      $.ajax({
-       url: "../updatenotify.php",
+       url: "../readNotify.php",
        success: function(res) {
          console.log(res);
        }
